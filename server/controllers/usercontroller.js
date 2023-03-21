@@ -8,4 +8,4 @@ const registerUser = async (req, res) => {
       res.status(404).send(`ERROR registration`);
     }
   };
-  export default UsersService
+  export default registerUser
