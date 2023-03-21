@@ -2,24 +2,14 @@ const S = require("sequelize");
 const db = require("../db/db");
 const bcrypt = require("bcrypt");
 
-class User extends S.Model {
-  hash(password, salt) {
-    return bcrypt.hash(password, hash);
-  }
-
-  validatePassword(password) {
-    return this.hash(password, this.salt).then((hashed) => {
-      hashed === this.password;
-    });
-  }
-}
+class User extends S.Model {}
 User.init(
   {
     name: {
       type: S.STRING,
       allowNull: false,
     },
-    lasName: {
+    lastName: {
       type: S.STRING,
       allowNull: false,
     },
@@ -48,7 +38,7 @@ User.init(
       type: S.STRING,
     },
   },
-  { sequelize: db, modelName: "user" }
+  { sequelize: db, modelName: "User" }
 );
 
 User.prototype.hash = function (password, salt) {

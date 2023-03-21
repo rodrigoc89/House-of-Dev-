@@ -11,7 +11,7 @@ app.use(cookieParser());
 
 app.use("/api", routes);
 
-db.sync({ force: true }).then(() => {
+db.sync({ force: false }).then(() => {
   app.listen(port, () => {
     console.log(`escuchando en el puerto ${port}`);
   });
