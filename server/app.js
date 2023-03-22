@@ -2,10 +2,11 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 const cors = require("cors");
+const House= require("./models/house")
 
 const app = express();
 const db = require("./db/db.js");
-const port = 3001;
+const port = 3001 
 
 app.use(express.json());
 app.use(cookieParser());
@@ -18,10 +19,13 @@ app.use(
 
 app.use("/api", routes);
 
-db.sync({ force: false }).then(() => {
+db.sync({ force: true }).then(() => {
   app.listen(port, () => {
     console.log(`escuchando en el puerto ${port}`);
   });
 });
 
 module.exports = app;
+
+
+

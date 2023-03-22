@@ -42,7 +42,7 @@ User.init(
       defaultValue: false,
     },
   },
-  { sequelize: db, modelName: "User" }
+  { sequelize: db, modelName: "user" }
 );
 
 User.prototype.hash = function (password, salt) {
