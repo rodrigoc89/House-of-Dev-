@@ -1,4 +1,4 @@
-const { validateToken } = require("../config/tokens.js");
+const { validateToken } = require("../config/token");
 
 const validateAuth = (req, res, next) => {
   const token = req.cookies.token;
@@ -11,8 +11,8 @@ const validateAuth = (req, res, next) => {
   next();
 };
 const validateAdmin = (req, res, next) => {
-  if (!req.user.admin) return res.sendStatus(401);
+  if (!req.body.admin) return res.sendStatus(401);
   next();
 };
 
-module.export = { validateAdmin, validateAuth };
+module.exports = { validateAdmin, validateAuth };

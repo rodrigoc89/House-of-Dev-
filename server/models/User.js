@@ -37,6 +37,10 @@ User.init(
     salt: {
       type: S.STRING,
     },
+    admin: {
+      type: S.BOOLEAN,
+      defaultValue: false,
+    },
   },
   { sequelize: db, modelName: "User" }
 );
