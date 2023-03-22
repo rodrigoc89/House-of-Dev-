@@ -2,7 +2,7 @@ const router = require("express").Router();
 
 const User = require("../models/User");
 
-const generateToken = require("../config/token");
+const { generateToken } = require("../config/token");
 
 router.post("/register", (req, res) => {
   User.create(req.body)
