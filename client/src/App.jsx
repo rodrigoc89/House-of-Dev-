@@ -1,19 +1,13 @@
-import { Route, Routes } from "react-router";
-import Login from "./ components/login/login";
-import Home from "./commons/home";
-import FormRegister from "./ components/register/register";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { useState } from 'react'
+import './App.css'
 
 function App() {
+
   return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<FormRegister />} />
-      </Routes>
+    <div >
+     Hello word :D
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
