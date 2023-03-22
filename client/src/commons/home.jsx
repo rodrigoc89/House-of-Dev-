@@ -1,4 +1,4 @@
-import NavbarUser from "../ components/navbar";
+import NavbarUser from "../ components/navbar/navbar";
 
 const Home = () => {
   return (

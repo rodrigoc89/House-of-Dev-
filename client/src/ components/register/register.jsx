@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useState } from "react";
-
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -27,7 +26,7 @@ function FormRegister() {
         },
         { withCredentials: true }
       )
-      .then(() => {
+      .then((data) => {
         navigate("/login");
       })
       .catch((error) => console.log(error));

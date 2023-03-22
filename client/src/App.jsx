@@ -1,10 +1,8 @@
 import { Route, Routes } from "react-router";
-
-import "bootstrap/dist/css/bootstrap.min.css";
-
-import Login from "./ components/login";
+import Login from "./ components/login/login";
 import Home from "./commons/home";
-import FormRegister from "./ components/register";
+import FormRegister from "./ components/register/register";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (

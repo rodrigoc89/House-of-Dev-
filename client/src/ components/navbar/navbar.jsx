@@ -5,8 +5,12 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import {useSelector, useDispatch} from "react-redux"
 
 function NavbarUser() {
+  const user = useSelector((state)=>state.user)
+  const dispatch= useDispatch()
+  console.log(user);
   const handleLogout = () => {
     axios
       .post(
@@ -18,7 +22,7 @@ function NavbarUser() {
       .catch((error) => console.log(error));
   };
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar style={{backgroundColor:"#1877f2"}} expand="lg" >
       <Container fluid>
         <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -45,9 +49,6 @@ function NavbarUser() {
               </NavDropdown.Item>
             </NavDropdown>
             {/* para el login */}
-            <Nav.Link href="#" disabled>
-              Link
-            </Nav.Link>
           </Nav>
           <Form className="d-flex">
             <Form.Control
@@ -61,6 +62,7 @@ function NavbarUser() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+
   );
 }
 
