@@ -33,22 +33,20 @@ const Login = () => {
 
   return (
     <>
-    <div style={{backgroundColor:"white", height:"370px", width:"50%", display:"flex", alignItems:"center", marginTop:"9%",marginLeft:"22%", justifyContent:"center", borderRadius:"20px"}}>
-    <h1 style={{marginRight:"10%", fontWeight:"1000", fontSize:"250%", fontFamily:"sans-serif", color:"#1877f2"}}>Ingresar</h1>
+    <div style={{backgroundColor:"white", height:"370px", width:"50%", display:"flex", alignItems:"center", marginTop:"9%",marginLeft:"22%", justifyContent:"center", borderRadius:"50px", backgroundColor:"#FE4236"}}>
+    <h1 style={{marginRight:"10%", fontWeight:"1000", fontSize:"250%", fontFamily:"sans-serif", color:"white"}}>Ingresar</h1>
     <Form  onSubmit={handleSubmit}>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label style={{fontWeight:"bold"}}>Email</Form.Label>
+        <Form.Label style={{fontWeight:"bold", color:"white"}}>Email</Form.Label>
         <Form.Control onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Ingresar email"/>
-        <Form.Text className="text-muted">
-        Nunca compartiremos su correo electrónico con nadie más.
-        </Form.Text>
+
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label style={{fontWeight:"bold"}}>Contraseña</Form.Label>
+        <Form.Label style={{fontWeight:"bold", color:"white"}}>Contraseña</Form.Label>
         <Form.Control onChange={(e) => setPassword(e.target.value)} type="password"  placeholder="Ingresar contraseña"/>
       </Form.Group>
-      <Button style={{width:"100%"}} variant="primary" type="submit">
+      <Button style={{width:"100%"}} variant="light" type="submit">
         Iniciar sesión
       </Button>
       <Link to={"/register"}>
