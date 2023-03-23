@@ -1,15 +1,16 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import {useSelector, useDispatch} from "react-redux"
+import { useSelector, useDispatch } from "react-redux";
 
 function NavbarUser() {
-  const user = useSelector((state)=>state.user)
-  const dispatch= useDispatch()
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   console.log(user);
   const handleLogout = () => {
     axios
@@ -21,8 +22,9 @@ function NavbarUser() {
       .then()
       .catch((error) => console.log(error));
   };
+
   return (
-    <Navbar style={{backgroundColor:"#1877f2"}} expand="lg" >
+    <Navbar style={{ backgroundColor: "#1877f2" }} expand="lg">
       <Container fluid>
         <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -40,9 +42,7 @@ function NavbarUser() {
             </Nav.Link>
             <NavDropdown title="Link" id="navbarScrollingDropdown">
               <NavDropdown.Item href="/register">Register</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Another action
-              </NavDropdown.Item>
+              <NavDropdown.Item href="/users">List Users</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action5">
                 Something else here
@@ -62,7 +62,6 @@ function NavbarUser() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-
   );
 }
 

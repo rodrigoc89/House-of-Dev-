@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router";
 import Login from "./ components/login";
 import Home from "./commons/home";
 import FormRegister from "./ components/register";
+import ListUsers from "./ components/ListUsers";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<FormRegister />} />
+        <Route path="/users" element={<ListUsers />} />
       </Routes>
     </div>
   );
