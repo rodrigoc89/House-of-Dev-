@@ -33,69 +33,46 @@ function FormRegister() {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} style={{ width:"80%", margin:"0 auto", padding:"5%", backgroundColor:"#FE4236", borderRadius:"50px", marginTop:"4%"}}>
+      <h1  style={{textAlign:"center", marginBottom:"3%",color:"white", fontWeight:"500"}}>Registrarte</h1>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Email</Form.Label>
+          <Form.Label style={{color:"white", fontWeight:"bold"}}>Email</Form.Label>
           <Form.Control
             type="email"
-            placeholder="Enter email"
+            placeholder="Ingrese su email"
             onChange={(e) => setEmail(e.target.value)}
           />
         </Form.Group>
 
         <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Password</Form.Label>
+          <Form.Label style={{color:"white", fontWeight:"bold"}}>Contraseña</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Password"
+            placeholder="Ingrese su contraseña"
             onChange={(e) => setPassword(e.target.value)}
           />
         </Form.Group>
       </Row>
-
-      <Form.Group className="mb-3" controlId="formGridAddress1">
-        <Form.Label>name</Form.Label>
+      <Row className="mb-3">
+      <Form.Group as={Col} controlId="formGridAddress1">
+        <Form.Label style={{color:"white", fontWeight:"bold"}}>Nombre</Form.Label>
         <Form.Control
-          placeholder="your name"
+          placeholder="Ingrese su nombre"
           onChange={(e) => setName(e.target.value)}
         />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formGridAddress2">
-        <Form.Label>lastname</Form.Label>
+      <Form.Group as={Col} controlId="formGridAddress2">
+        <Form.Label style={{color:"white", fontWeight:"bold"}}>Apellido</Form.Label>
         <Form.Control
-          placeholder="your lastname"
+          placeholder="Ingrese su apellido"
           onChange={(e) => setLastName(e.target.value)}
         />
       </Form.Group>
-
-      {/* <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridCity">
-          <Form.Label>City</Form.Label>
-          <Form.Control />
-        </Form.Group>
-
-        <Form.Group as={Col} controlId="formGridState">
-          <Form.Label>State</Form.Label>
-          <Form.Select defaultValue="Choose...">
-            <option>Choose...</option>
-            <option>...</option>
-          </Form.Select>
-        </Form.Group>
-
-        <Form.Group as={Col} controlId="formGridZip">
-          <Form.Label>Zip</Form.Label>
-          <Form.Control />
-        </Form.Group>
-      </Row> */}
-
-      {/* <Form.Group className="mb-3" id="formGridCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-      </Form.Group> */}
-
-      <Button variant="primary" type="submit">
-        Submit
+      </Row>
+      <Button variant="light" type="submit" style={{width:"21%", marginLeft:"40%", marginTop:"2%"}}>
+        Registrarse
       </Button>
     </Form>
   );
