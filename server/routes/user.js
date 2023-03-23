@@ -73,4 +73,8 @@ router.get("/adminList", (req, res) => {
     .catch((error) => console.log(error));
 });
 
+router.get("/me", validateAuth, (req,res)=>{
+  res.send(req.user)
+})
+
 module.exports = router;
