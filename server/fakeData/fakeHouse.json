@@ -1,0 +1,44 @@
+[
+  {
+    "url_imagen": "https://reformashoy.com/wp-content/uploads/2023/01/casas-modulares-1024x661.jpg",
+    "descripcion": "Casa de 3 dormitorios y 2 baños en el barrio de Palermo",
+    "ubicacion": "Palermo, Ciudad de Buenos Aires",
+    "precio": 450000,
+    "tipo_operacion": "venta"
+  },
+  {
+    "url_imagen": "https://reformashoy.com/wp-content/uploads/2023/01/casas-modulares-1024x661.jpg",
+    "descripcion": "Departamento de 2 ambientes y 1 baño en la zona de Belgrano",
+    "ubicacion": "Belgrano, Ciudad de Buenos Aires",
+    "precio": 20000,
+    "tipo_operacion": "alquiler"
+  },
+  {
+    "url_imagen": "https://reformashoy.com/wp-content/uploads/2023/01/casas-modulares-1024x661.jpg",
+    "descripcion": "PH de 4 ambientes y 2 baños en el barrio de Villa Crespo",
+    "ubicacion": "Villa Crespo, Ciudad de Buenos Aires",
+    "precio": 350000,
+    "tipo_operacion": "venta"
+  },
+  {
+    "url_imagen": "https://reformashoy.com/wp-content/uploads/2023/01/casas-modulares-1024x661.jpg",
+    "descripcion": "Casa de 5 dormitorios y 3 baños con jardín y piscina en la zona de San Isidro",
+    "ubicacion": "San Isidro, Gran Buenos Aires",
+    "precio": 1200000,
+    "tipo_operacion": "venta"
+  },
+  {
+    "url_imagen": "https://reformashoy.com/wp-content/uploads/2023/01/casas-modulares-1024x661.jpg",
+    "descripcion": "Departamento de 3 ambientes y 1 baño en el barrio de Recoleta",
+    "ubicacion": "Recoleta, Ciudad de Buenos Aires",
+    "precio": 30000,
+    "tipo_operacion": "alquiler"
+  },
+  {
+    "url_imagen": "https://reformashoy.com/wp-content/uploads/2023/01/casas-modulares-1024x661.jpg",
+    "descripcion": "PH de 3 ambientes y 1 baño en la zona de Caballito",
+    "ubicacion": "Caballito, Ciudad de Buenos Aires",
+    "precio": 250000,
+    "tipo_operacion": "venta"
+  }
+]
