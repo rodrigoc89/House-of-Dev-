@@ -12,6 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch= useDispatch()
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
@@ -23,9 +24,8 @@ const Login = () => {
         },
         { withCredentials: true }
       )
-      .then((data) => {
-        dispatch(setUser(data))
-        console.log(data);
+      .then((user) => {
+        dispatch(setUser(user.data))
         navigate("/");
       })
       .catch((error) => console.log(error, "no funciona"));
@@ -33,7 +33,7 @@ const Login = () => {
 
   return (
     <>
-    <div style={{backgroundColor:"white", height:"370px", width:"50%", display:"flex", alignItems:"center", marginTop:"9%",marginLeft:"22%", justifyContent:"center", borderRadius:"50px", backgroundColor:"#FE4236"}}>
+    <div style={{height:"370px", width:"50%", display:"flex", alignItems:"center", marginTop:"9%",marginLeft:"22%", justifyContent:"center", borderRadius:"50px", backgroundColor:"#FE4236"}}>
     <h1 style={{marginRight:"10%", fontWeight:"1000", fontSize:"250%", fontFamily:"sans-serif", color:"white"}}>Ingresar</h1>
     <Form  onSubmit={handleSubmit}>
 

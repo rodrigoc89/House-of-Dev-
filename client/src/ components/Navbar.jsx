@@ -10,7 +10,7 @@ import {useSelector, useDispatch} from "react-redux"
 function NavbarUser() {
   const user = useSelector((state)=>state.user)
   const dispatch= useDispatch()
-  console.log(user.data);
+  console.log(user);
   const handleLogout = () => {
     axios
       .post(
@@ -43,12 +43,12 @@ function NavbarUser() {
             />
             <Button variant="light">Buscar</Button>
           </Form>
-          {user.data?(
+          {user.name ?(
             <>
           
             <NavDropdown
               id="nav-dropdown-dark-example"
-              title={user.data.name}
+              title={user.name}
               menuVariant="dark"
               style={{marginLeft:"4%", marginRight:"2%", fontWeight:"bold", fontSize:"110%", color:"white", textTransform:"uppercase"}}
             >
