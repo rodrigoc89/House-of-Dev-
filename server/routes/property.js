@@ -1,6 +1,6 @@
 const { Router } = require("express");
 
-const Property = require("../models/property");
+const Property = require("../models/Property");
 
 const { validateAdmin, validateAuth } = require("../middleware/auth");
 
