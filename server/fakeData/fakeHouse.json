@@ -1,86 +1,68 @@
 [
   {
-    "url_imagen": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "descripcion": "Casa de 3 dormitorios y 2 baños en el barrio de Palermo",
-    "ubicacion": "Palermo, Ciudad de Buenos Aires",
-    "precio": 450000,
-    "tipo_operacion": "venta"
+    "address": "Calle Falsa 123",
+    "bathrooms": 2,
+    "bedrooms": 3,
+    "price": 200000,
+    "description": "Hermosa casa en el barrio residencial de San Isidro",
+    "m2": 200,
+    "options": "venta",
+    "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
+    "available": true
   },
   {
-    "url_imagen": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "descripcion": "Departamento de 2 ambientes y 1 baño en la zona de Belgrano",
-    "ubicacion": "Belgrano, Ciudad de Buenos Aires",
-    "precio": 20000,
-    "tipo_operacion": "alquiler"
+    "address": "Calle Falsa 456",
+    "bathrooms": 1,
+    "bedrooms": 2,
+    "price": 150000,
+    "description": "Linda casa en el barrio de Palermo",
+    "m2": 150,
+    "options": "venta",
+    "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
+    "available": true
   },
   {
-    "url_imagen": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "descripcion": "PH de 4 ambientes y 2 baños en el barrio de Villa Crespo",
-    "ubicacion": "Villa Crespo, Ciudad de Buenos Aires",
-    "precio": 350000,
-    "tipo_operacion": "venta"
+    "address": "Calle Falsa 789",
+    "bathrooms": 3,
+    "bedrooms": 4,
+    "price": 350000,
+    "description": "Espectacular casa en el barrio de Belgrano",
+    "m2": 300,
+    "options": "venta",
+    "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
+    "available": true
   },
   {
-    "url_imagen": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "descripcion": "Casa de 5 dormitorios y 3 baños con jardín y piscina en la zona de San Isidro",
-    "ubicacion": "San Isidro, Gran Buenos Aires",
-    "precio": 1200000,
-    "tipo_operacion": "venta"
+    "address": "Calle Falsa 012",
+    "bathrooms": 4,
+    "bedrooms": 5,
+    "price": 500000,
+    "description": "Increíble casa en el barrio de Recoleta",
+    "m2": 500,
+    "options": "venta",
+    "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
+    "available": true
   },
   {
-    "url_imagen": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "descripcion": "Departamento de 3 ambientes y 1 baño en el barrio de Recoleta",
-    "ubicacion": "Recoleta, Ciudad de Buenos Aires",
-    "precio": 30000,
-    "tipo_operacion": "alquiler"
+    "address": "Calle Falsa 345",
+    "bathrooms": 2,
+    "bedrooms": 3,
+    "price": 2500,
+    "description": "Acogedora casa en alquiler en el barrio de Caballito",
+    "m2": 180,
+    "options": "alquiler",
+    "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
+    "available": true
   },
   {
-    "url_imagen": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "descripcion": "PH de 3 ambientes y 1 baño en la zona de Caballito",
-    "ubicacion": "Caballito, Ciudad de Buenos Aires",
-    "precio": 250000,
-    "tipo_operacion": "venta"
-  },
-  {
-    "url_imagen": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "descripcion": "Casa de 3 dormitorios y 2 baños en el barrio de Palermo",
-    "ubicacion": "Palermo, Ciudad de Buenos Aires",
-    "precio": 450000,
-    "tipo_operacion": "venta"
-  },
-  {
-    "url_imagen": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "descripcion": "Departamento de 2 ambientes y 1 baño en la zona de Belgrano",
-    "ubicacion": "Belgrano, Ciudad de Buenos Aires",
-    "precio": 20000,
-    "tipo_operacion": "alquiler"
-  },
-  {
-    "url_imagen": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "descripcion": "PH de 4 ambientes y 2 baños en el barrio de Villa Crespo",
-    "ubicacion": "Villa Crespo, Ciudad de Buenos Aires",
-    "precio": 350000,
-    "tipo_operacion": "venta"
-  },
-  {
-    "url_imagen": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "descripcion": "Casa de 5 dormitorios y 3 baños con jardín y piscina en la zona de San Isidro",
-    "ubicacion": "San Isidro, Gran Buenos Aires",
-    "precio": 1200000,
-    "tipo_operacion": "venta"
-  },
-  {
-    "url_imagen": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "descripcion": "Departamento de 3 ambientes y 1 baño en el barrio de Recoleta",
-    "ubicacion": "Recoleta, Ciudad de Buenos Aires",
-    "precio": 30000,
-    "tipo_operacion": "alquiler"
-  },
-  {
-    "url_imagen": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "descripcion": "PH de 3 ambientes y 1 baño en la zona de Caballito",
-    "ubicacion": "Caballito, Ciudad de Buenos Aires",
-    "precio": 250000,
-    "tipo_operacion": "venta"
+    "address": "Calle Falsa 678",
+    "bathrooms": 3,
+    "bedrooms": 4,
+    "price": 4000,
+    "description": "Amplia casa en alquiler en el barrio de San Telmo",
+    "m2": 250,
+    "options": "alquiler",
+    "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
+    "available": "en alquiler"
   }
 ]
