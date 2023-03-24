@@ -3,7 +3,17 @@ const router = require("express").Router();
 const User = require("../models/User");
 
 const { generateToken } = require("../config/token");
-const { validateAuth } = require("../middleware/auth");
+const { validateAuth, validateAdmin } = require("../middleware/auth");
+
+router.get("/:id", validateAuth, async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findByPk(id);
+    res.status(201).send(user);
+  } catch (error) {
+    res.sendStatus(404);
+  }
+});
 
 router.get("/me", validateAuth, (req, res) => {
   res.send(req.user);
@@ -45,6 +55,38 @@ router.post("/login", (req, res) => {
 router.post("/logout", (req, res) => {
   res.clearCookie("token");
   res.status(204).send("logout");
+});
+
+// ADMIN ROUTES FIND AND EDIT USERS
+
+router.get("/", validateAuth, validateAdmin, async (req, res) => {
+  try {
+    const users = await User.findAll();
+    res.status(201).send(users);
+  } catch (error) {
+    res.sendStatus(404);
+  }
+});
+
+router.put("/:id", validateAuth, validateAdmin, async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findByPk(id);
+    user.update(req.body);
+    res.status(201).send(user);
+  } catch (error) {
+    res.sendStatus(404);
+  }
+});
+
+router.delete("/:id", validateAuth, validateAdmin, async (req, res) => {
+  const { id } = req.params;
+  try {
+    await User.destroy({ where: { id: id } });
+    res.sendStatus(202);
+  } catch (error) {
+    res.sendStatus(404);
+  }
 });
 
 module.exports = router;
