@@ -1,4 +1,5 @@
 const { validateToken } = require("../config/token");
+const User = require("../models/User");
 
 const validateAuth = (req, res, next) => {
   const token = req.cookies.token;
@@ -11,7 +12,14 @@ const validateAuth = (req, res, next) => {
   next();
 };
 const validateAdmin = (req, res, next) => {
-  if (!req.body.admin) return res.sendStatus(401);
+  const token = req.cookies.token;
+
+  const data = validateToken(token);
+
+  const { admin } = data.user;
+
+  if (!admin) return res.sendStatus(401);
+
   next();
 };
 

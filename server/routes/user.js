@@ -3,7 +3,21 @@ const router = require("express").Router();
 const User = require("../models/User");
 
 const { generateToken } = require("../config/token");
-const { validateAuth } = require("../middleware/auth");
+const { validateAuth, validateAdmin } = require("../middleware/auth");
+
+router.get("/:id", validateAuth, async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findByPk(id);
+    res.status(201).send(user);
+  } catch (error) {
+    res.sendStatus(404);
+  }
+});
+
+router.get("/me", validateAuth, (req, res) => {
+  res.send(req.user);
+});
 
 router.post("/register", (req, res) => {
   const { name, lastName, password, email } = req.body;
@@ -43,38 +57,36 @@ router.post("/logout", (req, res) => {
   res.status(204).send("logout");
 });
 
-// ADMIN
+// ADMIN ROUTES FIND AND EDIT USERS
 
-router.put("/admin/:id", validateAuth, (req, res) => {
+router.get("/", validateAuth, validateAdmin, async (req, res) => {
+  try {
+    const users = await User.findAll();
+    res.status(201).send(users);
+  } catch (error) {
+    res.sendStatus(404);
+  }
+});
+
+router.put("/:id", validateAuth, validateAdmin, async (req, res) => {
   const { id } = req.params;
-  User.findByPk(id).then((user) => {
-    console.log(user);
-    user
-      .update(req.body, { where: { id: id } })
-      .then((userUpdate) => res.status(201).send(userUpdate))
-      .catch((error) => console.log(error));
-  });
+  try {
+    const user = await User.findByPk(id);
+    user.update(req.body);
+    res.status(201).send(user);
+  } catch (error) {
+    res.sendStatus(404);
+  }
 });
 
-router.get("/admin/:id", (req, res) => {
+router.delete("/:id", validateAuth, validateAdmin, async (req, res) => {
   const { id } = req.params;
-  User.findByPk(id)
-    .then((user) => {
-      res.status(201).send(user);
-    })
-    .catch((error) => console.log(error));
+  try {
+    await User.destroy({ where: { id: id } });
+    res.sendStatus(202);
+  } catch (error) {
+    res.sendStatus(404);
+  }
 });
-
-router.get("/adminList", (req, res) => {
-  User.findAll()
-    .then((users) => {
-      res.status(201).send(users);
-    })
-    .catch((error) => console.log(error));
-});
-
-router.get("/me", validateAuth, (req,res)=>{
-  res.send(req.user)
-})
 
 module.exports = router;
