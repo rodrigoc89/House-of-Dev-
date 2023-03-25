@@ -1,0 +1,45 @@
+.loginContainer {
+  display: flex;
+  height: 100vh;
+  background-image: url(/src/assets/1679703688585.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.loginBanner {
+  height: 30%;
+  width: 25%;
+  background-color: #fe4236;
+}
+
+.loginInput {
+  width: 25%;
+  display: flex;
+  background-color: white;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.PTitleLogin {
+  color: white;
+  margin-left: 25%;
+}
+
+.spanLoginTitle {
+  margin-left: 30%;
+  -webkit-text-stroke: 1px white;
+  color: transparent;
+  margin-bottom: 10%;
+}
+
+.marketPublic {
+  color: white;
+  margin-left: 24%;
+}
+
+.titleLogin {
+  margin-bottom: 10%;
+}
