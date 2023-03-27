@@ -4,7 +4,8 @@
   width: 100%;
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
-  padding: 2rem 30px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .rowPropia {
@@ -19,15 +20,16 @@
 
 .colPropia {
   flex: 0 0 auto;
-  width: 25%;
+  width: 50%;
 }
 
-.card {
+.cardPropia {
+  width: 100;
   --bs-card-spacer-y: 1rem;
   --bs-card-spacer-x: 1rem;
   --bs-card-title-spacer-y: 0.5rem;
   --bs-card-border-width: 1px;
-  --bs-card-border-color: var(--bs-border-color-translucent);
+ 
   --bs-card-border-radius: 0.375rem;
   --bs-card-box-shadow: ;
   --bs-card-inner-border-radius: calc(0.375rem - 1px);
@@ -42,7 +44,7 @@
   --bs-card-group-margin: 0.75rem;
   position: relative;
   display: flex;
-  flex-direction: column;
+
   min-width: 0;
   height: var(--bs-card-height);
   word-wrap: break-word;
@@ -50,12 +52,6 @@
   background-clip: border-box;
   border: var(--bs-card-border-width) solid var(--bs-card-border-color);
   border-radius: var(--bs-card-border-radius);
-}
-
-*,
-::after,
-::before {
-  box-sizing: border-box;
 }
 
 .favoriteCard {
@@ -71,4 +67,29 @@
   border-radius: 0px;
 
   background-color: red;
+}
+
+.gridInfo1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 0.5px solid #123ac8;
+  border-left: none;
+  border-bottom: none;
+}
+
+.infoContainer {
+  width: 71%;
+  display: flex;
+  flex-direction: column;
+}
+
+.initInfo {
+  margin-left: 1rem;
+}
+
+.imgSize{
+    height: 100%;
+    width: 40%;
+    border: 0.5px solid blue;
 }

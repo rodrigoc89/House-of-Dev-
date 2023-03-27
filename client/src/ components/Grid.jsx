@@ -6,15 +6,15 @@ import fakeData from "../../../server/fakeData/fakeHouse.json";
 
 function Grid() {
   const cardSize = {
-    width: "18rem",
-    height: "25rem",
+    width: "530px",
+    height: "200px",
   };
   return (
     <Container style={{ maxWidth: "100%" }}>
       <Row>
         {fakeData.map((home) => {
           return (
-            <Col className="col-3" style={{ padding: "1%" }}>
+            <Col className="col-6" style={{ padding: "1%" }}>
               <Card style={{ ...cardSize, padding: "2%", margin: "0 auto" }}>
                 <Card.Img variant="top" src={home.url_imagen} />
                 <Card.Body>
