@@ -5,7 +5,7 @@ const User = require("../models/User");
 const { generateToken } = require("../config/token");
 const { validateAuth, validateAdmin } = require("../middleware/auth");
 
-router.get("/admin/:id", validateAuth, async (req, res) => {
+router.get("/:id", validateAuth, async (req, res) => {
   const { id } = req.params;
   try {
     const user = await User.findByPk(id);
