@@ -8,25 +8,32 @@ function Grid() {
   const cardSize = {
     width: "18rem",
     height: "25rem",
-  }
+  };
   return (
-    <Container style={{maxWidth:"100%"}}>
+    <Container style={{ maxWidth: "100%" }}>
       <Row>
         {fakeData.map((home) => {
-        return <Col className="col-3" style={{padding:"1%"}}>
-            <Card style={{ ...cardSize, padding:"2%",margin:"0 auto"}}>
-              <Card.Img variant="top" src={home.url_imagen} />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  {home.descripcion}
-                </Card.Text>
-              </Card.Body>
-              <Card.Body style={{display:"flex", alignItems:"center", maxHeight:"10%", marginBottom:"7%"}}>
-                <Card.Link href="#">Ver mas</Card.Link>
-              </Card.Body>
-            </Card>
-          </Col>;
+          return (
+            <Col className="col-3" style={{ padding: "1%" }}>
+              <Card style={{ ...cardSize, padding: "2%", margin: "0 auto" }}>
+                <Card.Img variant="top" src={home.url_imagen} />
+                <Card.Body>
+                  <Card.Title>Card Title</Card.Title>
+                  <Card.Text>{home.descripcion}</Card.Text>
+                </Card.Body>
+                <Card.Body
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    maxHeight: "10%",
+                    marginBottom: "7%",
+                  }}
+                >
+                  <Card.Link href="#">Ver mas</Card.Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          );
         })}
       </Row>
     </Container>
