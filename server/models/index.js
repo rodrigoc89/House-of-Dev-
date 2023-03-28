@@ -10,7 +10,8 @@ const Favorites = require("./Favorites");
 // Property.belongsToMany(FavoritesLibrary, { through: "Library_Content" });
 // FavoritesLibrary.belongsToMany(Property, { through: "Library_Content" });
 
+Favorites.belongsTo(User);
 User.belongsTo(Favorites);
 Favorites.belongsToMany(Property, { through: "Favorites_Properties" });
 
-module.exports = { User, Property };
+module.exports = { User, Property, Favorites };

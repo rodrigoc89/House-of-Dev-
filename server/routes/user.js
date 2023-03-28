@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const User = require("../models/User");
+const Favorites = require("../models/Favorites");
 
 const { generateToken } = require("../config/token");
 const { validateAuth, validateAdmin } = require("../middleware/auth");
@@ -18,7 +19,14 @@ router.post("/register", (req, res) => {
     email: email,
   };
   User.create(newUser)
-    .then((user) => res.status(201).send(user))
+    .then((user) => {
+      Favorites.create({ UserId: user.id }).then((favoriteCreated) => {
+        res.send(favoriteCreated);
+      });
+
+      // res.status(201).send(user);
+      // user.createFavorites(user);
+    })
     .catch((error) => console.log(error));
 });
 
