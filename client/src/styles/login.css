@@ -8,38 +8,57 @@
   flex-direction: column;
   justify-content: center;
 }
-
-.loginBanner {
-  height: 30%;
+.parte-de-arriba{
+  background-color: #FE4236;
   width: 25%;
-  background-color: #fe4236;
-}
-
-.loginInput {
-  width: 25%;
-  display: flex;
-  background-color: white;
-  flex-direction: column;
-  padding: 10px;
-}
-
-.PTitleLogin {
-  color: white;
-  margin-left: 25%;
-}
-
-.spanLoginTitle {
+  margin: 0 auto;
   margin-left: 30%;
-  -webkit-text-stroke: 1px white;
-  color: transparent;
-  margin-bottom: 10%;
+  margin-top: 3%;
+  padding: 2%;
+  box-shadow: 0px 0px 3px #000;
 }
-
-.marketPublic {
-  color: white;
-  margin-left: 24%;
+.parte-de-abajo{
+  background-color: white;
+  margin: 0 auto;
+  margin-left: 30%;
+  width: 25%;
+  padding: 3%;
+  box-shadow: 0px 0px 3px #000;
 }
-
-.titleLogin {
-  margin-bottom: 10%;
+.grupo_input input{
+  width: 105%;;
+  height: 37%;
+  font-size:smaller;
+  padding: 12px 0px 12px 42px;
+  margin-bottom: 12px;
+  outline: none;
+  border: 1px solid #123AC8;
+  border-radius: 25px;
+  
+}
+#icons{
+  position: absolute;
+  width: 1.9%;
+  height: 3.4%;
+  padding: 0.3%;
+  border-radius: 13px;
+  border: 1px solid #FE4236;
+  margin-left: 10px;
+  margin-top: 10px;
+  color: #123AC8;
+}
+.butonBlue{
+  cursor: pointer;
+  border: 1px solid #123AC8;
+  border-radius: 30px;
+  width: 42%;
+  height: 23%;
+  font-size: 0.85rem;
+  margin-left: 54%;
+  background-color: transparent;
+  color: #123AC8;
+  
+}
+.input-login::placeholder{
+  color: #123AC8;;
 }

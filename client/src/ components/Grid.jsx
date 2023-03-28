@@ -15,7 +15,7 @@ function Grid() {
         {fakeData.map((home) => {
         return <Col className="col-3" style={{padding:"1%"}}>
             <Card style={{ ...cardSize, padding:"2%",margin:"0 auto"}}>
-              <Card.Img variant="top" src={home.url_imagen} />
+              <Card.Img variant="top" src={home.image} />
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>
                 <Card.Text>

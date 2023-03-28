@@ -6,6 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import {useSelector, useDispatch} from "react-redux"
+import "../styles/Navbar.css"
 
 function NavbarUser() {
   const user = useSelector((state)=>state.user)
@@ -24,15 +25,20 @@ function NavbarUser() {
   return (
     <Navbar style={{backgroundColor:"#FE4236"}} expand="lg" >
       <Container fluid>
-        <Navbar.Brand  style={{fontWeight:"600", fontSize:"120%", color:"white"}} href="#">Hourse of Dev</Navbar.Brand>
+        <h1 className="text-h1">H<samp style={{ color:"transparent"}}>OD.</samp></h1>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: "100px" , height:"60px"}}
             navbarScroll
+            style={{marginLeft:"10%"}}
           >
-            <Nav.Link style={{marginLeft:"10%", color:"white",display:"flex",alignItems:"center"}} href="/">Inicio</Nav.Link>
+            <Nav.Link className="tabs" style={{color:"white", fontSize:"15px"}} href="/">Home</Nav.Link>
+            <Nav.Link className="tabs" style={{color:"white",fontSize:"15px"}} href="/">En venta</Nav.Link>
+            <Nav.Link className="tabs" style={{color:"white",fontSize:"15px"}} href="/">Alquiler</Nav.Link>
+            <Nav.Link className="tabs" style={{color:"white",fontSize:"15px"}} href="/">Agenda tu visita</Nav.Link>
+            <Nav.Link className="tabs" style={{color:"white",fontSize:"15px"}} href="/">Contacto</Nav.Link>
+            <Nav.Link className="tabs" style={{color:"white",fontSize:"15px"}} href="/register">Register</Nav.Link>
           </Nav>
           <Form className="d-flex" >
             <Form.Control
