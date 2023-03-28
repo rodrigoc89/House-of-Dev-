@@ -5,16 +5,6 @@ const User = require("../models/User");
 const { generateToken } = require("../config/token");
 const { validateAuth, validateAdmin } = require("../middleware/auth");
 
-router.get("/admin/:id", validateAuth, async (req, res) => {
-  const { id } = req.params;
-  try {
-    const user = await User.findByPk(id);
-    res.status(201).send(user);
-  } catch (error) {
-    res.sendStatus(404);
-  }
-});
-
 router.get("/me", validateAuth, (req, res) => {
   res.send(req.user);
 });
@@ -63,6 +53,16 @@ router.get("/", validateAuth, validateAdmin, async (req, res) => {
   try {
     const users = await User.findAll();
     res.status(201).send(users);
+  } catch (error) {
+    res.sendStatus(404);
+  }
+});
+
+router.get("/admin/:id", validateAuth, async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findByPk(id);
+    res.status(201).send(user);
   } catch (error) {
     res.sendStatus(404);
   }
