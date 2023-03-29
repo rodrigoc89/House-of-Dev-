@@ -34,3 +34,13 @@
     font-size: 33px;
     color: white;
 }
+#dropdown-menu-align-end{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    border: 0;
+    padding: 0%;
+    margin-bottom: 9%;
+}

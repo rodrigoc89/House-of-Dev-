@@ -1,14 +1,13 @@
 import { Routes,Route } from "react-router";
 import Grid from "../ components/Grid";
 import NavbarUser from "../ components/Navbar";
+import Perfil from "../ components/Perfil";
 
 const Home = () => {
   return (
     <div> 
-      <NavbarUser />
-      <Routes>
-        <Route path="/" element={<Grid/>}/>
-      </Routes>
+      <NavbarUser/>
+        <Grid/>
     </div>
   );
 };
