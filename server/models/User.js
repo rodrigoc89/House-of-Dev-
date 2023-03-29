@@ -51,7 +51,7 @@ User.prototype.hash = function (password, salt) {
 
 User.prototype.validatePassword = function (password) {
   return this.hash(password, this.salt).then(
-    (hasheado) => hasheado === this.password
+    (hashed) => hashed === this.password
   );
 };
 
@@ -59,8 +59,8 @@ User.addHook("beforeValidate", (user) => {
   const salt = bcrypt.genSaltSync();
   user.salt = salt;
 
-  return user.hash(user.password, user.salt).then((hasheado) => {
-    user.password = hasheado;
+  return user.hash(user.password, user.salt).then((hashed) => {
+    user.password = hashed;
   });
 });
 
