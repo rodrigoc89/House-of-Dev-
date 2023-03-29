@@ -1,17 +1,13 @@
 const User = require("./User");
 const Property = require("./Property");
 const Favorites = require("./Favorites");
+const Apointment = require("./Appointment");
 
-// User.belongsToMany(Property, { through: "Favorites" });
-// Property.belongsToMany(User, { through: "Favorites" });
-
-// User.hasOne(FavoritesLibrary);
-// FavoritesLibrary.belongsTo(User);
-// Property.belongsToMany(FavoritesLibrary, { through: "Library_Content" });
-// FavoritesLibrary.belongsToMany(Property, { through: "Library_Content" });
-
+//relaciones entre usuarios y favoritos:
 Favorites.belongsTo(User);
 User.belongsTo(Favorites);
 Favorites.belongsToMany(Property, { through: "Favorites_Properties" });
 
-module.exports = { User, Property, Favorites };
+//relaciones entre usuarios y citas:
+Apointment.belongsTo(User);
+module.exports = { User, Property, Favorites, Apointment };
