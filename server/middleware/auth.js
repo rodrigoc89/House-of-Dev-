@@ -1,5 +1,4 @@
 const { validateToken } = require("../config/token");
-const User = require("../models/User");
 
 const validateAuth = (req, res, next) => {
   const token = req.cookies.token;
