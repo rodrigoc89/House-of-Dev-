@@ -1,0 +1,23 @@
+.content{
+    width: 70%;
+    margin: auto;
+    height: 550px;
+    margin-top: 2%;
+    padding-top: 39px;
+    box-shadow: 0px 4px 5px #000;
+}
+.buton-perfil{
+    height: 45px;
+    width: 23%;
+    border-radius: 0px 30px 30px 0px;
+    border:1px solid #123AC8;
+    color: #123AC8;
+    font-size: 13px;
+    background-color: transparent;
+}
+.hr-perfil{
+    height: 3px;
+    background-color: blue;
+    margin-bottom: 0.1%;
+    margin-top: 0.5%;
+}
