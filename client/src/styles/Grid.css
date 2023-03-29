@@ -1,0 +1,54 @@
+.row>*{
+    padding-left: 0% !important;
+    padding-right: 0% !important;
+}
+.buton-grid{
+    cursor: pointer;
+    border: 1px solid #123AC8;
+    border-radius: 30px;
+    width: 35%;
+    height: 68%;
+    font-size: 0.85rem;
+    margin-left: 10%;
+    background-color: transparent;
+    color: #123AC8;
+}
+#icon-grid{
+    width: 160%;
+    height: 160%;
+    padding: 40%;
+    border-radius: 30px;
+    border:1px solid #FE4236 ;
+    color: #123AC8;
+}
+.baner{
+    background-image: url("https://img10.naventcdn.com/avisos/18/00/64/78/56/38/720x532/329046282.jpg");
+    background-size: 950px 310px;
+    width: 69.5%;
+    height: 350px;
+    margin-left: 13%;
+}
+.division{
+    width: 69.5%;
+    height: 1px;
+    margin-left: 13%;
+    background-color: #123AC8;
+    margin-top: 1.5%;
+}
+.h1-grid{
+    color: white;
+    font-size: 24px;
+    text-align: end;
+    font-weight: bolder;
+}
+.buton-baner{
+    margin-left: 60%;
+    margin-top: 2%;
+    border: 0px;
+    width: 160px;
+    height: 40px;
+    color: #123AC8;
+    background-color: white;
+    border-radius: 19px;
+    font-size: 13px;
+}
