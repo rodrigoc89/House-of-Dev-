@@ -17,11 +17,9 @@ function App() {
     axios
       .get("http://localhost:3001/api/user/me", { withCredentials: true })
       .then((user) => {
-        if (!userLoged.name) {
           console.log(user.data.user), dispatch(setUser(user.data.user));
-        }
       });
-  }, [userLoged]);
+  }, []);
   return (
     <div>
       <Routes>
