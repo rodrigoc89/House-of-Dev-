@@ -11,10 +11,6 @@ import { setUser } from "./state/user";
 import Perfil from "./ components/Perfil";
 import NavbarAdmin from "./ components/admin/adminNavbar";
 import TableAdmin from "./ components/admin/adminTablas";
-import ModalABM from "./ components/ModalABM";
-import ModalUser from "./ components/ModalUser";
-import ModalProperty from "./ components/ModalProperty";
-import GetAppointment from "./ components/GetAppointment";
 import { setFavorite } from "./state/favorites";
 
 function App() {
@@ -57,10 +53,6 @@ function App() {
           <Route path="/register" element={<FormRegister />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/perfil" element={<Perfil />} />
-          <Route path="/ABM" element={<ModalABM />} />
-          <Route path="/ADMIN" element={<ModalUser />} />
-          <Route path="/PROPERTY" element={<ModalProperty />} />
-          <Route path="/appointment" element={<GetAppointment />} />
         </Routes>
       )}
     </div>

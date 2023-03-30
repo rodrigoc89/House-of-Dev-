@@ -28,6 +28,7 @@ router.get("/:id", validateAuth, async (req, res) => {
 //ADMIN ROUTES FIND AND EDIT PROPERTY
 
 router.post("/", validateAdmin, validateAuth, async (req, res) => {
+  console.log(req.body);
   try {
     const property = await Property.create(req.body);
     res.status(201).send(property);
