@@ -1,4 +1,3 @@
-import { Routes, Route } from "react-router";
 import Grid from "../ components/Grid";
 import NavbarUser from "../ components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,9 +9,7 @@ const Home = () => {
   return (
     <div>
       <NavbarUser />
-      <Routes>
-        <Route path="/" element={<Grid />} />
-      </Routes>
+      <Grid />
     </div>
   );
 };

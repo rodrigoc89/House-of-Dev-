@@ -4,11 +4,14 @@ import Home from "./commons/Home";
 import FormRegister from "./ components/Register";
 import Favorites from "./ components/Favorites";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./state/user";
+import Perfil from "./ components/Perfil";
+import ModalABM from "./ components/ModalABM";
+import ModalUser from "./ components/ModalUser";
+import ModalProperty from "./ components/ModalProperty";
 import { setFavorite } from "./state/favorites";
 
 function App() {
@@ -20,23 +23,9 @@ function App() {
     axios
       .get("http://localhost:3001/api/user/me", { withCredentials: true })
       .then((user) => {
-        if (!userLoged.name) {
-          console.log(user.data.user), dispatch(setUser(user.data.user));
-        }
-      });
-    if (userLoged.name) {
-      axios
-        .get(`http://localhost:3001/api/favorite/${userLoged.id}`, {
-          withCredentials: true,
-        })
-        .then((fav) => {
-          console.log(fav);
-          dispatch(setFavorite(fav.data));
-        });
-    }
-  }, [userLoged]);
-
-  useEffect(() => {}, []);
+        console.log(user.data.user), dispatch(setUser(user.data.user));
+      })
+  }, []);
   return (
     <div>
       <Routes>
@@ -44,6 +33,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<FormRegister />} />
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="/perfil" element={<Perfil />} />
+        <Route path="/ABM" element={<ModalABM />} />
+        <Route path="/ADMIN" element={<ModalUser />} />
+        <Route path="/PROPERTY" element={<ModalProperty />} />
       </Routes>
     </div>
   );

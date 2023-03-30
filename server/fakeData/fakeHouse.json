@@ -66,6 +66,6 @@
     "m2": 250,
     "options": "alquiler",
     "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "available": "en alquiler"
+    "available": true
   }
 ]

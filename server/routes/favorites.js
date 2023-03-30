@@ -2,7 +2,7 @@ const { Router } = require("express");
 const User = require("../models/User");
 const Property = require("../models/Property");
 const Favorites = require("../models/Favorites");
-const { validateAuth } = require("../middleware/auth");
+const { validateAuth, validateAdmin } = require("../middleware/auth");
 
 const router = Router();
 
@@ -12,19 +12,18 @@ router.post("/:id", validateAuth, async (req, res) => {
   const { type } = req.body;
 
   try {
+
     const favorites = await Favorites.findOne({
       where: { UserId: id },
     });
     console.log(favorites, "soyb yoo");
+
     if (!favorites) return res.sendStatus(404);
 
     const property = await Property.findByPk(idProperty);
 
-    console.log(property);
-
     if (type === "add") {
       const addFavorite = await favorites.addProperty(property);
-      console.log(addFavorite, "soy el favorito añadido");
       res.send(addFavorite).status(200);
     } else {
       const addFavorite = await Favorites.removeProperties(property);
@@ -38,14 +37,33 @@ router.post("/:id", validateAuth, async (req, res) => {
 router.get("/:id", validateAuth, async (req, res) => {
   const { id } = req.params;
 
-  const favorites = await Favorites.findOne({
+
+  
+  
+
+  try {
+    const favorites = await Favorites.findOne({
     where: { UserId: req.params.id },
-  });
-  console.log(favorites, "soy del get");
+  });;
+    const AllFavorites = await favorites.getProperties();
+    res.send(AllFavorites);
+  } catch (error) {
+    res.sendStatus(404);
+  }
+});
 
-  const favoritePropie = await favorites.getProperties();
 
-  res.send(favoritePropie);
+// ADMIN
+
+router.get("/admin/:id", validateAuth, validateAdmin, async (req, res) => {
+  const { id } = req.params;
+  try {
+    const favorites = await Favorites.findByPk(id);
+    const AllFavorites = await favorites.getProperties();
+    res.status(200).send(AllFavorites);
+  } catch (error) {
+    res.sendStatus(404);
+  }
 });
 
 module.exports = router;
