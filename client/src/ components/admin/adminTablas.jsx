@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
+import ModalABM from "./ModalABM";
 
 function TableAdmin() {
   const [users, setUsers] = useState([]);
-  const [propiedades, setPropiedades] = useState([]);
+  const [properties, setProperties] = useState([]);
 
   useEffect(() => {
     axios
@@ -21,13 +22,12 @@ function TableAdmin() {
     axios
       .get("http://localhost:3001/api/property", { withCredentials: true })
       .then((response) => {
-        setPropiedades(response.data);
+        setProperties(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  console.log(propiedades);
   return (
     <>
       <div
@@ -62,11 +62,17 @@ function TableAdmin() {
           PANEL USUARIOS
         </h6>
       </div>
+
       <Table
-        style={{ width: "69.5%", marginLeft: "13%", marginTop: "2%", border:"3px solid #123AC8"}}
+        style={{
+          width: "69.5%",
+          marginLeft: "13%",
+          marginTop: "2%",
+          border: "3px solid #123AC8",
+        }}
         striped
       >
-        <thead style={{ backgroundColor: "#123AC8", color: "white"}}>
+        <thead style={{ backgroundColor: "#123AC8", color: "white" }}>
           <tr>
             <th>#</th>
             <th>Name</th>
@@ -77,7 +83,7 @@ function TableAdmin() {
         <tbody>
           {users.map((user) => {
             return (
-              <tr>
+              <tr key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.lastName}</td>
@@ -117,20 +123,21 @@ function TableAdmin() {
             fontWeight: "bolder",
           }}
         >
-          PANEL PROPIEDADES
+          PANEL properties
         </h6>
       </div>
+      <ModalABM />
       <Table
         style={{
           width: "69.5%",
           marginLeft: "13%",
           marginTop: "2%",
           marginBottom: "5%",
-          border:"3px solid #123AC8",
+          border: "3px solid #123AC8",
         }}
         striped
       >
-        <thead style={{ backgroundColor: "#123AC8", color: "white",}}>
+        <thead style={{ backgroundColor: "#123AC8", color: "white" }}>
           <tr>
             <th>id</th>
             <th>Direccion</th>
@@ -140,14 +147,14 @@ function TableAdmin() {
           </tr>
         </thead>
         <tbody>
-          {propiedades.map((propiedad) => {
+          {properties.map((property) => {
             return (
-              <tr>
-                <td>{propiedad.id}</td>
-                <td>{propiedad.address}</td>
-                <td>{propiedad.bathrooms}</td>
-                <td>{propiedad.bedrooms}</td>
-                <td>{propiedad.price + " $"}</td>
+              <tr key={property.id}>
+                <td>{property.id}</td>
+                <td>{property.address}</td>
+                <td>{property.bathrooms}</td>
+                <td>{property.bedrooms}</td>
+                <td>{property.price + " $"}</td>
               </tr>
             );
           })}

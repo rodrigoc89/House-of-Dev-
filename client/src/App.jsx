@@ -11,12 +11,7 @@ import { setUser } from "./state/user";
 import Perfil from "./ components/Perfil";
 import NavbarAdmin from "./ components/admin/adminNavbar";
 import TableAdmin from "./ components/admin/adminTablas";
-import ModalABM from "./ components/ModalABM";
-import ModalUser from "./ components/ModalUser";
-import ModalProperty from "./ components/ModalProperty";
-import GetAppointment from "./ components/GetAppointment";
 import { setFavorite } from "./state/favorites";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -31,29 +26,23 @@ function App() {
       });
   }, []);
   return (
-   
     <div>
-       {userLoged.admin==true ?(
+      {userLoged.admin == true ? (
         <>
-        <NavbarAdmin/>
-        <Routes>
-          <Route path="/" element={<TableAdmin/>}/>
-        </Routes>
+          <NavbarAdmin />
+          <Routes>
+            <Route path="/" element={<TableAdmin />} />
+          </Routes>
         </>
-       ):(
+      ) : (
         <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<FormRegister />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="/perfil" element={<Perfil />} />
-        <Route path="/ABM" element={<ModalABM />} />
-        <Route path="/ADMIN" element={<ModalUser />} />
-        <Route path="/PROPERTY" element={<ModalProperty />} />
-        <Route path="/appointment" element={<GetAppointment />} />
-      </Routes>
-       )}
-      
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<FormRegister />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="/perfil" element={<Perfil />} />
+        </Routes>
+      )}
     </div>
   );
 }
