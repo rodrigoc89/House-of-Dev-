@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./state/user";
 import Perfil from "./ components/Perfil";
+import NavbarAdmin from "./ components/admin/adminNavbar";
+import TableAdmin from "./ components/admin/adminTablas";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,13 +23,24 @@ function App() {
       });
   }, []);
   return (
+   
     <div>
-      <Routes>
+       {userLoged.admin==true ?(
+        <>
+        <NavbarAdmin/>
+        <Routes>
+          <Route path="/" element={<TableAdmin/>}/>
+        </Routes>
+        </>
+       ):(
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<FormRegister />} />
         <Route path="/perfil" element={<Perfil />} />
       </Routes>
+       )}
+      
     </div>
   );
 }

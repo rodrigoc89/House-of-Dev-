@@ -14,8 +14,8 @@ const seed = () => {
   User.create({
     name: "admin",
     lastName: "superAdmin",
-    email: "admin@gmail.com",
-    password: "admin",
+    email: "admin@admin.com",
+    password: "test",
     admin: true,
   })
     .then(() => {

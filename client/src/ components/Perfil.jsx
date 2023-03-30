@@ -15,7 +15,7 @@ export default function Perfil() {
 
     function handleEditClick() {
         if (isEditing) {
-            axios.put(`http://localhost:3001/api/user/${user.id}`, {
+            axios.put(`http://localhost:3001/api/user/profile/${user.id}`, {
                 name:name,
                 lastName: lastName,
             },{withCredentials:true}).then((user) => {

@@ -59,6 +59,7 @@ router.put("/profile/:id", validateAuth, async (req, res) => {
   const { id } = req.params;
   try {
     const user = await User.findByPk(id);
+    user.update(req.body);
     res.status(202).send(user);
   } catch (error) {
     res.sendStatus(404);
