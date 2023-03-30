@@ -24,7 +24,7 @@ function App() {
       .get("http://localhost:3001/api/user/me", { withCredentials: true })
       .then((user) => {
         console.log(user.data.user), dispatch(setUser(user.data.user));
-      })
+      });
   }, []);
   return (
     <div>
