@@ -5,7 +5,7 @@ import NavbarUser from "./Navbar";
 import axios from "axios";
 import { setUser } from "../state/user";
 
-export default function Perfil() {
+const Pefil = () => {
   const user = useSelector((state) => state.user);
   const dispach = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
@@ -13,24 +13,29 @@ export default function Perfil() {
   const [lastName, setLastName] = useState(user.lastName);
   const [celular, setCelular] = useState("45678912");
 
-
-    function handleEditClick() {
-        if (isEditing) {
-            axios.put(`http://localhost:3001/api/user/profile/${user.id}`, {
-                name:name,
-                lastName: lastName,
-            },{withCredentials:true}).then((user) => {
-                dispach(setUser(user.data))
-                console.log(user.data);
-                setIsEditing(false);
-                console.log("Datos actualizados");
-            }).catch((error) => {
-                console.log(error);
-            });
-        } else {
-            setIsEditing(true);
-            console.log("Editar");
-        }
+  function handleEditClick() {
+    if (isEditing) {
+      axios
+        .put(
+          `http://localhost:3001/api/user/profile/${user.id}`,
+          {
+            name: name,
+            lastName: lastName,
+          },
+          { withCredentials: true }
+        )
+        .then((user) => {
+          dispach(setUser(user.data));
+          console.log(user.data);
+          setIsEditing(false);
+          console.log("Datos actualizados");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      setIsEditing(true);
+      console.log("Editar");
     }
   }
   return (
@@ -272,4 +277,6 @@ export default function Perfil() {
       </div>
     </>
   );
-}
+};
+
+export default Pefil;
