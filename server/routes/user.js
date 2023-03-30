@@ -26,7 +26,6 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-
   try {
     const user = await User.findOne({ where: { email: email } });
     const validate = await user.validatePassword(password);
@@ -59,7 +58,18 @@ router.put("/profile/:id", validateAuth, async (req, res) => {
   const { id } = req.params;
   try {
     const user = await User.findByPk(id);
-    res.status(202).send(user);
+    const userUp = await user.update(req.body);
+    const payload = {
+      id: userUp.id,
+      name: userUp.name,
+      lastName: userUp.lastName,
+      password: userUp.password,
+      email: userUp.email,
+      admin: userUp.admin,
+    };
+    token = generateToken(payload);
+    res.cookie("token", token);
+    res.status(202).send(userUp);
   } catch (error) {
     res.sendStatus(404);
   }

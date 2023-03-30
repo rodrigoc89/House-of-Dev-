@@ -2,20 +2,26 @@ import { Route, Routes } from "react-router";
 import Login from "./ components/Login";
 import Home from "./commons/Home";
 import FormRegister from "./ components/Register";
+import Favorites from "./ components/Favorites";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./state/user";
 import Perfil from "./ components/Perfil";
+import NavbarAdmin from "./ components/admin/adminNavbar";
+import TableAdmin from "./ components/admin/adminTablas";
 import ModalABM from "./ components/ModalABM";
 import ModalUser from "./ components/ModalUser";
 import ModalProperty from "./ components/ModalProperty";
 import GetAppointment from "./ components/GetAppointment";
+import { setFavorite } from "./state/favorites";
+
 
 function App() {
   const dispatch = useDispatch();
   const userLoged = useSelector((state) => state.user);
+  const favorites = useSelector((state) => state.favorite);
 
   useEffect(() => {
     axios
@@ -25,17 +31,29 @@ function App() {
       });
   }, []);
   return (
+   
     <div>
-      <Routes>
+       {userLoged.admin==true ?(
+        <>
+        <NavbarAdmin/>
+        <Routes>
+          <Route path="/" element={<TableAdmin/>}/>
+        </Routes>
+        </>
+       ):(
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<FormRegister />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/ABM" element={<ModalABM />} />
         <Route path="/ADMIN" element={<ModalUser />} />
         <Route path="/PROPERTY" element={<ModalProperty />} />
         <Route path="/appointment" element={<GetAppointment />} />
       </Routes>
+       )}
+      
     </div>
   );
 }

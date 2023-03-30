@@ -5,7 +5,6 @@ const Appointment = require("./Appointment");
 
 //relaciones entre usuarios y favoritos:
 Favorites.belongsTo(User);
-User.belongsTo(Favorites);
 Favorites.belongsToMany(Property, { through: "Favorites_Properties" });
 
 //relaciones entre usuarios y citas:
