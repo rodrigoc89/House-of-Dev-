@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./state/user";
 import Perfil from "./ components/Perfil";
+import ModalABM from "./ components/ModalABM";
+import ModalUser from "./ components/ModalUser";
 
 function App() {
   const dispatch = useDispatch();
@@ -17,7 +19,7 @@ function App() {
     axios
       .get("http://localhost:3001/api/user/me", { withCredentials: true })
       .then((user) => {
-          console.log(user.data.user), dispatch(setUser(user.data.user));
+        console.log(user.data.user), dispatch(setUser(user.data.user));
       });
   }, []);
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<FormRegister />} />
         <Route path="/perfil" element={<Perfil />} />
+        <Route path="/ABM" element={<ModalABM />} />
+        <Route path="/ADMIN" element={<ModalUser />} />
       </Routes>
     </div>
   );
