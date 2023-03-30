@@ -1,9 +1,9 @@
 const S = require("sequelize");
 const db = require("../db/db");
 
-class Apointment extends S.Model {}
+class Appointment extends S.Model {}
 
-Apointment.init(
+Appointment.init(
   {
     date: {
       type: S.STRING,
@@ -15,4 +15,4 @@ Apointment.init(
   { sequelize: db, modelName: "Appointment" }
 );
 
-module.exports = Apointment;
+module.exports = Appointment;
