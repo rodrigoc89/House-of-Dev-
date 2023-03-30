@@ -19,12 +19,24 @@ function App() {
   const favorites = useSelector((state) => state.favorite);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/api/user/me", { withCredentials: true })
-      .then((user) => {
-        console.log(user.data.user), dispatch(setUser(user.data.user));
-      });
-  }, []);
+    if (!userLoged.id) {
+      axios
+        .get("http://localhost:3001/api/user/me", { withCredentials: true })
+        .then((user) => {
+          console.log(user.data.user), dispatch(setUser(user.data.user));
+        });
+    }
+    if (userLoged.id) {
+      axios
+        .get("http://localhost:3001/api/favorite/${userLoged.id}", {
+          withCredentials: true,
+        })
+        .then((favorito) => {
+          console.log(favorito);
+          dispatch(setFavorite(favorito.data));
+        });
+    }
+  }, [userLoged]);
   return (
     <div>
       {userLoged.admin == true ? (
