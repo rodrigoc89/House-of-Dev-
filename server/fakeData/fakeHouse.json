@@ -8,7 +8,8 @@
     "m2": 200,
     "options": "venta",
     "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "available": true
+    "available": true,
+    "id": 1
   },
   {
     "address": "Calle Falsa 456",
@@ -19,7 +20,8 @@
     "m2": 150,
     "options": "venta",
     "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "available": true
+    "available": true,
+    "id": 2
   },
   {
     "address": "Calle Falsa 789",
@@ -30,7 +32,8 @@
     "m2": 300,
     "options": "venta",
     "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
-    "available": true
+    "available": true,
+    "id": 3
   },
   {
     "address": "Calle Falsa 012",
