@@ -56,7 +56,9 @@ function ModalUser() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary">Done</Button>
+          <Button variant="primary" type="submit" onClick={handleClose}>
+            Done
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>

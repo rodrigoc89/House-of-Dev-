@@ -6,9 +6,18 @@ import Modal from "react-bootstrap/Modal";
 
 function ModalABM() {
   const [show, setShow] = useState(false);
-
+  const [validated, setValidated] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
   return (
     <div
       className="modal show"
@@ -28,7 +37,7 @@ function ModalABM() {
           <Modal.Title>New Property</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicAddress">
               <Form.Label>Address</Form.Label>
               <Form.Control type="text" placeholder="Enter address" required />
@@ -39,7 +48,7 @@ function ModalABM() {
             <Form.Group className="mb-3" controlId="formBasicBathrooms">
               <Form.Label>Bathrooms</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
                 placeholder="number of bathrooms"
                 required
               />
@@ -50,7 +59,7 @@ function ModalABM() {
             <Form.Group className="mb-3" controlId="formBasicBedrooms">
               <Form.Label>Bedrooms</Form.Label>
               <Form.Control
-                type="text"
+                type="number"
                 placeholder="number of bedrooms"
                 required
               />
@@ -105,14 +114,16 @@ function ModalABM() {
                 Please provide a valid url image.
               </Form.Control.Feedback>
             </Form.Group>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" type="submit">
+                DONE
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary">DONE</Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );
