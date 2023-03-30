@@ -6,9 +6,19 @@ import Modal from "react-bootstrap/Modal";
 
 function ModalProperty() {
   const [show, setShow] = useState(false);
-
+  const [validated, setValidated] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleSubmit = (event) => {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    setValidated(true);
+  };
+
   return (
     <div
       className="modal show"
@@ -28,7 +38,7 @@ function ModalProperty() {
           <Modal.Title>Edit Property</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicAddress">
               <Form.Label>Address</Form.Label>
               <Form.Control type="text" defaultValue="CALLE FALSA" required />
@@ -38,14 +48,14 @@ function ModalProperty() {
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicBathrooms">
               <Form.Label>Bathrooms</Form.Label>
-              <Form.Control type="Number" defaultValue="3" required />
+              <Form.Control type="number" defaultValue="3" required />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid numb of Bathrooms.
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicBedrooms">
               <Form.Label>Bedrooms</Form.Label>
-              <Form.Control type="Number" defaultValue="4" required />
+              <Form.Control type="number" defaultValue="4" required />
               <Form.Control.Feedback type="invalid">
                 Please provide a valid Bedrooms.
               </Form.Control.Feedback>
@@ -97,14 +107,16 @@ function ModalProperty() {
               <Form.Label>Available</Form.Label>
               <Form.Check type="checkbox" value={true} />
             </Form.Group>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" type="submit">
+                DONE
+              </Button>
+            </Modal.Footer>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary">DONE</Button>
-        </Modal.Footer>
       </Modal>
     </div>
   );
