@@ -2,38 +2,22 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import fakeData from "../../../server/fakeData/fakeHouse.json";
 import { Link } from "react-router-dom";
-import "../styles/Grid.css";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { setFavorite } from "../state/favorites";
+import React from "react";
+import { useSelector } from "react-redux";
+import NavbarUser from "./Navbar";
 import shortCutTtext from "./function/shortText";
 import shortUbication from "./function/shotUbacation";
 
-function Grid() {
+const Favorites = () => {
   const cardSize = {
     width: "29rem",
     height: "16rem",
   };
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  const addToFavoriteHandler = (home) => {
-    const data = {
-      id: home.id,
-      type: "add",
-    };
-    axios
-      .post(`http://localhost:3001/api/favorite/${user.id}`, data, {
-        withCredentials: true,
-      })
-      .then((fa) => {
-        console.log(fa, "mi");
-        dispatch(setFavorite(fa.data));
-      });
-  };
-  return (
+  const favorites = useSelector((state) => state.favorite);
+  return favorites[0] ? (
     <>
+      <NavbarUser />
       <div
         style={{
           border: "1px solid #123AC8",
@@ -63,7 +47,7 @@ function Grid() {
             fontWeight: "bolder",
           }}
         >
-          PROPIEDADES EN ALQUILER
+          Favoritos
         </h6>
       </div>
       <div
@@ -74,115 +58,12 @@ function Grid() {
           justifyContent: "end",
           padding: "0.6% 0% 0.6% 0%",
         }}
-      >
-        <button
-          style={{
-            color: "#123AC8",
-            backgroundColor: "transparent",
-            width: "157px",
-            height: "39px",
-            borderRadius: "20px",
-            border: "1px solid #123AC8",
-            fontSize: "13px",
-          }}
-        >
-          NOTIFICACIONES
-          <svg
-            style={{
-              marginLeft: "5%",
-              width: "26px",
-              height: "26px",
-              padding: "4%",
-              borderRadius: "20px",
-              border: "1px solid #FE4236",
-            }}
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-bell"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
-          </svg>
-        </button>
-
-        <button
-          style={{
-            color: "#123AC8",
-            backgroundColor: "transparent",
-            width: "115px",
-            marginLeft: "2%",
-            borderRadius: "20px 0px 0px 20px",
-            border: "1px solid #123AC8",
-            fontSize: "13px",
-          }}
-        >
-          FAVORITOS
-          <svg
-            style={{
-              marginLeft: "5%",
-              width: "26px",
-              height: "26px",
-              padding: "6%",
-              borderRadius: "20px",
-              border: "1px solid #FE4236",
-            }}
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-heart"
-            viewBox="0 0 16 16"
-          >
-            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-          </svg>
-        </button>
-      </div>
-      <div className="baner">
-        <div
-          style={{
-            width: "45%",
-            marginLeft: "55%",
-            height: "100%",
-            paddingTop: "15%",
-            paddingRight: "3%",
-            background: "linear-gradient(to right, transparent, #123AC8",
-          }}
-        >
-          <h1 className="h1-grid">Lorem ipsum dolor</h1>
-          <h1 className="h1-grid">amet consectetur adipisicing elit.</h1>
-          <button className="buton-baner">
-            INMOBILIARIA
-            <svg
-              style={{
-                marginLeft: "5%",
-                width: "26px",
-                height: "26px",
-                padding: "3%",
-                borderRadius: "20px",
-                border: "1px solid #FE4236",
-              }}
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-arrow-right"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
+      ></div>
 
       <div className="division"></div>
       <Container style={{ width: "100%", color: "#123AC8" }}>
         <Row>
-          {fakeData.map((home) => {
+          {favorites.map((home) => {
             return (
               <Col xs={12} md={6} lg={5} style={{ padding: "1.6%" }}>
                 <Card
@@ -259,7 +140,7 @@ function Grid() {
                             >
                               <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
                               <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                            </svg>{" "}
+                            </svg>
                             {shortUbication(home.address)}
                           </div>
                         </div>
@@ -355,9 +236,6 @@ function Grid() {
                                 fill="currentColor"
                                 class="bi bi-heart"
                                 viewBox="0 0 16 16"
-                                onClick={() => {
-                                  addToFavoriteHandler(home);
-                                }}
                               >
                                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                               </svg>
@@ -391,7 +269,11 @@ function Grid() {
         </Row>
       </Container>
     </>
+  ) : (
+    <div>
+      <h2>Don´t have favorites</h2>
+    </div>
   );
-}
+};
 
-export default Grid;
+export default Favorites;

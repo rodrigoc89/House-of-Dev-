@@ -26,7 +26,6 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-
   try {
     const user = await User.findOne({ where: { email: email } });
     const validate = await user.validatePassword(password);
