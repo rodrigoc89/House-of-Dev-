@@ -10,6 +10,7 @@ import { setUser } from "./state/user";
 import Perfil from "./ components/Perfil";
 import ModalABM from "./ components/ModalABM";
 import ModalUser from "./ components/ModalUser";
+import ModalProperty from "./ components/ModalProperty";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/ABM" element={<ModalABM />} />
         <Route path="/ADMIN" element={<ModalUser />} />
+        <Route path="/PROPERTY" element={<ModalProperty />} />
       </Routes>
     </div>
   );
