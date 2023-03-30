@@ -13,30 +13,24 @@ export default function Perfil() {
   const [lastName, setLastName] = useState(user.lastName);
   const [celular, setCelular] = useState("45678912");
 
-  function handleEditClick() {
-    if (isEditing) {
-      axios
-        .put(
-          `http://localhost:3001/api/user/profile/${user.id}`,
-          {
-            name: name,
-            lastName: lastName,
-          },
-          { withCredentials: true }
-        )
-        .then((usera) => {
-          dispach(setUser(usera.data));
-          console.log(user);
-          console.log(usera.data);
-          setIsEditing(false);
-          console.log("Datos actualizados");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      setIsEditing(true);
-      console.log("Editar");
+
+    function handleEditClick() {
+        if (isEditing) {
+            axios.put(`http://localhost:3001/api/user/profile/${user.id}`, {
+                name:name,
+                lastName: lastName,
+            },{withCredentials:true}).then((user) => {
+                dispach(setUser(user.data))
+                console.log(user.data);
+                setIsEditing(false);
+                console.log("Datos actualizados");
+            }).catch((error) => {
+                console.log(error);
+            });
+        } else {
+            setIsEditing(true);
+            console.log("Editar");
+        }
     }
   }
   return (

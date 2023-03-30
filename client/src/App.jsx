@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./state/user";
 import Perfil from "./ components/Perfil";
+import NavbarAdmin from "./ components/admin/adminNavbar";
+import TableAdmin from "./ components/admin/adminTablas";
 import ModalABM from "./ components/ModalABM";
 import ModalUser from "./ components/ModalUser";
 import ModalProperty from "./ components/ModalProperty";
@@ -27,8 +29,17 @@ function App() {
       });
   }, []);
   return (
+   
     <div>
-      <Routes>
+       {userLoged.admin==true ?(
+        <>
+        <NavbarAdmin/>
+        <Routes>
+          <Route path="/" element={<TableAdmin/>}/>
+        </Routes>
+        </>
+       ):(
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<FormRegister />} />
@@ -38,6 +49,8 @@ function App() {
         <Route path="/ADMIN" element={<ModalUser />} />
         <Route path="/PROPERTY" element={<ModalProperty />} />
       </Routes>
+       )}
+      
     </div>
   );
 }
