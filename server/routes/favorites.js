@@ -12,7 +12,9 @@ router.post("/:id", validateAuth, async (req, res) => {
   const { type } = req.body;
 
   try {
-    const favorites = await Favorites.findByPk(id);
+    const favorites = await Favorites.findOne({
+      where: { UserId: id },
+    });
     console.log(favorites, "soyb yoo");
     if (!favorites) return res.sendStatus(404);
 
@@ -36,7 +38,9 @@ router.post("/:id", validateAuth, async (req, res) => {
 router.get("/:id", validateAuth, async (req, res) => {
   const { id } = req.params;
 
-  const favorites = await Favorites.findByPk(id);
+  const favorites = await Favorites.findOne({
+    where: { UserId: req.params.id },
+  });
   console.log(favorites, "soy del get");
 
   const favoritePropie = await favorites.getProperties();

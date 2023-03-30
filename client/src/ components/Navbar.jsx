@@ -122,9 +122,7 @@ function NavbarUser() {
                   Mi perfil
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">Citas</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Favoritos
-                </NavDropdown.Item>
+                <NavDropdown.Item href="/favorites">Favoritos</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/" onClick={handleLogout}>
                   Logout

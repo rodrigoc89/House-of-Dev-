@@ -38,6 +38,7 @@ router.post("/login", (req, res) => {
         return res.sendStatus(401);
       }
       const payload = {
+        id: user.id,
         name: user.name,
         lastName: user.lastName,
         password: user.password,
