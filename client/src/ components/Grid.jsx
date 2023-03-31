@@ -20,7 +20,6 @@ function Grid() {
   };
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const properties = useSelector((state) => state.property);
   const addToFavoriteHandler = (home) => {
     const data = {
       id: home.id,
