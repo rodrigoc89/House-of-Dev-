@@ -1,27 +1,42 @@
 const { validateAuth } = require("../middleware/auth");
-const { Appointment } = require("../models");
+const { Appointment, User } = require("../models");
+
 const router = require("express").Router();
 
-router.get("/", validateAuth, (req, res) => {
-  Appointment.findAll().then((appointmentsFound) => {
-    res.send(appointmentsFound);
-  });
+router.get("/", validateAuth, async (req, res) => {
+  try {
+    const appointments = await Appointment.findAll();
+    res.status(200).send(appointments);
+  } catch (error) {
+    res.sendStatus(402);
+  }
 });
 
-router.post("/:id", validateAuth, (req, res) => {
-  const data = {
-    date: req.body.date,
-    direction: req.body.direction,
-    UserId: req.params.id,
-  };
-  Appointment.create(data).then((ap) => {
-    res.send(ap);
-  });
+router.post("/:id", validateAuth, async (req, res) => {
+  const { id } = req.params;
+  console.log(req.body, "soy la fecha y la dirrecion");
+  console.log(id, "soy el id");
+  try {
+    const data = {
+      date: req.body.date,
+      address: req.body.address,
+      UserId: req.params.id,
+    };
+    const appointment = await Appointment.create(data);
+    res.status(201).send(appointment);
+  } catch (error) {
+    res.sendStatus(402);
+  }
 });
 
-router.get("/:id", validateAuth, (req, res) => {
-  Appointment.findAll({ where: { UserId: req.params.id } }).then((ap) =>
-    res.send(ap)
-  );
+router.get("/:id", validateAuth, async (req, res) => {
+  try {
+    const appointments = await Appointment.findAll({
+      where: { UserId: req.params.id },
+    });
+    res.status(200).send(appointments);
+  } catch (error) {
+    res.sendStatus(402);
+  }
 });
 module.exports = router;

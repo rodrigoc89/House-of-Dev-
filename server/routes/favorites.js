@@ -12,7 +12,6 @@ router.post("/:id", validateAuth, async (req, res) => {
   const { type } = req.body;
 
   try {
-
     const favorites = await Favorites.findOne({
       where: { UserId: id },
     });
@@ -36,22 +35,16 @@ router.post("/:id", validateAuth, async (req, res) => {
 
 router.get("/:id", validateAuth, async (req, res) => {
   const { id } = req.params;
-
-
-  
-  
-
   try {
     const favorites = await Favorites.findOne({
-    where: { UserId: req.params.id },
-  });;
+      where: { UserId: req.params.id },
+    });
     const AllFavorites = await favorites.getProperties();
     res.send(AllFavorites);
   } catch (error) {
     res.sendStatus(404);
   }
 });
-
 
 // ADMIN
 

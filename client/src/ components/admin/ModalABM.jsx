@@ -47,6 +47,9 @@ function ModalABM() {
     }
     setValidated(true);
   };
+
+  console.log(options);
+
   return (
     <div
       className="modal show"
@@ -64,6 +67,7 @@ function ModalABM() {
       <Modal
         show={show}
         onHide={handleClose}
+        on
         backdrop="static"
         keyboard={false}
       >
@@ -71,12 +75,7 @@ function ModalABM() {
           <Modal.Title>New Property</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form
-            noValidate
-            validated={validated}
-            onClick={handleClick}
-            onSubmit={handleSubmit}
-          >
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicAddress">
               <Form.Label>Address</Form.Label>
               <Form.Control
@@ -151,22 +150,33 @@ function ModalABM() {
                 Please provide a valid value.
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicOptions">
+            <Form.Group
+              className="mb-3"
+              controlId="formBasicOptions"
+              onChange={(e) => setOptions(e.target.value)}
+            >
               <Form.Label>Options</Form.Label>
-              <Form.Check
-                onSelect={(e) => setOptions(e.target.value)}
-                feedback="You must select at option before submitting."
-                type="checkbox"
-                label="Rent"
-                value="Rent"
-              />
-              {/* <Form.Check
-                onSelect={(e) => setOptions(e.target.value)}
-                feedback="You must select at option before submitting."
-                type="checkbox"
-                label="Sale"
-                value="Sale"
-              /> */}
+
+              {["radio"].map((type) => (
+                <div key={`inline-${type}`} className="mb-3">
+                  <Form.Check
+                    inline
+                    label="Sale"
+                    value="sale"
+                    name="group1"
+                    type={type}
+                    id={`inline-${type}-1`}
+                  />
+                  <Form.Check
+                    inline
+                    label="Rent"
+                    value="rent"
+                    name="group1"
+                    type={type}
+                    id={`inline-${type}-2`}
+                  />
+                </div>
+              ))}
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicImage">
               <Form.Label>Image</Form.Label>
@@ -184,7 +194,7 @@ function ModalABM() {
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" onClick={handleClick}>
                 DONE
               </Button>
             </Modal.Footer>

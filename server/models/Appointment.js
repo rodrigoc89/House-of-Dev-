@@ -8,7 +8,7 @@ Appointment.init(
     date: {
       type: S.STRING,
     },
-    direction: {
+    address: {
       type: S.STRING,
     },
   },

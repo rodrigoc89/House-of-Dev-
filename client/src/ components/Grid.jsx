@@ -2,7 +2,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import fakeData from "../../../server/fakeData/fakeHouse.json";
 import { Link } from "react-router-dom";
 import "../styles/Grid.css";
 import axios from "axios";
@@ -11,8 +10,10 @@ import { setFavorite } from "../state/favorites";
 import shortCutTtext from "./function/shortText";
 import shortUbication from "./function/shotUbacation";
 import GetAppointment from "./admin/GetAppointment";
+import { useEffect, useState } from "react";
 
 function Grid() {
+  const [properties, setProperties] = useState([]);
   const cardSize = {
     width: "29rem",
     height: "16rem",
@@ -33,6 +34,12 @@ function Grid() {
         dispatch(setFavorite(fa.data));
       });
   };
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/api/property", { withCredentials: true })
+      .then((house) => setProperties(house.data));
+  }, []);
+  console.log(properties);
   return (
     <>
       <div
@@ -183,10 +190,11 @@ function Grid() {
       <div className="division"></div>
       <Container style={{ width: "100%", color: "#123AC8" }}>
         <Row>
-          {fakeData.map((home) => {
+          {properties.map((home) => {
             return (
               <Col xs={12} md={6} lg={5} style={{ padding: "1.6%" }}>
                 <Card
+                  id={home.id}
                   style={{
                     ...cardSize,
                     height: "110%",
@@ -366,7 +374,10 @@ function Grid() {
                           </div>
 
                           <div style={{ marginLeft: "8%" }}>
-                            <GetAppointment />
+                            <GetAppointment
+                              idUser={user.id}
+                              address={home.address}
+                            />
                           </div>
                           <button className="buton-grid">Ver más</button>
                         </div>
