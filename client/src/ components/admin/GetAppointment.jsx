@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
@@ -5,18 +6,32 @@ import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-function GetAppointment() {
+function GetAppointment({ idUser, address }) {
   const [startDate, setStartDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
+  const handleShow = () => {
+    setShow(true);
+  };
+  const handleSubmit = () => {
+    axios
+      .post(
+        `http://localhost:3001/api/appointment/${idUser}`,
+        {
+          date: startDate,
+          address: address,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((appointment) => console.log(appointment));
+    setShow(false);
+  };
+  console.log(idUser, address);
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Get Appointment
-      </Button> */}
       <svg
         type="button"
         onClick={handleShow}
@@ -46,7 +61,7 @@ function GetAppointment() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onClick={handleSubmit}>
             Save Changes
           </Button>
         </Modal.Footer>

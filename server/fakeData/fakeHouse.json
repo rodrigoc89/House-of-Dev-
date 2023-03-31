@@ -6,7 +6,7 @@
     "price": 200000,
     "description": "Hermosa casa en el barrio residencial de San Isidro",
     "m2": 200,
-    "options": "venta",
+    "options": "sale",
     "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
     "available": true
   },
@@ -17,7 +17,7 @@
     "price": 150000,
     "description": "Linda casa en el barrio de Palermo",
     "m2": 150,
-    "options": "venta",
+    "options": "sale",
     "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
     "available": true
   },
@@ -28,7 +28,7 @@
     "price": 350000,
     "description": "Espectacular casa en el barrio de Belgrano",
     "m2": 300,
-    "options": "venta",
+    "options": "sale",
     "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
     "available": true
   },
@@ -39,7 +39,7 @@
     "price": 500000,
     "description": "Increíble casa en el barrio de Recoleta",
     "m2": 500,
-    "options": "venta",
+    "options": "sale",
     "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
     "available": true
   },
@@ -48,9 +48,9 @@
     "bathrooms": 2,
     "bedrooms": 3,
     "price": 2500,
-    "description": "Acogedora casa en alquiler en el barrio de Caballito",
+    "description": "Acogedora casa en rent en el barrio de Caballito",
     "m2": 180,
-    "options": "alquiler",
+    "options": "rent",
     "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
     "available": true
   },
@@ -59,9 +59,9 @@
     "bathrooms": 3,
     "bedrooms": 4,
     "price": 4000,
-    "description": "Amplia casa en alquiler en el barrio de San Telmo",
+    "description": "Amplia casa en rent en el barrio de San Telmo",
     "m2": 250,
-    "options": "alquiler",
+    "options": "rent",
     "image": "https://imagenes.elpais.com/resizer/G3-JEio7UD-h4WxtY0VtwLBdFZY=/414x0/filters:focal(4225x2895:4235x2905)/cloudfront-eu-central-1.images.arcpublishing.com/prisa/VMP7D7JF2BFKPLHOBL3WDBPNZY.jpg",
     "available": true
   }
