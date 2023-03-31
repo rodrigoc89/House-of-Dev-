@@ -2,10 +2,40 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import ModalABM from "./ModalABM";
+import ModalProperty from "./ModalProperty";
+import ModalUser from "./ModalUser";
 
 function TableAdmin() {
   const [users, setUsers] = useState([]);
   const [properties, setProperties] = useState([]);
+
+  const handleDeleteUser = (userId) => {
+    axios
+      .delete(`http://localhost:3001/api/user/${userId}`, {
+        withCredentials: true,
+      })
+      .then(() => {
+        // actualiza el estado de users
+        setUsers(users.filter((user) => user.id !== userId));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const hadleDeleteProperty = (propertyId) => {
+    axios
+      .delete(`http://localhost:3001/api/property/${propertyId}`, {
+        withCredentials: true,
+      })
+      .then(() => {
+        setProperties(
+          properties.filter((property) => property.id !== propertyId)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     axios
@@ -74,10 +104,13 @@ function TableAdmin() {
       >
         <thead style={{ backgroundColor: "#123AC8", color: "white" }}>
           <tr>
-            <th>#</th>
+            <th>id</th>
             <th>Name</th>
             <th>Apellido</th>
             <th>Email</th>
+            <th>Admin</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>
@@ -88,6 +121,37 @@ function TableAdmin() {
                 <td>{user.name}</td>
                 <td>{user.lastName}</td>
                 <td>{user.email}</td>
+                <td>{user.admin ? "True" : "False"}</td>
+                <td>
+                  {user.name == "admin" ? "" : <ModalUser id={user.id} />}
+                </td>
+                <td>
+                  {user.name == "admin" ? (
+                    ""
+                  ) : (
+                    <button
+                      type="button"
+                      style={{
+                        marginLeft: "30%",
+                        color: "red",
+                        backgroundColor: "transparent",
+                        border: "none",
+                      }}
+                      onClick={() => handleDeleteUser(user.id)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        class="bi bi-trash3-fill"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                      </svg>
+                    </button>
+                  )}
+                </td>
               </tr>
             );
           })}
@@ -123,7 +187,7 @@ function TableAdmin() {
             fontWeight: "bolder",
           }}
         >
-          PANEL properties
+          PANEL PROPERTIES
         </h6>
       </div>
       <ModalABM />
@@ -132,7 +196,6 @@ function TableAdmin() {
           width: "69.5%",
           marginLeft: "13%",
           marginTop: "2%",
-          marginBottom: "5%",
           border: "3px solid #123AC8",
         }}
         striped
@@ -144,6 +207,8 @@ function TableAdmin() {
             <th>Baños</th>
             <th>Dormitorios</th>
             <th>Precio</th>
+            <th>EDITAR</th>
+            <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>
@@ -155,6 +220,32 @@ function TableAdmin() {
                 <td>{property.bathrooms}</td>
                 <td>{property.bedrooms}</td>
                 <td>{property.price + " $"}</td>
+                <td>
+                  <ModalProperty id={property.id} />
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    style={{
+                      marginLeft: "30%",
+                      color: "red",
+                      backgroundColor: "transparent",
+                      border: "none",
+                    }}
+                    onClick={() => hadleDeleteProperty(property.id)}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-trash3-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                    </svg>
+                  </button>
+                </td>
               </tr>
             );
           })}

@@ -39,6 +39,7 @@ router.post("/", validateAdmin, validateAuth, async (req, res) => {
 
 router.put("/:id", validateAdmin, validateAuth, async (req, res) => {
   const { id } = req.params;
+  console.log(req.body);
   try {
     const propertyUpdate = await Property.update(req.body, {
       where: {

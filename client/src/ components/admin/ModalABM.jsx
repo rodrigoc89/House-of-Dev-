@@ -37,7 +37,7 @@ function ModalABM() {
       .post("http://localhost:3001/api/property", property, {
         withCredentials: true,
       })
-      .then((property) => console.log(property.data));
+      .then(() => console.log("create"));
   };
   const handleClick = (event) => {
     const form = event.currentTarget;
@@ -50,7 +50,12 @@ function ModalABM() {
   return (
     <div
       className="modal show"
-      style={{ display: "block", position: "initial" }}
+      style={{
+        display: "block",
+        position: "initial",
+        marginLeft: "13%",
+        marginTop: "1%",
+      }}
     >
       <Button variant="primary" onClick={handleShow}>
         Add New Property
