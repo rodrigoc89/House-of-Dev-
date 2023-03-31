@@ -28,7 +28,7 @@ function App() {
     }
     if (userLoged.id) {
       axios
-        .get("http://localhost:3001/api/favorite/${userLoged.id}", {
+        .get(`http://localhost:3001/api/favorite/${userLoged.id}`, {
           withCredentials: true,
         })
         .then((favorito) => {

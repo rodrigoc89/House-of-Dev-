@@ -2,7 +2,6 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import fakeData from "../../../server/fakeData/fakeHouse.json";
 import { Link } from "react-router-dom";
 import "../styles/Grid.css";
 import axios from "axios";
@@ -18,6 +17,7 @@ function Grid() {
   };
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const properties = useSelector((state) => state.property);
   const addToFavoriteHandler = (home) => {
     const data = {
       id: home.id,
@@ -182,7 +182,7 @@ function Grid() {
       <div className="division"></div>
       <Container style={{ width: "100%", color: "#123AC8" }}>
         <Row>
-          {fakeData.map((home) => {
+          {properties.map((home) => {
             return (
               <Col xs={12} md={6} lg={5} style={{ padding: "1.6%" }}>
                 <Card
