@@ -15,7 +15,6 @@ function TableAdmin() {
         withCredentials: true,
       })
       .then(() => {
-        // actualiza el estado de users
         setUsers(users.filter((user) => user.id !== userId));
       })
       .catch((error) => {
@@ -28,6 +27,7 @@ function TableAdmin() {
         withCredentials: true,
       })
       .then(() => {
+        console.log("PROPIEDAD ELIMINADA");
         setProperties(
           properties.filter((property) => property.id !== propertyId)
         );
@@ -105,7 +105,7 @@ function TableAdmin() {
         <thead style={{ backgroundColor: "#123AC8", color: "white" }}>
           <tr>
             <th>id</th>
-            <th>Name</th>
+            <th>Nombre</th>
             <th>Apellido</th>
             <th>Email</th>
             <th>Admin</th>
@@ -187,7 +187,7 @@ function TableAdmin() {
             fontWeight: "bolder",
           }}
         >
-          PANEL PROPERTIES
+          PANEL PROPIEDADES
         </h6>
       </div>
       <ModalABM />

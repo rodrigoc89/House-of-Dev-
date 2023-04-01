@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 import Login from "./ components/Login";
-import Home from "./commons/Home";
+import Home from "./ components/Home";
 import FormRegister from "./ components/Register";
 import Favorites from "./ components/Favorites";
 import "bootstrap/dist/css/bootstrap.min.css";

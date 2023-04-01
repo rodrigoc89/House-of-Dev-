@@ -1,5 +1,5 @@
-import Grid from "../ components/Grid";
-import NavbarUser from "../ components/Navbar";
+import Grid from "./Grid";
+import NavbarUser from "./Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { setFavorite } from "../state/favorites";
