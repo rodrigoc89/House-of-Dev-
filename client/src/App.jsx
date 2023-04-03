@@ -12,6 +12,7 @@ import Perfil from "./ components/Perfil";
 import NavbarAdmin from "./ components/admin/adminNavbar";
 import TableAdmin from "./ components/admin/adminTablas";
 import { setFavorite } from "./state/favorites";
+import { setAppointment } from "./state/appointment";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,11 @@ function App() {
           console.log(favorito);
           dispatch(setFavorite(favorito.data));
         });
+      axios
+        .get(`http://localhost:3001/api/appointment/${userLoged.id}`, {
+          withCredentials: true,
+        })
+        .then((appointments) => dispatch(setAppointment(appointments.data)));
     }
   }, [userLoged]);
   return (
