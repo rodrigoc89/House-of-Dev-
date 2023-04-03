@@ -11,6 +11,7 @@ import shortCutTtext from "./function/shortText";
 import shortUbication from "./function/shotUbacation";
 import GetAppointment from "./admin/GetAppointment";
 import { useEffect, useState } from "react";
+import Swal from 'sweetalert2'
 
 function Grid() {
   const [properties, setProperties] = useState([]);
@@ -32,7 +33,14 @@ function Grid() {
       .then((fa) => {
         console.log(fa, "mi");
         dispatch(setFavorite(fa.data));
-      });
+      
+      }).then(()=>{
+        Swal.fire({
+          title: 'agregado a favoritos',
+          icon: 'success',
+          timer:"2000"
+        })
+      })
   };
   useEffect(() => {
     axios
