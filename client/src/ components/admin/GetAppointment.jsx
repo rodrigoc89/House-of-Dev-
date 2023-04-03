@@ -3,10 +3,14 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import DatePicker from "react-datepicker";
+import { useDispatch, useSelector } from "react-redux";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { setAppointment } from "../../state/appointment";
 
 function GetAppointment({ idUser, address }) {
+  const appointments = useSelector((state) => state.appointment);
+  const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
   const [show, setShow] = useState(false);
 
@@ -15,18 +19,24 @@ function GetAppointment({ idUser, address }) {
     setShow(true);
   };
   const handleSubmit = () => {
-    axios
-      .post(
-        `http://localhost:3001/api/appointment/${idUser}`,
-        {
-          date: startDate,
-          address: address,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((appointment) => console.log(appointment));
+    const verify = appointments.some((x) => x.address === address);
+    if (!verify) {
+      axios
+        .post(
+          `http://localhost:3001/api/appointment/${idUser}`,
+          {
+            address: address,
+            date: startDate,
+          },
+          { withCredentials: true }
+        )
+        .then((appointmentAdd) => {
+          dispatch(setAppointment(appointmentAdd.data));
+        });
+    } else {
+      alert("no puedes hacer otra cita para esta vivienda");
+    }
+
     setShow(false);
   };
   console.log(idUser, address);
