@@ -4,20 +4,23 @@ import axios from "axios";
 
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useDispatch } from "react-redux";
+import { setMikkieHerramientaProperty } from "../../state/mikkieHerramientaProperty";
 
 function ModalProperty({ id }) {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false);
 
   const [property, setProperty] = useState({});
-  const [address, setAddress] = useState("");
-  const [bathrooms, setBathrooms] = useState("");
-  const [bedrooms, setBedrooms] = useState("");
-  const [price, setPrice] = useState("");
-  const [m2, setM2] = useState("");
-  const [image, setImage] = useState("");
-  const [options, setOptions] = useState("");
-  const [description, setDescription] = useState("");
+  const [address, setAddress] = useState(property.address);
+  const [bathrooms, setBathrooms] = useState(property.bathrooms);
+  const [bedrooms, setBedrooms] = useState(property.bedrooms);
+  const [price, setPrice] = useState(property.price);
+  const [m2, setM2] = useState(property.m2);
+  const [image, setImage] = useState(property.image);
+  const [options, setOptions] = useState(property.options);
+  const [description, setDescription] = useState(property.description);
   const [available, setAvailable] = useState(false);
 
   // CLOSE MODAL
@@ -33,6 +36,7 @@ function ModalProperty({ id }) {
   };
   // SEND UPDATE DATA OF PROPERTY
   const handleSubmit = (event) => {
+    setShow(false);
     const property = {
       address: address,
       bathrooms: bathrooms,
@@ -49,7 +53,9 @@ function ModalProperty({ id }) {
       .put(`http://localhost:3001/api/property/${id}`, property, {
         withCredentials: true,
       })
-      .then(() => console.log("actualized"));
+      .then(() => {
+        console.log("actualized"), dispatch(setMikkieHerramientaProperty(true));
+      });
   };
   // VALIDATE INPUTS
   const handleClick = (event) => {

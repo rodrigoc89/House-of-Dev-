@@ -17,14 +17,14 @@ import { setAppointment } from "./state/appointment";
 function App() {
   const dispatch = useDispatch();
   const userLoged = useSelector((state) => state.user);
-  const favorites = useSelector((state) => state.favorite);
 
   useEffect(() => {
     if (!userLoged.id) {
+      console.log(userLoged, "no exito, asi que hare el axios");
       axios
         .get("http://localhost:3001/api/user/me", { withCredentials: true })
-        .then((user) => {
-          console.log(user.data.user), dispatch(setUser(user.data.user));
+        .then((usera) => {
+          console.log(usera, "entreee"), dispatch(setUser(usera.data.user));
         });
     }
     if (userLoged.id) {

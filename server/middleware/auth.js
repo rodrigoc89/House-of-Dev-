@@ -12,7 +12,7 @@ const validateAuth = (req, res, next) => {
 };
 const validateAdmin = (req, res, next) => {
   const token = req.cookies.token;
-
+  if (!token) return res.sendStatus(401);
   const data = validateToken(token);
 
   const { admin } = data.user;
