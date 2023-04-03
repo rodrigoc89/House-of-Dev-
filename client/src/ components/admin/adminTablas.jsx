@@ -4,22 +4,48 @@ import Table from "react-bootstrap/Table";
 import ModalABM from "./ModalABM";
 import ModalProperty from "./ModalProperty";
 import ModalUser from "./ModalUser";
+import Swal from 'sweetalert2'
 
 function TableAdmin() {
   const [users, setUsers] = useState([]);
   const [properties, setProperties] = useState([]);
 
   const handleDeleteUser = (userId) => {
-    axios
+    if (userId) {
+      Swal.fire({
+        title: 'Alerta',
+        text:"¿Esta seguro que quiere eliminar este usuario?",
+        icon: 'question',
+        showDenyButton:true,
+        denyButtonText:"no",
+        confirmButtonText: 'si',
+        confirmButtonColor:"#123AC8",
+      }).then((response)=>{
+        if (response.isConfirmed) {
+          axios
       .delete(`http://localhost:3001/api/user/${userId}`, {
         withCredentials: true,
-      })
-      .then(() => {
+      }).then(()=>{
         setUsers(users.filter((user) => user.id !== userId));
+
+        Swal.fire({
+          title: "Alerta",
+          text:"usuario eliminado",
+          icon: "success",
+          confirmButtonText: 'ok',
+          timer:"2000"
+        })
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        }else {
+          Swal.fire({
+            title:"Alerta",
+            icon: "error",
+            html:"<p>el usario <b>NO</b> fue eliminado</p>",
+            timer:"2000"
+          })
+        }
+      })
+    }
   };
   const hadleDeleteProperty = (propertyId) => {
     axios
@@ -28,8 +54,7 @@ function TableAdmin() {
       })
       .then(() => {
         console.log("PROPIEDAD ELIMINADA");
-        setProperties(
-          properties.filter((property) => property.id !== propertyId)
+        setProperties(properties.filter((property) => property.id !== propertyId)
         );
       })
       .catch((err) => {
@@ -46,7 +71,7 @@ function TableAdmin() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [users]);
 
   useEffect(() => {
     axios
@@ -57,7 +82,7 @@ function TableAdmin() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [properties]);
   return (
     <>
       <div
