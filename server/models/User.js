@@ -13,6 +13,13 @@ User.init(
       type: S.STRING,
       allowNull: false,
     },
+    phone: {
+      type: S.INTEGER,
+      allowNull: false,
+      validate:{
+        min: 7,
+      }
+    },
     email: {
       type: S.STRING,
       allowNull: false,

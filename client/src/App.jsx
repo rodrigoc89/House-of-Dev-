@@ -13,6 +13,7 @@ import NavbarAdmin from "./ components/admin/adminNavbar";
 import TableAdmin from "./ components/admin/adminTablas";
 import { setFavorite } from "./state/favorites";
 import { setAppointment } from "./state/appointment";
+import CardIndividual from "./ components/Card";
 
 function App() {
   const dispatch = useDispatch();
@@ -59,6 +60,7 @@ function App() {
           <Route path="/register" element={<FormRegister />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/card/:id" element={<CardIndividual />} />
         </Routes>
       )}
     </div>
