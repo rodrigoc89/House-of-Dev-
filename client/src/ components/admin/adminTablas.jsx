@@ -86,7 +86,7 @@ function TableAdmin() {
 
               Swal.fire({
                 title: "Alerta",
-                text: "usuario eliminado",
+                text: "propiedad eliminada",
                 icon: "success",
                 confirmButtonText: "ok",
                 timer: "2000",
@@ -96,7 +96,7 @@ function TableAdmin() {
           Swal.fire({
             title: "Alerta",
             icon: "error",
-            html: "<p>el usario <b>NO</b> fue eliminado</p>",
+            html: "<p>la propiedad <b>NO</b> fue eliminada</p>",
             timer: "2000",
           });
         }
