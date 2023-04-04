@@ -11,7 +11,7 @@ const Pefil = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(user.name);
   const [lastName, setLastName] = useState(user.lastName);
-  const [celular, setCelular] = useState("45678912");
+  const [phone, setPhone] = useState(user.phone);
 
   function handleEditClick() {
     if (isEditing) {
@@ -21,6 +21,7 @@ const Pefil = () => {
           {
             name: name,
             lastName: lastName,
+            phone:phone,
           },
           { withCredentials: true }
         )
@@ -38,6 +39,7 @@ const Pefil = () => {
       console.log("Editar");
     }
   }
+  console.log(user);
   return (
     <>
       <NavbarUser />
@@ -235,8 +237,8 @@ const Pefil = () => {
                 marginBottom: "0%",
               }}
               type="text"
-              value={celular}
-              onChange={(event) => setCelular(event.target.value)}
+              value={phone}
+              onChange={(event) => setPhone(event.target.value)}
             />
           ) : (
             <h5
@@ -247,7 +249,7 @@ const Pefil = () => {
                 fontWeight: "bold",
               }}
             >
-              {celular}
+              {user.phone}
             </h5>
           )}
           <hr className="hr-perfil" />
