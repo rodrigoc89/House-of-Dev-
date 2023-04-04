@@ -21,7 +21,7 @@ Property.init(
       allowNull: false,
     },
     description: {
-      type: S.STRING,
+      type: S.TEXT,
       allowNull: false,
     },
     m2: {
@@ -33,7 +33,7 @@ Property.init(
       allowNull: false,
     },
     image: {
-      type: S.STRING,
+      type: S.TEXT,
       allowNull: false,
     },
     available: {
