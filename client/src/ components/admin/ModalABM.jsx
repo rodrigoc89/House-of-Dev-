@@ -3,8 +3,11 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import { useDispatch } from "react-redux";
+import { setMikkieHerramientaProperty } from "../../state/mikkieHerramientaProperty";
 
 function ModalABM() {
+  const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [validated, setValidated] = useState(false);
   const [address, setAddress] = useState("");
@@ -20,6 +23,7 @@ function ModalABM() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleSubmit = (event) => {
+    setShow(false);
     event.preventDefault();
     const property = {
       address: address,
@@ -37,7 +41,9 @@ function ModalABM() {
       .post("http://localhost:3001/api/property", property, {
         withCredentials: true,
       })
-      .then(() => console.log("create"));
+      .then(() => {
+        console.log("create"), dispatch(setMikkieHerramientaProperty(true));
+      });
   };
   const handleClick = (event) => {
     const form = event.currentTarget;

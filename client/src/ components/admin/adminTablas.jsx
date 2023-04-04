@@ -4,85 +4,132 @@ import Table from "react-bootstrap/Table";
 import ModalABM from "./ModalABM";
 import ModalProperty from "./ModalProperty";
 import ModalUser from "./ModalUser";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { setMikkieHerramientaUser } from "../../state/mikkieHerramientaUser";
+import { setMikkieHerramientaProperty } from "../../state/mikkieHerramientaProperty";
 
 function TableAdmin() {
+  const userOnly = useSelector((state) => state.user);
+  console.log(userOnly);
+  const dispatch = useDispatch();
+  const mikkieHerramientaUser = useSelector(
+    (state) => state.mikkieHerramientaUser
+  );
+  const mikkieHerramientaProperty = useSelector(
+    (state) => state.mikkieHerramientaProperty
+  );
   const [users, setUsers] = useState([]);
   const [properties, setProperties] = useState([]);
 
   const handleDeleteUser = (userId) => {
     if (userId) {
       Swal.fire({
-        title: 'Alerta',
-        text:"¿Esta seguro que quiere eliminar este usuario?",
-        icon: 'question',
-        showDenyButton:true,
-        denyButtonText:"no",
-        confirmButtonText: 'si',
-        confirmButtonColor:"#123AC8",
-      }).then((response)=>{
+        title: "Alerta",
+        text: "¿Esta seguro que quiere eliminar este usuario?",
+        icon: "question",
+        showDenyButton: true,
+        denyButtonText: "no",
+        confirmButtonText: "si",
+        confirmButtonColor: "#123AC8",
+      }).then((response) => {
         if (response.isConfirmed) {
           axios
-      .delete(`http://localhost:3001/api/user/${userId}`, {
-        withCredentials: true,
-      }).then(()=>{
-        setUsers(users.filter((user) => user.id !== userId));
+            .delete(`http://localhost:3001/api/user/${userId}`, {
+              withCredentials: true,
+            })
+            .then(() => {
+              console.log("USUARIO ELIMINADO");
+              setUsers(users.filter((user) => user.id !== userId));
 
-        Swal.fire({
-          title: "Alerta",
-          text:"usuario eliminado",
-          icon: "success",
-          confirmButtonText: 'ok',
-          timer:"2000"
-        })
-      })
-        }else {
+              Swal.fire({
+                title: "Alerta",
+                text: "usuario eliminado",
+                icon: "success",
+                confirmButtonText: "ok",
+                timer: "2000",
+              });
+            });
+        } else {
           Swal.fire({
-            title:"Alerta",
+            title: "Alerta",
             icon: "error",
-            html:"<p>el usario <b>NO</b> fue eliminado</p>",
-            timer:"2000"
-          })
+            html: "<p>el usario <b>NO</b> fue eliminado</p>",
+            timer: "2000",
+          });
         }
-      })
+      });
     }
   };
+
   const hadleDeleteProperty = (propertyId) => {
-    axios
-      .delete(`http://localhost:3001/api/property/${propertyId}`, {
-        withCredentials: true,
-      })
-      .then(() => {
-        console.log("PROPIEDAD ELIMINADA");
-        setProperties(properties.filter((property) => property.id !== propertyId)
-        );
-      })
-      .catch((err) => {
-        console.log(err);
+    if (propertyId) {
+      Swal.fire({
+        title: "Alerta",
+        text: "¿Esta seguro que quiere eliminar esta propiedad?",
+        icon: "question",
+        showDenyButton: true,
+        denyButtonText: "no",
+        confirmButtonText: "si",
+        confirmButtonColor: "#123AC8",
+      }).then((response) => {
+        if (response.isConfirmed) {
+          axios
+            .delete(`http://localhost:3001/api/property/${propertyId}`, {
+              withCredentials: true,
+            })
+            .then(() => {
+              console.log("YA BORREEEE LA PROPIEDAAAAAD");
+              setProperties(
+                properties.filter((property) => property.id !== propertyId)
+              );
+
+              Swal.fire({
+                title: "Alerta",
+                text: "propiedad eliminada",
+                icon: "success",
+                confirmButtonText: "ok",
+                timer: "2000",
+              });
+            });
+        } else {
+          Swal.fire({
+            title: "Alerta",
+            icon: "error",
+            html: "<p>la propiedad <b>NO</b> fue eliminada</p>",
+            timer: "2000",
+          });
+        }
       });
+    }
   };
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/api/user", { withCredentials: true })
-      .then((response) => {
-        setUsers(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [users]);
+    if (mikkieHerramientaUser) {
+      axios
+        .get("http://localhost:3001/api/user", { withCredentials: true })
+        .then((response) => {
+          setUsers(response.data);
+          dispatch(setMikkieHerramientaUser(false));
+        });
+    }
+  }, [mikkieHerramientaUser]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/api/property", { withCredentials: true })
-      .then((response) => {
-        setProperties(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [properties]);
+    if (mikkieHerramientaProperty) {
+      axios
+        .get("http://localhost:3001/api/property", { withCredentials: true })
+        .then((response) => {
+          setProperties(response.data);
+          dispatch(setMikkieHerramientaProperty(false));
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [mikkieHerramientaProperty]);
+  console.log(properties);
+
   return (
     <>
       <div
@@ -148,10 +195,14 @@ function TableAdmin() {
                 <td>{user.email}</td>
                 <td>{user.admin ? "True" : "False"}</td>
                 <td>
-                  {user.name == "admin" ? "" : <ModalUser id={user.id} />}
+                  {user.name == "admin" || user.name === userOnly.name ? (
+                    ""
+                  ) : (
+                    <ModalUser id={user.id} />
+                  )}
                 </td>
                 <td>
-                  {user.name == "admin" ? (
+                  {user.name == "admin" || user.name === userOnly.name ? (
                     ""
                   ) : (
                     <button
@@ -246,7 +297,7 @@ function TableAdmin() {
                 <td>{property.bedrooms}</td>
                 <td>{property.price + " $"}</td>
                 <td>
-                  <ModalProperty id={property.id} />
+                  <ModalProperty id={property.id} pro={property} />
                 </td>
                 <td>
                   <button

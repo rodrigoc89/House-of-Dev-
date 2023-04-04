@@ -8,6 +8,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { useSelector, useDispatch } from "react-redux";
 import "../styles/Navbar.css";
+import { setUser } from "../state/user";
 
 function NavbarUser() {
   const user = useSelector((state) => state.user);
@@ -20,7 +21,9 @@ function NavbarUser() {
         {},
         { withCredentials: true }
       )
-      .then()
+      .then(() => {
+        dispatch(setUser({}));
+      })
       .catch((error) => console.log(error));
   };
   return (
