@@ -56,7 +56,7 @@ router.delete("/:id", validateAdmin, validateAuth, async (req, res) => {
   const { id } = req.params;
   try {
     await Property.destroy({ where: { id: id } });
-    res.status(202);
+    res.sendStatus(202);
   } catch (error) {
     res.sendStatus(404);
   }

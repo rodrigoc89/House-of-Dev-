@@ -63,11 +63,45 @@ function TableAdmin() {
   };
 
   const hadleDeleteProperty = (propertyId) => {
-    axios
-      .delete(`http://localhost:3001/api/property/${propertyId}`)
-      .then(() => {
-        console.log("YA BORREEEE LA PROPIEDAAAAAD");
+    if (propertyId) {
+      Swal.fire({
+        title: "Alerta",
+        text: "¿Esta seguro que quiere eliminar esta propiedad?",
+        icon: "question",
+        showDenyButton: true,
+        denyButtonText: "no",
+        confirmButtonText: "si",
+        confirmButtonColor: "#123AC8",
+      }).then((response) => {
+        if (response.isConfirmed) {
+          axios
+            .delete(`http://localhost:3001/api/property/${propertyId}`, {
+              withCredentials: true,
+            })
+            .then(() => {
+              console.log("YA BORREEEE LA PROPIEDAAAAAD");
+              setProperties(
+                properties.filter((property) => property.id !== propertyId)
+              );
+
+              Swal.fire({
+                title: "Alerta",
+                text: "usuario eliminado",
+                icon: "success",
+                confirmButtonText: "ok",
+                timer: "2000",
+              });
+            });
+        } else {
+          Swal.fire({
+            title: "Alerta",
+            icon: "error",
+            html: "<p>el usario <b>NO</b> fue eliminado</p>",
+            timer: "2000",
+          });
+        }
       });
+    }
   };
 
   useEffect(() => {
