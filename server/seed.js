@@ -16,6 +16,7 @@ const seed = () => {
     lastName: "superAdmin",
     email: "admin@admin.com",
     password: "test",
+    phone:7898985,
     admin: true,
   })
     .then(() => {
