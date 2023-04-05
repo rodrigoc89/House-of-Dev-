@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Grid.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +16,7 @@ import Swal from "sweetalert2";
 
 function Grid() {
   const [properties, setProperties] = useState([]);
+  const navigate = useNavigate();
   const cardSize = {
     width: "29rem",
     height: "16rem",
@@ -48,7 +49,6 @@ function Grid() {
       .get("http://localhost:3001/api/property", { withCredentials: true })
       .then((house) => setProperties(house.data));
   }, []);
-  console.log(properties);
   return (
     <>
       <div
@@ -202,151 +202,159 @@ function Grid() {
           {properties.map((home) => {
             return (
               <Col xs={12} md={6} lg={5} style={{ padding: "1.6%" }}>
-                <Link to={`/card/${home.id}`}>
-                  <Card
-                    id={home.id}
-                    style={{
-                      ...cardSize,
-                      height: "110%",
-                      border: "1px solid #123AC8",
-                      borderRadius: "0px",
-                      marginLeft: "15%",
-                    }}
-                  >
-                    <Row>
-                      <Col xs={5}>
-                        <Card.Img
-                          style={{
-                            height: "110%",
-                            borderRight: "1px solid #123AC8",
-                            padding: "2%",
-                            marginLeft: "5%",
-                            borderRadius: "0%",
-                          }}
-                          src={home.image}
-                        />
-                      </Col>
-                      <Col xs={7}>
-                        <Card.Body
-                          style={{
-                            padding: "0%",
-                            marginLeft: "3%",
-                            marginRight: "4%",
-                            height: "110%",
-                          }}
-                        >
-                          <div style={{ width: "100%", display: "flex" }}>
-                            <div
-                              style={{
-                                width: "40%",
-                                padding: "3%",
-                                display: "flex",
-                                alignItems: "center",
-                                fontSize: "12px",
-                                border: "1px solid #123AC8",
-                              }}
-                            >
-                              {svgs.dolar}
-                              {home.price}
-                            </div>
-                            <div
-                              style={{
-                                width: "60%",
-                                fontSize: "11px",
-                                padding: "3%",
-                                display: "flex",
-                                alignItems: "center",
-                                border: "1px solid #123AC8",
-                              }}
-                            >
-                              {svgs.ubicacion}
-                              {shortUbication(home.address)}
-                            </div>
-                          </div>
-                          <div style={{ display: "flex" }}>
-                            <div
-                              style={{
-                                width: "34%",
-                                padding: "3%",
-                                display: "flex",
-                                alignItems: "center",
-                                fontSize: "13px",
-                                border: "1px solid #123AC8",
-                              }}
-                            >
-                              {svgs.regla}
-                              {home.m2 + "m²"}
-                            </div>
-                            <div
-                              style={{
-                                width: "33%",
-                                padding: "2%",
-                                display: "flex",
-                                alignItems: "center",
-                                fontSize: "13px",
-                                border: "1px solid #123AC8",
-                              }}
-                            >
-                              {svgs.cama}
-                              {home.bedrooms + " dorm."}
-                            </div>
-                            <div
-                              style={{
-                                width: "33%",
-                                padding: "2%",
-                                display: "flex",
-                                alignItems: "center",
-                                fontSize: "13px",
-                                border: "1px solid #123AC8",
-                              }}
-                            >
-                              {svgs.baño}
-                              {home.bathrooms + "baños"}
-                            </div>
-                          </div>
-                          <Card.Text style={{ padding: "5%" }}>
-                            {shortCutTtext(home.description)}
-                          </Card.Text>
+                <Card
+                  id={home.id}
+                  style={{
+                    ...cardSize,
+                    height: "110%",
+                    border: "1px solid #123AC8",
+                    borderRadius: "0px",
+                    marginLeft: "15%",
+                  }}
+                >
+                  <Row>
+                    <Col xs={5}>
+                      <Card.Img
+                        style={{
+                          height: "110%",
+                          borderRight: "1px solid #123AC8",
+                          padding: "2%",
+                          marginLeft: "5%",
+                          borderRadius: "0%",
+                        }}
+                        src={home.image}
+                      />
+                    </Col>
+                    <Col xs={7}>
+                      <Card.Body
+                        style={{
+                          padding: "0%",
+                          marginLeft: "3%",
+                          marginRight: "4%",
+                          height: "110%",
+                        }}
+                      >
+                        <div style={{ width: "100%", display: "flex" }}>
                           <div
                             style={{
-                              borderTop: "1px solid #123AC8",
-                              height: "25%",
+                              width: "40%",
+                              padding: "3%",
                               display: "flex",
                               alignItems: "center",
+                              fontSize: "12px",
+                              border: "1px solid #123AC8",
                             }}
                           >
-                            <div style={{ marginLeft: "30%" }}>
-                              <Link>
-                                <svg
-                                  id="icon-grid"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="16"
-                                  height="16"
-                                  fill="currentColor"
-                                  class="bi bi-heart"
-                                  viewBox="0 0 16 16"
-                                  onClick={() => {
-                                    addToFavoriteHandler(home);
-                                  }}
-                                >
-                                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                </svg>
-                              </Link>
-                            </div>
+                            {svgs.dolar}
 
-                            <div style={{ marginLeft: "8%" }}>
-                              <GetAppointment
-                                idUser={user.id}
-                                address={home.address}
-                              />
-                            </div>
-                            <button className="buton-grid">Ver más</button>
+                            {home.price}
                           </div>
-                        </Card.Body>
-                      </Col>
-                    </Row>
-                  </Card>
-                </Link>
+
+                          <div
+                            style={{
+                              width: "60%",
+                              fontSize: "11px",
+                              padding: "3%",
+                              display: "flex",
+                              alignItems: "center",
+                              border: "1px solid #123AC8",
+                            }}
+                          >
+                            {svgs.ubicacion}
+                            {shortUbication(home.address)}
+                          </div>
+                        </div>
+                        <div style={{ display: "flex" }}>
+                          <div
+                            style={{
+                              width: "34%",
+                              padding: "3%",
+                              display: "flex",
+                              alignItems: "center",
+                              fontSize: "13px",
+                              border: "1px solid #123AC8",
+                            }}
+                          >
+                            {svgs.regla}
+                            {home.m2 + "m²"}
+                          </div>
+                          <div
+                            style={{
+                              width: "33%",
+                              padding: "2%",
+                              display: "flex",
+                              alignItems: "center",
+                              fontSize: "13px",
+                              border: "1px solid #123AC8",
+                            }}
+                          >
+                            {svgs.cama}
+                            {home.bedrooms + " dorm."}
+                          </div>
+                          <div
+                            style={{
+                              width: "33%",
+                              padding: "2%",
+                              display: "flex",
+                              alignItems: "center",
+                              fontSize: "13px",
+                              border: "1px solid #123AC8",
+                            }}
+                          >
+                            {svgs.baño}
+                            {home.bathrooms + "baños"}
+                          </div>
+                        </div>
+                        <Card.Text style={{ padding: "5%" }}>
+                          {shortCutTtext(home.description)}
+                        </Card.Text>
+                        <div
+                          style={{
+                            borderTop: "1px solid #123AC8",
+                            height: "25%",
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          <div style={{ marginLeft: "30%" }}>
+                            <Link>
+                              <svg
+                                id="icon-grid"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-heart"
+                                viewBox="0 0 16 16"
+                                onClick={() => {
+                                  addToFavoriteHandler(home);
+                                }}
+                              >
+                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                              </svg>
+                            </Link>
+                          </div>
+
+                          <div style={{ marginLeft: "8%" }}>
+                            <GetAppointment
+                              idUser={user.id}
+                              address={home.address}
+                              imgUser={home.image}
+                            />
+                          </div>
+                          <button
+                            className="buton-grid"
+                            onClick={() => {
+                              navigate(`/card/${home.id}`);
+                            }}
+                          >
+                            Ver más
+                          </button>
+                        </div>
+                      </Card.Body>
+                    </Col>
+                  </Row>
+                </Card>
               </Col>
             );
           })}

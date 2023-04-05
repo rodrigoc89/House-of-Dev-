@@ -14,6 +14,7 @@ import TableAdmin from "./ components/admin/adminTablas";
 import { setFavorite } from "./state/favorites";
 import { setAppointment } from "./state/appointment";
 import CardIndividual from "./ components/Card";
+import Appointments from "./ components/Appointments";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,9 +42,12 @@ function App() {
         .get(`http://localhost:3001/api/appointment/${userLoged.id}`, {
           withCredentials: true,
         })
-        .then((appointments) => dispatch(setAppointment(appointments.data)));
+        .then((appointments) => {
+          dispatch(setAppointment(appointments.data));
+        });
     }
   }, [userLoged]);
+
   return (
     <div>
       {userLoged.admin == true ? (
@@ -61,6 +65,7 @@ function App() {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/card/:id" element={<CardIndividual />} />
+          <Route path="appointments" element={<Appointments />} />
         </Routes>
       )}
     </div>

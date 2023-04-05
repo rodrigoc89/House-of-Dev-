@@ -14,11 +14,11 @@ User.init(
       allowNull: false,
     },
     phone: {
-      type: S.INTEGER,
+      type: S.BIGINT,
       allowNull: false,
-      validate:{
+      validate: {
         min: 7,
-      }
+      },
     },
     email: {
       type: S.STRING,

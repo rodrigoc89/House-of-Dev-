@@ -6,9 +6,9 @@ import DatePicker from "react-datepicker";
 import { useDispatch, useSelector } from "react-redux";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { setAppointment } from "../../state/appointment";
+import { addAppointment, setAppointment } from "../../state/appointment";
 
-function GetAppointment({ idUser, address }) {
+function GetAppointment({ idUser, address, imUser }) {
   const appointments = useSelector((state) => state.appointment);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
@@ -27,11 +27,12 @@ function GetAppointment({ idUser, address }) {
           {
             address: address,
             date: startDate,
+            imgUser: imUser,
           },
           { withCredentials: true }
         )
         .then((appointmentAdd) => {
-          dispatch(setAppointment(appointmentAdd.data));
+          dispatch(addAppointment(appointmentAdd.data));
         });
     } else {
       alert("no puedes hacer otra cita para esta vivienda");
@@ -39,7 +40,6 @@ function GetAppointment({ idUser, address }) {
 
     setShow(false);
   };
-  console.log(idUser, address);
   return (
     <>
       <svg

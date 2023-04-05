@@ -11,6 +11,12 @@ Appointment.init(
     address: {
       type: S.STRING,
     },
+    image: {
+      type: S.TEXT,
+    },
+    hour: {
+      type: S.STRING,
+    }
   },
   { sequelize: db, modelName: "Appointment" }
 );

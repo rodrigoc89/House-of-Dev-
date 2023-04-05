@@ -21,11 +21,12 @@ router.post("/:id", validateAuth, async (req, res) => {
       date: req.body.date,
       address: req.body.address,
       UserId: req.params.id,
+      image: req.body.image,
     };
     const appointment = await Appointment.create(data);
     res.status(201).send(appointment);
   } catch (error) {
-    res.sendStatus(402);
+    console.log(error);
   }
 });
 
