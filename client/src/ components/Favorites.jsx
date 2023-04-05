@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { useSelector } from "react-redux";
 import NavbarUser from "./Navbar";
-import shortCutTtext from "./function/shortText";
 import shortUbication from "./function/shotUbacation";
 
 const Favorites = () => {
@@ -215,8 +214,8 @@ const Favorites = () => {
                             {home.bathrooms + "baños"}
                           </div>
                         </div>
-                        <Card.Text style={{ padding: "5%" }}>
-                          {shortCutTtext(home.description)}
+                        <Card.Text style={{ padding: "5%", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>
+                          {home.description}
                         </Card.Text>
                         <div
                           style={{

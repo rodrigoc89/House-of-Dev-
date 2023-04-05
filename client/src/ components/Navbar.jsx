@@ -9,6 +9,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import { useSelector, useDispatch } from "react-redux";
 import "../styles/Navbar.css";
 import { setUser } from "../state/user";
+import svgs from "../commons/svgs";
 import { setType } from "../state/type";
 import { setValue } from "../state/value";
 

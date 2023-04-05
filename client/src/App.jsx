@@ -14,6 +14,7 @@ import TableAdmin from "./ components/admin/adminTablas";
 import { setFavorite } from "./state/favorites";
 import { setAppointment } from "./state/appointment";
 import CardIndividual from "./ components/Card";
+import AdminCitas from "./ components/admin/AdminCitas";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ function App() {
           <NavbarAdmin />
           <Routes>
             <Route path="/" element={<TableAdmin />} />
+            <Route path="/adminCitas" element={<AdminCitas/>} />
           </Routes>
         </>
       ) : (
