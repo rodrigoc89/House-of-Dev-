@@ -298,7 +298,6 @@ function Grid() {
                             </div>
 
                           </div>
-                        </div>
                         <div style={{ display: "flex" }}>
                           <div
                             style={{
