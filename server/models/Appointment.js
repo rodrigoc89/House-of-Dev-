@@ -11,6 +11,7 @@ Appointment.init(
     address: {
       type: S.STRING,
     },
+
     image:{
       type: S.TEXT
     },

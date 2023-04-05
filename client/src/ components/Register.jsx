@@ -28,6 +28,7 @@ function FormRegister() {
           email: email,
           password: password,
           phone: phone,
+
         },
         { withCredentials: true }
       )

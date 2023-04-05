@@ -5,9 +5,11 @@ import Modal from "react-bootstrap/Modal";
 import DatePicker from "react-datepicker";
 import { useDispatch, useSelector } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
-import { setAppointment } from "../../state/appointment";
+import { addAppointment, setAppointment } from "../../state/appointment";
+
 
 function GetAppointment({ address, imgUser, email, name, userId, phone, lastName }) {
+
   const appointments = useSelector((state) => state.appointment);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
@@ -28,17 +30,20 @@ function GetAppointment({ address, imgUser, email, name, userId, phone, lastName
           {
             address: address,
             date: startDate,
+
             image: imgUser,
             userName: name,
             userPhone: phone,
             userEmail: email,
             userLastName:lastName
+
           },
           { withCredentials: true }
         )
         .then((appointmentAdd) => {
-          console.log(appointmentAdd);
-          dispatch(setAppointment(appointmentAdd.data));
+
+          dispatch(addAppointment(appointmentAdd.data));
+
         });
     } else {
       alert("no puedes hacer otra cita para esta vivienda");

@@ -14,7 +14,9 @@ import TableAdmin from "./ components/admin/adminTablas";
 import { setFavorite } from "./state/favorites";
 import { setAppointment } from "./state/appointment";
 import CardIndividual from "./ components/Card";
+import Appointments from "./ components/Appointments";
 import AdminCitas from "./ components/admin/AdminCitas";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -42,7 +44,9 @@ function App() {
         .get(`http://localhost:3001/api/appointment/${userLogged.id}`, {
           withCredentials: true,
         })
-        .then((appointments) => dispatch(setAppointment(appointments.data)));
+        .then((appointments) => {
+          dispatch(setAppointment(appointments.data));
+        });
     }
   }, [userLogged]);
   return (
@@ -63,6 +67,7 @@ function App() {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/card/:id" element={<CardIndividual />} />
+          <Route path="appointments" element={<Appointments />} />
         </Routes>
       )}
     </div>

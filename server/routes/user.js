@@ -20,7 +20,7 @@ router.post("/register", async (req, res) => {
     Favorites.create({ UserId: newUser.id });
     res.status(201).send(newUser);
   } catch (error) {
-    res.sendStatus(404);
+    console.log(error);
   }
 });
 
@@ -120,3 +120,5 @@ router.delete("/:id", validateAuth, validateAdmin, async (req, res) => {
 });
 
 module.exports = router;
+
+//Users[citas.UserId-1]

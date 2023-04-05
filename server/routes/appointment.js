@@ -30,11 +30,12 @@ router.post("/:id", validateAuth, async (req, res) => {
       userName: req.body.userName,
       userEmail: req.body.userEmail,
       userLastName: req.body.userLastName
+
     };
     const appointment = await Appointment.create(data);
     res.status(201).send(appointment);
   } catch (error) {
-    res.sendStatus(402);
+    console.log(error);
   }
 });
 

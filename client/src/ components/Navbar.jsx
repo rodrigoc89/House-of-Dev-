@@ -160,7 +160,7 @@ function NavbarUser() {
                   </svg>
                   Mi perfil
                 </Dropdown.Item>
-                <Dropdown.Item href="#action/3.2">
+                <Dropdown.Item href="/appointments">
                   <svg
                     style={{
                       color: "black",

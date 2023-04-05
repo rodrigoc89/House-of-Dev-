@@ -16,9 +16,9 @@ User.init(
     phone: {
       type: S.BIGINT,
       allowNull: false,
-      validate:{
+      validate: {
         min: 7,
-      }
+      },
     },
     email: {
       type: S.STRING,
