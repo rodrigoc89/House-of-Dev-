@@ -1,11 +1,11 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
-export const setUser = createAction("SET_USER");
+export const setDebuggerUser = createAction("SET_DEBUGGERUSER");
 
-const initialState = {};
+const initialState = true;
 
 const reducer = createReducer(initialState, {
-  [setUser]: (state, action) => {
+  [setDebuggerUser]: (state, action) => {
     return action.payload;
   },
 });

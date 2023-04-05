@@ -1,6 +1,7 @@
 const { validateAuth, validateAdmin } = require("../middleware/auth");
 const { Appointment, User } = require("../models");
 
+
 const router = require("express").Router();
 
 //admin
@@ -18,8 +19,7 @@ router.get("/", validateAuth,validateAdmin, async (req, res) => {
 
 router.post("/:id", validateAuth, async (req, res) => {
   const { id } = req.params;
-  console.log(req.body, "soy la fecha y la dirrecion");
-  console.log(id, "soy el id");
+
   try {
     const data = {
       date: req.body.date,

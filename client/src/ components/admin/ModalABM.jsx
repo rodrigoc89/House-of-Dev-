@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
-import { setMikkieHerramientaProperty } from "../../state/mikkieHerramientaProperty";
+import { setDebuggerProperty } from "../../state/debuggerProperty";
 
 function ModalABM() {
   const dispatch = useDispatch();
@@ -18,7 +18,6 @@ function ModalABM() {
   const [image, setImage] = useState("");
   const [options, setOptions] = useState("");
   const [description, setDescription] = useState("");
-  // const [available, setAvailable] = useState(true);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -36,13 +35,13 @@ function ModalABM() {
       available: true,
       description: description,
     };
-    console.log(property);
+
     axios
       .post("http://localhost:3001/api/property", property, {
         withCredentials: true,
       })
       .then(() => {
-        console.log("create"), dispatch(setMikkieHerramientaProperty(true));
+        console.log("create"), dispatch(setDebuggerProperty(true));
       });
   };
   const handleClick = (event) => {
@@ -53,8 +52,6 @@ function ModalABM() {
     }
     setValidated(true);
   };
-
-  console.log(options);
 
   return (
     <div

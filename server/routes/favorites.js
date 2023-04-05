@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const User = require("../models/User");
+
 const Property = require("../models/Property");
 const Favorites = require("../models/Favorites");
 const { validateAuth, validateAdmin } = require("../middleware/auth");
@@ -15,7 +15,6 @@ router.post("/:id", validateAuth, async (req, res) => {
     const favorites = await Favorites.findOne({
       where: { UserId: id },
     });
-    console.log(favorites, "soyb yoo");
 
     if (!favorites) return res.sendStatus(404);
 

@@ -46,7 +46,6 @@ function GetAppointment({ address, imgUser, email, name, userId, phone, lastName
 
     setShow(false);
   };
-
   return (
     <>
       <svg

@@ -6,9 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import Nav from "react-bootstrap/Nav";
 import svgs from "../../commons/svgs";
 
+
 function NavbarAdmin() {
   const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
 
   const handleLogout = () => {
     axios
@@ -71,12 +71,12 @@ function NavbarAdmin() {
                     />
                   </svg>
             </a>
-            </>
-          ) : (
-            <Button style={{ marginLeft: "1%" }} href="/login" variant="light">
-              Iniciar sesión
-            </Button>
-          )}
+          </>
+        ) : (
+          <Button style={{ marginLeft: "1%" }} href="/login" variant="light">
+            Iniciar sesión
+          </Button>
+        )}
       </Container>
     </Navbar>
   );
