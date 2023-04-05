@@ -7,9 +7,15 @@ import { useDispatch, useSelector } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
 import { addAppointment, setAppointment } from "../../state/appointment";
 
-
-function GetAppointment({ address, imgUser, email, name, userId, phone, lastName }) {
-
+function GetAppointment({
+  address,
+  imgUser,
+  email,
+  name,
+  userId,
+  phone,
+  lastName,
+}) {
   const appointments = useSelector((state) => state.appointment);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
@@ -22,6 +28,7 @@ function GetAppointment({ address, imgUser, email, name, userId, phone, lastName
   const handleSubmit = () => {
     const verify = appointments.some((x) => x.address === address);
 
+    console.log(userId);
     if (!verify) {
       console.log(email, name, userId, phone);
       axios
@@ -30,20 +37,17 @@ function GetAppointment({ address, imgUser, email, name, userId, phone, lastName
           {
             address: address,
             date: startDate,
-
             image: imgUser,
             userName: name,
             userPhone: phone,
             userEmail: email,
-            userLastName:lastName
-
+            userLastName: lastName,
           },
           { withCredentials: true }
         )
         .then((appointmentAdd) => {
-
+          console.log("tuve exito");
           dispatch(addAppointment(appointmentAdd.data));
-
         });
     } else {
       alert("no puedes hacer otra cita para esta vivienda");

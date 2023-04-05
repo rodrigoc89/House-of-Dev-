@@ -291,7 +291,7 @@ function Grid() {
                             }}
                           >
                             {svgs.ubicacion}
-                            {home.address}
+                            {shortUbication(home.address)}
                           </div>
                         </div>
                         <div style={{ display: "flex" }}>
