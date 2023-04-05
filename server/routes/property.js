@@ -30,7 +30,6 @@ router.get("/:id", validateAuth, async (req, res) => {
 router.get("/search/:textSearch", async (req, res) => {
   try {
     const { textSearch } = req.params;
-    console.log(textSearch);
     const result = await Property.findAll({
       where: {
         [Op.or]: [
@@ -54,10 +53,9 @@ router.get("/search/:textSearch", async (req, res) => {
 });
 
 // FILTRO POR ALQUILER O VENTA
-router.get("/filterOptions/:options", validateAuth, async (req, res) => {
+router.get("/filterOptions/:options", async (req, res) => {
   try {
     const { options } = req.params;
-    // console.log(options);
     const result = await Property.findAll({
       where: {
         options: {
@@ -73,7 +71,7 @@ router.get("/filterOptions/:options", validateAuth, async (req, res) => {
 
 router.get(
   "/filterPrice/:filterMajorToMinor",
-  validateAuth,
+
   async (req, res) => {
     const { filterMajorToMinor } = req.params;
     console.log(filterMajorToMinor);
@@ -96,7 +94,6 @@ router.get(
 //ADMIN ROUTES FIND AND EDIT PROPERTY
 
 router.post("/", validateAdmin, validateAuth, async (req, res) => {
-  console.log(req.body);
   try {
     const property = await Property.create(req.body);
     res.status(201).send(property);
@@ -107,7 +104,7 @@ router.post("/", validateAdmin, validateAuth, async (req, res) => {
 
 router.put("/:id", validateAdmin, validateAuth, async (req, res) => {
   const { id } = req.params;
-  console.log(req.body);
+
   try {
     const propertyUpdate = await Property.update(req.body, {
       where: {

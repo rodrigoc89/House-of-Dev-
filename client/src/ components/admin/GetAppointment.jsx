@@ -39,7 +39,6 @@ function GetAppointment({ idUser, address }) {
 
     setShow(false);
   };
-  console.log(idUser, address);
   return (
     <>
       <svg

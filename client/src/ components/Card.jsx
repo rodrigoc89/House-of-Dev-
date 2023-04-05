@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useParams } from "react-router";
 import "../styles/Card.css";
@@ -11,7 +10,7 @@ import svgs from "../commons/svgs";
 function CardIndividual() {
   const [property, setProperty] = useState({});
   const { id } = useParams();
-  console.log(id);
+
   useEffect(() => {
     axios
       .get(`http://localhost:3001/api/property/${id}`, {
@@ -21,7 +20,7 @@ function CardIndividual() {
         setProperty(home.data);
       });
   }, []);
-  console.log(property);
+
   return (
     <>
       <NavbarUser />
@@ -59,9 +58,9 @@ function CardIndividual() {
       </div>
       <Card className="text-center conteiner-card">
         <div style={{ display: "flex", flexDirection: "row" }}>
-          <div style={{ flex: 1,}}>
+          <div style={{ flex: 1 }}>
             <Card.Img
-              style={{ padding: "5%",height:"100%", width:"100%"}}
+              style={{ padding: "5%", height: "100%", width: "100%" }}
               variant="top"
               src={property.image}
             />
@@ -87,7 +86,7 @@ function CardIndividual() {
                 <ListGroup.Item>
                   <strong> Precio: </strong>${property.price}
                 </ListGroup.Item>
-                <div style={{ display: "flex", marginTop:"5%"}}>
+                <div style={{ display: "flex", marginTop: "5%" }}>
                   <a href="/">
                     <button className="buton-card">
                       {svgs.regresar}
@@ -96,7 +95,10 @@ function CardIndividual() {
                   </a>
 
                   <a href="">
-                    <button className="buton-card" style={{ marginLeft: "35%" }}>
+                    <button
+                      className="buton-card"
+                      style={{ marginLeft: "35%" }}
+                    >
                       {svgs.telefono}
                       Pedir cita
                     </button>

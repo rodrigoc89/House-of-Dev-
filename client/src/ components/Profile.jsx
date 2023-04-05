@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import "../styles/Perfil.css";
+import React, { useState } from "react";
+import "../styles/Profile.css";
 import { useSelector, useDispatch } from "react-redux";
 import NavbarUser from "./Navbar";
 import axios from "axios";
 import { setUser } from "../state/user";
 
-const Pefil = () => {
+const Profile = () => {
   const user = useSelector((state) => state.user);
-  const dispach = useDispatch();
+  const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(user.name);
   const [lastName, setLastName] = useState(user.lastName);
@@ -21,25 +21,23 @@ const Pefil = () => {
           {
             name: name,
             lastName: lastName,
-            phone:phone,
+            phone: phone,
           },
           { withCredentials: true }
         )
         .then((user) => {
-          dispach(setUser(user.data));
+          dispatch(setUser(user.data));
           console.log(user.data);
           setIsEditing(false);
-          console.log("Datos actualizados");
         })
         .catch((error) => {
           console.log(error);
         });
     } else {
       setIsEditing(true);
-      console.log("Editar");
     }
   }
-  console.log(user);
+
   return (
     <>
       <NavbarUser />
@@ -281,4 +279,4 @@ const Pefil = () => {
   );
 };
 
-export default Pefil;
+export default Profile;
