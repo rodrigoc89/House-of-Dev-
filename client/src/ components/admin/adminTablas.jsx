@@ -6,19 +6,14 @@ import ModalProperty from "./ModalProperty";
 import ModalUser from "./ModalUser";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { setMikkieHerramientaUser } from "../../state/mikkieHerramientaUser";
-import { setMikkieHerramientaProperty } from "../../state/mikkieHerramientaProperty";
+import { setDebuggerUser } from "../../state/debuggerUser";
+import { setDebuggerProperty } from "../../state/debuggerProperty";
 
 function TableAdmin() {
   const userOnly = useSelector((state) => state.user);
-  console.log(userOnly);
   const dispatch = useDispatch();
-  const mikkieHerramientaUser = useSelector(
-    (state) => state.mikkieHerramientaUser
-  );
-  const mikkieHerramientaProperty = useSelector(
-    (state) => state.mikkieHerramientaProperty
-  );
+  const debuggerUser = useSelector((state) => state.debuggerUser);
+  const debuggerProperty = useSelector((state) => state.debuggerProperty);
   const [users, setUsers] = useState([]);
   const [properties, setProperties] = useState([]);
 
@@ -62,7 +57,7 @@ function TableAdmin() {
     }
   };
 
-  const hadleDeleteProperty = (propertyId) => {
+  const handleDeleteProperty = (propertyId) => {
     if (propertyId) {
       Swal.fire({
         title: "Alerta",
@@ -105,30 +100,29 @@ function TableAdmin() {
   };
 
   useEffect(() => {
-    if (mikkieHerramientaUser) {
+    if (debuggerUser) {
       axios
         .get("http://localhost:3001/api/user", { withCredentials: true })
         .then((response) => {
           setUsers(response.data);
-          dispatch(setMikkieHerramientaUser(false));
+          dispatch(setDebuggerUser(false));
         });
     }
-  }, [mikkieHerramientaUser]);
+  }, [debuggerUser]);
 
   useEffect(() => {
-    if (mikkieHerramientaProperty) {
+    if (debuggerProperty) {
       axios
         .get("http://localhost:3001/api/property", { withCredentials: true })
         .then((response) => {
           setProperties(response.data);
-          dispatch(setMikkieHerramientaProperty(false));
+          dispatch(setDebuggerProperty(false));
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  }, [mikkieHerramientaProperty]);
-  console.log(properties);
+  }, [debuggerProperty]);
 
   return (
     <>
@@ -308,7 +302,7 @@ function TableAdmin() {
                       backgroundColor: "transparent",
                       border: "none",
                     }}
-                    onClick={() => hadleDeleteProperty(property.id)}
+                    onClick={() => handleDeleteProperty(property.id)}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

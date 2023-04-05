@@ -2,8 +2,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-import "../styles/Grid.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setFavorite } from "../state/favorites";
@@ -13,6 +13,9 @@ import GetAppointment from "./admin/GetAppointment";
 import { useEffect, useState } from "react";
 import svgs from "../commons/svgs";
 import Swal from "sweetalert2";
+import { setValue } from "../state/value";
+import { setType } from "../state/type";
+import "../styles/Grid.css";
 
 function Grid() {
   const [properties, setProperties] = useState([]);
@@ -22,6 +25,8 @@ function Grid() {
   };
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const type = useSelector((state) => state.type);
+  const value = useSelector((state) => state.value);
   const addToFavoriteHandler = (home) => {
     const data = {
       id: home.id,
@@ -44,11 +49,19 @@ function Grid() {
       });
   };
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/api/property", { withCredentials: true })
-      .then((house) => setProperties(house.data));
-  }, []);
-  console.log(properties);
+    if (type && value) {
+      axios
+        .get(`http://localhost:3001/api/property/${type}/${value}`, {
+          withCredentials: true,
+        })
+        .then((house) => setProperties(house.data));
+    } else {
+      axios
+        .get("http://localhost:3001/api/property", { withCredentials: true })
+        .then((house) => setProperties(house.data));
+    }
+  }, [value]);
+
   return (
     <>
       <div
@@ -197,11 +210,27 @@ function Grid() {
       </div>
 
       <div className="division"></div>
+      <Form.Select
+        aria-label="Default select example"
+        onClick={(e) => {
+          dispatch(setValue(e.target.value)), dispatch(setType("filterPrice"));
+        }}
+      >
+        <option value="">Mostrar todo</option>
+        <option value="minor">Mostrar de menor a mayor precio</option>
+        <option value="major">Mostrar de mayor a mejor precio</option>
+      </Form.Select>
       <Container style={{ width: "100%", color: "#123AC8" }}>
         <Row>
           {properties.map((home) => {
             return (
-              <Col xs={12} md={6} lg={5} style={{ padding: "1.6%" }}>
+              <Col
+                xs={12}
+                md={6}
+                lg={5}
+                style={{ padding: "1.6%" }}
+                key={home.id}
+              >
                 <Link to={`/card/${home.id}`}>
                   <Card
                     id={home.id}
