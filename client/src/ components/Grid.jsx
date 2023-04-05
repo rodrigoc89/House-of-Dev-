@@ -52,7 +52,6 @@ function Grid() {
       });
   };
   useEffect(() => {
-
     if (type && value) {
       axios
         .get(`http://localhost:3001/api/property/${type}/${value}`, {
@@ -65,7 +64,6 @@ function Grid() {
         .then((house) => setProperties(house.data));
     }
   }, [value]);
-
 
   return (
     <>
@@ -229,7 +227,6 @@ function Grid() {
         <Row>
           {properties.map((home) => {
             return (
-
               <Col
                 xs={12}
                 md={6}
@@ -237,67 +234,66 @@ function Grid() {
                 style={{ padding: "1.6%" }}
                 key={home.id}
               >
-                  <Card
-                    id={home.id}
-                    style={{
-                      ...cardSize,
-                      height: "110%",
-                      border: "1px solid #123AC8",
-                      borderRadius: "0px",
-                      marginLeft: "15%",
-                    }}
-                  >
-                    <Row>
-                      <Col xs={5}>
-                        <Card.Img
-                          style={{
-                            height: "110%",
-                            borderRight: "1px solid #123AC8",
-                            padding: "2%",
-                            marginLeft: "5%",
-                            borderRadius: "0%",
-                          }}
-                          src={home.image}
-                        />
-                      </Col>
-                      <Col xs={7}>
-                        <Card.Body
-                          style={{
-                            padding: "0%",
-                            marginLeft: "3%",
-                            marginRight: "4%",
-                            height: "110%",
-                          }}
-                        >
-                          <div style={{ width: "100%", display: "flex" }}>
-                            <div
-                              style={{
-                                width: "40%",
-                                padding: "3%",
-                                display: "flex",
-                                alignItems: "center",
-                                fontSize: "12px",
-                                border: "1px solid #123AC8",
-                              }}
-                            >
-                              {svgs.dolar}
-                              {home.price}
-                            </div>
-                            <div
-                              style={{
-                                width: "60%",
-                                fontSize: "11px",
-                                padding: "3%",
-                                display: "flex",
-                                alignItems: "center",
-                                border: "1px solid #123AC8",
-                              }}
-                            >
-                              {svgs.ubicacion}
-                              {shortUbication(home.address)}
-                            </div>
-
+                <Card
+                  id={home.id}
+                  style={{
+                    ...cardSize,
+                    height: "110%",
+                    border: "1px solid #123AC8",
+                    borderRadius: "0px",
+                    marginLeft: "15%",
+                  }}
+                >
+                  <Row>
+                    <Col xs={5}>
+                      <Card.Img
+                        style={{
+                          height: "110%",
+                          borderRight: "1px solid #123AC8",
+                          padding: "2%",
+                          marginLeft: "5%",
+                          borderRadius: "0%",
+                        }}
+                        src={home.image}
+                      />
+                    </Col>
+                    <Col xs={7}>
+                      <Card.Body
+                        style={{
+                          padding: "0%",
+                          marginLeft: "3%",
+                          marginRight: "4%",
+                          height: "110%",
+                        }}
+                      >
+                        <div style={{ width: "100%", display: "flex" }}>
+                          <div
+                            style={{
+                              width: "40%",
+                              padding: "3%",
+                              display: "flex",
+                              alignItems: "center",
+                              fontSize: "12px",
+                              border: "1px solid #123AC8",
+                            }}
+                          >
+                            {svgs.dolar}
+                            {home.price}
                           </div>
+                          <div
+                            style={{
+                              width: "60%",
+                              fontSize: "11px",
+                              padding: "3%",
+                              display: "flex",
+                              alignItems: "center",
+                              border: "1px solid #123AC8",
+                            }}
+                          >
+                            {svgs.ubicacion}
+                            {home.address}
+                          </div>
+                        </div>
                         <div style={{ display: "flex" }}>
                           <div
                             style={{
@@ -326,10 +322,6 @@ function Grid() {
                             {home.bedrooms + " dorm."}
                           </div>
 
-                          <Card.Text style={{ padding: "5%" , whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>
-                            {(home.description)}
-                          </Card.Text>
-
                           <div
                             style={{
                               width: "33%",
@@ -344,8 +336,15 @@ function Grid() {
                             {home.bathrooms + "baños"}
                           </div>
                         </div>
-                        <Card.Text style={{ padding: "5%" }}>
-                          {shortCutTtext(home.description)}
+                        <Card.Text
+                          style={{
+                            padding: "5%",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                          }}
+                        >
+                          {home.description}
                         </Card.Text>
                         <div
                           style={{
@@ -373,25 +372,31 @@ function Grid() {
                               </svg>
                             </Link>
                           </div>
-                            <div style={{ marginLeft: "8%" }}>
-                              <GetAppointment
-                                userId={user.id}
-                                address={home.address}
-                                imgUser={home.image}
-                                phone={user.phone}
-                                email={user.email}
-                                name={user.name}
-                                lastName={user.lastName}
-                              />
-                            </div>
-                            
-                            <button className="buton-grid" onClick={()=>{navigate(`/card/${home.id}`)}}>Ver más</button>
+                          <div style={{ marginLeft: "8%" }}>
+                            <GetAppointment
+                              userId={user.id}
+                              address={home.address}
+                              imgUser={home.image}
+                              phone={user.phone}
+                              email={user.email}
+                              name={user.name}
+                              lastName={user.lastName}
+                            />
                           </div>
-                        </Card.Body>
-                      </Col>
-                    </Row>
-                  </Card>
 
+                          <button
+                            className="buton-grid"
+                            onClick={() => {
+                              navigate(`/card/${home.id}`);
+                            }}
+                          >
+                            Ver más
+                          </button>
+                        </div>
+                      </Card.Body>
+                    </Col>
+                  </Row>
+                </Card>
               </Col>
             );
           })}
