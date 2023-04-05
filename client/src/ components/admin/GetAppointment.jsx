@@ -4,35 +4,46 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import DatePicker from "react-datepicker";
 import { useDispatch, useSelector } from "react-redux";
-
 import "react-datepicker/dist/react-datepicker.css";
 import { addAppointment, setAppointment } from "../../state/appointment";
 
-function GetAppointment({ idUser, address, imUser }) {
+
+function GetAppointment({ address, imgUser, email, name, userId, phone, lastName }) {
+
   const appointments = useSelector((state) => state.appointment);
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(new Date());
   const [show, setShow] = useState(false);
-
+  const user = useSelector((state) => state.user);
   const handleClose = () => setShow(false);
   const handleShow = () => {
     setShow(true);
   };
   const handleSubmit = () => {
     const verify = appointments.some((x) => x.address === address);
+
     if (!verify) {
+      console.log(email, name, userId, phone);
       axios
         .post(
-          `http://localhost:3001/api/appointment/${idUser}`,
+          `http://localhost:3001/api/appointment/${userId}`,
           {
             address: address,
             date: startDate,
-            imgUser: imUser,
+
+            image: imgUser,
+            userName: name,
+            userPhone: phone,
+            userEmail: email,
+            userLastName:lastName
+
           },
           { withCredentials: true }
         )
         .then((appointmentAdd) => {
+
           dispatch(addAppointment(appointmentAdd.data));
+
         });
     } else {
       alert("no puedes hacer otra cita para esta vivienda");

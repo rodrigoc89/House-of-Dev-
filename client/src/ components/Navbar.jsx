@@ -9,6 +9,9 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import { useSelector, useDispatch } from "react-redux";
 import "../styles/Navbar.css";
 import { setUser } from "../state/user";
+import svgs from "../commons/svgs";
+import { setType } from "../state/type";
+import { setValue } from "../state/value";
 
 function NavbarUser() {
   const user = useSelector((state) => state.user);
@@ -65,14 +68,18 @@ function NavbarUser() {
             <Nav.Link
               className="tabs"
               style={{ color: "white", fontSize: "15px" }}
-              href="/"
+              onClick={() => {
+                dispatch(setType("filterOptions")), dispatch(setValue("sale"));
+              }}
             >
               En venta
             </Nav.Link>
             <Nav.Link
               className="tabs"
               style={{ color: "white", fontSize: "15px" }}
-              href="/"
+              onClick={() => {
+                dispatch(setType("filterOptions")), dispatch(setValue("rent"));
+              }}
             >
               Alquiler
             </Nav.Link>
@@ -104,8 +111,10 @@ function NavbarUser() {
               placeholder="Buscar"
               className="me-2"
               aria-label="Search"
+              onChange={(e) => {
+                dispatch(setValue(e.target.value)), dispatch(setType("search"));
+              }}
             />
-            <Button variant="light">Buscar</Button>
           </Form>
           {user.name ? (
             <>
@@ -131,7 +140,7 @@ function NavbarUser() {
                   marginLeft: "3%",
                 }}
               >
-                <Dropdown.Item href="/perfil">
+                <Dropdown.Item href="/profile">
                   <svg
                     style={{
                       color: "black",

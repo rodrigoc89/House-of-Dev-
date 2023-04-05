@@ -27,7 +27,8 @@ function FormRegister() {
           lastName: lastName,
           email: email,
           password: password,
-          phone: Number(phone),
+          phone: phone,
+
         },
         { withCredentials: true }
       )

@@ -5,7 +5,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
-import { setMikkieHerramientaProperty } from "../../state/mikkieHerramientaProperty";
+import { setDebuggerProperty } from "../../state/debuggerProperty";
 
 function ModalProperty({ id }) {
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ function ModalProperty({ id }) {
         withCredentials: true,
       })
       .then(() => {
-        console.log("actualized"), dispatch(setMikkieHerramientaProperty(true));
+        console.log("actualized"), dispatch(setDebuggerProperty(true));
       });
   };
   // VALIDATE INPUTS
@@ -67,7 +67,7 @@ function ModalProperty({ id }) {
 
     setValidated(true);
   };
-  console.log(available);
+
   return (
     <div
       className="modal show"
@@ -167,29 +167,27 @@ function ModalProperty({ id }) {
             >
               <Form.Label>Options</Form.Label>
 
-              {["radio"].map((type) => (
-                <div key={`inline-${type}`} className="mb-3">
-                  <Form.Check
-                    inline
-                    label="Sale"
-                    value="sale"
-                    name="group1"
-                    type={type}
-                    id={`inline-${type}-1`}
-                    checked={property.options == "sale" ? "checked" : null}
-                  />
+              <div className="mb-3">
+                <Form.Check
+                  inline
+                  label="Sale"
+                  value="sale"
+                  name="options"
+                  type="radio"
 
-                  <Form.Check
-                    inline
-                    label="Rent"
-                    value="rent"
-                    name="group2"
-                    type={type}
-                    id={`inline-${type}-2`}
-                    checked={property.options == "rent" ? "checked" : null}
-                  />
-                </div>
-              ))}
+                  // checked={property.options == "venta" ? "checked" : null}
+                />
+
+                <Form.Check
+                  inline
+                  label="Rent"
+                  value="rent"
+                  name="options"
+                  type="radio"
+
+                  // checked={property.options == "alquiler" ? "checked" : null}
+                />
+              </div>
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicImage">
               <Form.Label>Image</Form.Label>
@@ -209,8 +207,9 @@ function ModalProperty({ id }) {
               <Form.Check
                 label={property.available ? "YES" : "NO"}
                 type="switch"
-                onChange={(e) => setAvailable(e.target.value)}
-                checked={property.available ? "checked" : ""}
+                name="available"
+                onChange={(e) => setAvailable(e.target.checked)}
+                checked={property.available}
               />
             </Form.Group>
 

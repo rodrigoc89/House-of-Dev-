@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { setMikkieHerramientaUser } from "../../state/mikkieHerramientaUser";
+import { setDebuggerUser } from "../../state/debuggerUser";
 
 function ModalUser({ id }) {
   const dispatch = useDispatch();
@@ -17,7 +17,6 @@ function ModalUser({ id }) {
   const handleCheckboxChange = (event) => {
     setIsAdmin(event.target.checked);
   };
-  console.log(isAdmin);
   const handleClick = () => {
     setShow(true);
     axios
@@ -35,7 +34,7 @@ function ModalUser({ id }) {
         { withCredentials: true }
       )
       .then(() => {
-        dispatch(setMikkieHerramientaUser(true));
+        dispatch(setDebuggerUser(true));
       })
       .catch((error) => {
         console.error(error);
@@ -81,7 +80,7 @@ function ModalUser({ id }) {
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPhone">
               <Form.Label>Phone</Form.Label>
-              <Form.Control type="numb" defaultValue="User Phone" disabled />
+              <Form.Control type="numb" defaultValue={user.phone} disabled />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>

@@ -3,10 +3,12 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { useSelector, useDispatch } from "react-redux";
+import Nav from "react-bootstrap/Nav";
+import svgs from "../../commons/svgs";
+
 
 function NavbarAdmin() {
   const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
 
   const handleLogout = () => {
     axios
@@ -24,6 +26,26 @@ function NavbarAdmin() {
         <h1 className="text-h1">
           H<samp style={{ color: "transparent" }}>OD.</samp>
         </h1>
+        <Nav
+            className="me-auto my-2 my-lg-0"
+            navbarScroll
+            style={{ marginLeft: "8%" }}
+          >
+            <Nav.Link
+              className="tabs"
+              style={{
+                color: "white",
+                fontSize: "15px",
+                display: "flex",
+                alignItems: "center",
+                marginLeft:"19%"
+              }}
+              href="/adminCitas"
+            >
+             {svgs.citas}
+              Citas
+            </Nav.Link>
+            </Nav>
           {user.name ? (
             <>
             <a style={{color:"white", marginRight:"15%"}} href="/" onClick={handleLogout}>
@@ -49,12 +71,12 @@ function NavbarAdmin() {
                     />
                   </svg>
             </a>
-            </>
-          ) : (
-            <Button style={{ marginLeft: "1%" }} href="/login" variant="light">
-              Iniciar sesión
-            </Button>
-          )}
+          </>
+        ) : (
+          <Button style={{ marginLeft: "1%" }} href="/login" variant="light">
+            Iniciar sesión
+          </Button>
+        )}
       </Container>
     </Navbar>
   );
