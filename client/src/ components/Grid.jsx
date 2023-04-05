@@ -2,12 +2,11 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Grid.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setFavorite } from "../state/favorites";
-import shortCutTtext from "./function/shortText";
 import shortUbication from "./function/shotUbacation";
 import GetAppointment from "./admin/GetAppointment";
 import { useEffect, useState } from "react";
@@ -16,6 +15,7 @@ import Swal from "sweetalert2";
 
 function Grid() {
   const [properties, setProperties] = useState([]);
+  const navigate = useNavigate()
   const cardSize = {
     width: "29rem",
     height: "16rem",
@@ -202,7 +202,7 @@ function Grid() {
           {properties.map((home) => {
             return (
               <Col xs={12} md={6} lg={5} style={{ padding: "1.6%" }}>
-                <Link to={`/card/${home.id}`}>
+               
                   <Card
                     id={home.id}
                     style={{
@@ -304,8 +304,8 @@ function Grid() {
                               {home.bathrooms + "baños"}
                             </div>
                           </div>
-                          <Card.Text style={{ padding: "5%" }}>
-                            {shortCutTtext(home.description)}
+                          <Card.Text style={{ padding: "5%" , whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>
+                            {(home.description)}
                           </Card.Text>
                           <div
                             style={{
@@ -336,17 +336,22 @@ function Grid() {
 
                             <div style={{ marginLeft: "8%" }}>
                               <GetAppointment
-                                idUser={user.id}
+                                userId={user.id}
                                 address={home.address}
+                                imgUser={home.image}
+                                phone={user.phone}
+                                email={user.email}
+                                name={user.name}
+                                lastName={user.lastName}
                               />
                             </div>
-                            <button className="buton-grid">Ver más</button>
+                            
+                            <button className="buton-grid" onClick={()=>{navigate(`/card/${home.id}`)}}>Ver más</button>
                           </div>
                         </Card.Body>
                       </Col>
                     </Row>
                   </Card>
-                </Link>
               </Col>
             );
           })}

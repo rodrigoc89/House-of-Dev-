@@ -81,7 +81,7 @@ function ModalUser({ id }) {
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPhone">
               <Form.Label>Phone</Form.Label>
-              <Form.Control type="numb" defaultValue="User Phone" disabled />
+              <Form.Control type="numb" defaultValue={user.phone} disabled />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
