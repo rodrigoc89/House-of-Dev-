@@ -53,14 +53,22 @@ const Appointments = () => {
                     <p
                       style={{ borderBottom: "1px solid black", width: "100%" }}
                     >
-                      ubication:{appointment.address}
+                      {`dirección : ${appointment.address}`}
                     </p>
                     <p
                       style={{ borderBottom: "1px solid black", width: "100%" }}
                     >
-                      hour: 20:07
+                      {`hora : ${appointment.date.slice(11, 16)}`}
                     </p>
-                    <p> date: {appointment.date.slice(0, 10)}</p>
+                    <p>
+                      {`fecha : ${appointment.date.slice(
+                        8,
+                        10
+                      )}-${appointment.date.slice(
+                        5,
+                        7
+                      )}-${appointment.date.slice(0, 4)}`}
+                    </p>
                   </div>
                 </div>
               );

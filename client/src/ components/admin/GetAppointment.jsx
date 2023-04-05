@@ -2,10 +2,11 @@ import axios from "axios";
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import DatePicker from "react-datepicker";
 import { useDispatch, useSelector } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
-import { addAppointment, setAppointment } from "../../state/appointment";
+import { addAppointment } from "../../state/appointment";
+import MomentInput from "react-moment-input";
+import moment from "moment";
 
 function GetAppointment({
   address,
@@ -28,7 +29,6 @@ function GetAppointment({
   const handleSubmit = () => {
     const verify = appointments.some((x) => x.address === address);
 
-    console.log(userId);
     if (!verify) {
       console.log(email, name, userId, phone);
       axios
@@ -46,7 +46,6 @@ function GetAppointment({
           { withCredentials: true }
         )
         .then((appointmentAdd) => {
-          console.log("tuve exito");
           dispatch(addAppointment(appointmentAdd.data));
         });
     } else {
@@ -76,10 +75,18 @@ function GetAppointment({
           <Modal.Title>Select Date</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            required
+          <MomentInput
+            max={moment().add(5, "days")}
+            min={moment()}
+            value={moment()}
+            isOpen={false}
+            format="YYYY-MM-DD HH:mm"
+            options={true}
+            readOnly={false}
+            icon={true}
+            onChange={(date) => {
+              setStartDate(date);
+            }}
           />
         </Modal.Body>
         <Modal.Footer>
