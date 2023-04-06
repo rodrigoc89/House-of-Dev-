@@ -182,7 +182,7 @@ function TableAdmin() {
       >
         <thead style={{ backgroundColor: "#123AC8", color: "white" }}>
           <tr>
-            <th>id</th>
+            <th>ID</th>
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Email</th>
@@ -195,7 +195,7 @@ function TableAdmin() {
           {users.map((user) => {
             return (
               <tr key={user.id}>
-                <td>{user.id}</td>
+                <td style={{ textAlign:"center"}}>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.lastName}</td>
                 <td>{user.email}</td>
@@ -284,7 +284,7 @@ function TableAdmin() {
       >
         <thead style={{ backgroundColor: "#123AC8", color: "white" }}>
           <tr>
-            <th>id</th>
+            <th>ID</th>
             <th>Direccion</th>
             <th>Baños</th>
             <th>Dormitorios</th>
@@ -297,8 +297,8 @@ function TableAdmin() {
           {properties.map((property) => {
             return (
               <tr key={property.id}>
-                <td>{property.id}</td>
-                <td>{property.address}</td>
+                <td style={{textAlign:"center"}}>{property.id}</td>
+                <td style={{wordSpacing:"4px"}}>{property.address}</td>
                 <td>{property.bathrooms}</td>
                 <td>{property.bedrooms}</td>
                 <td>{property.price + " $"}</td>

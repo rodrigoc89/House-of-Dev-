@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import Nav from "react-bootstrap/Nav";
 import svgs from "../../commons/svgs";
+import { Link } from "react-router-dom";
 
 function NavbarAdmin() {
   const user = useSelector((state) => state.user);
@@ -23,35 +24,24 @@ function NavbarAdmin() {
   return (
     <Navbar style={{ backgroundColor: "#123AC8" }} expand="lg">
       <Container fluid>
-        <h1 className="text-h1">
+        <Link to={"/"} style={{textDecoration:"none"}}>
+        <h1 className="text-h1-admin">
           H<samp style={{ color: "transparent" }}>OD.</samp>
-        </h1>
+        </h1></Link>
         <Nav
-          className="me-auto my-2 my-lg-0"
-          navbarScroll
-          style={{ marginLeft: "8%" }}
-        >
-          <Nav.Link
-            className="tabs"
-            style={{
-              color: "white",
-              fontSize: "15px",
-              display: "flex",
-              alignItems: "center",
-              marginLeft: "19%",
-            }}
-            href="/adminCitas"
+            className="me-auto my-2 my-lg-0"
+            navbarScroll
+            style={{ marginLeft: "35%" }}
           >
-            {svgs.citas}
-            Citas
-          </Nav.Link>
-        </Nav>
-        {user.name ? (
-          <>
-            <a
-              style={{ color: "white", marginRight: "15%" }}
-              href="/"
-              onClick={handleLogout}
+            <Nav.Link
+              className="tabs"
+              style={{
+                color: "white",
+                fontSize: "15px",
+                display: "flex",
+                alignItems: "center",
+                marginLeft:"15%"
+              }}
             >
               <svg
                 style={{
