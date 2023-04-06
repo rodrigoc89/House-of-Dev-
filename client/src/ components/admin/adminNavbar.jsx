@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import Nav from "react-bootstrap/Nav";
 import svgs from "../../commons/svgs";
+import { Link } from "react-router-dom";
 
 
 function NavbarAdmin() {
@@ -23,13 +24,14 @@ function NavbarAdmin() {
   return (
     <Navbar style={{ backgroundColor: "#123AC8" }} expand="lg">
       <Container fluid>
-        <h1 className="text-h1">
+        <Link to={"/"} style={{textDecoration:"none"}}>
+        <h1 className="text-h1-admin">
           H<samp style={{ color: "transparent" }}>OD.</samp>
-        </h1>
+        </h1></Link>
         <Nav
             className="me-auto my-2 my-lg-0"
             navbarScroll
-            style={{ marginLeft: "8%" }}
+            style={{ marginLeft: "35%" }}
           >
             <Nav.Link
               className="tabs"
@@ -38,7 +40,7 @@ function NavbarAdmin() {
                 fontSize: "15px",
                 display: "flex",
                 alignItems: "center",
-                marginLeft:"19%"
+                marginLeft:"15%"
               }}
               href="/adminCitas"
             >
