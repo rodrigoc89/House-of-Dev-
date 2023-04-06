@@ -26,13 +26,12 @@ function GetAppointment({
   const handleShow = () => {
     setShow(true);
   };
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const verify = appointments.some((x) => x.address === address);
-
-    if (!verify) {
-      console.log(email, name, userId, phone);
-      axios
-        .post(
+    setShow(false);
+    try {
+      if (!verify) {
+        const Appointment = await axios.post(
           `http://localhost:3001/api/appointment/${userId}`,
           {
             address: address,
@@ -44,15 +43,14 @@ function GetAppointment({
             userLastName: lastName,
           },
           { withCredentials: true }
-        )
-        .then((appointmentAdd) => {
-          dispatch(addAppointment(appointmentAdd.data));
-        });
-    } else {
-      alert("no puedes hacer otra cita para esta vivienda");
+        );
+        dispatch(addAppointment(Appointment.data));
+      } else {
+        alert("no puedes hacer otra cita para esta vivienda");
+      }
+    } catch (error) {
+      console.log(error);
     }
-
-    setShow(false);
   };
   return (
     <>

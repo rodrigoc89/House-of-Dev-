@@ -17,17 +17,17 @@ function NavbarUser() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    axios
-      .post(
+  const handleLogout = async () => {
+    try {
+      await axios.post(
         "http://localhost:3001/api/user/logout",
         {},
         { withCredentials: true }
-      )
-      .then(() => {
-        dispatch(setUser({}));
-      })
-      .catch((error) => console.log(error));
+      );
+      dispatch(setUser({}));
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Navbar style={{ backgroundColor: "#FE4236" }} expand="lg">
