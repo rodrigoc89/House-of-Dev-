@@ -3,9 +3,9 @@ import { createAction, createReducer } from "@reduxjs/toolkit";
 export const setAppointment = createAction("SET_APPOINTMENT");
 export const addAppointment = createAction("ADD_APPOINTMENT");
 
-const initialstate = [];
+const initialState = [];
 
-const reducer = createReducer(initialstate, {
+const reducer = createReducer(initialState, {
   [setAppointment]: (state, action) => {
     return action.payload;
   },
