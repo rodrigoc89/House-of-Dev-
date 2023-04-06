@@ -22,6 +22,7 @@ function App() {
   const dispatch = useDispatch();
   const userLogged = useSelector((state) => state.user);
 
+
   useEffect(() => {
     if (!userLogged.id) {
       console.log(userLogged, "no exito, asi que hare el axios");

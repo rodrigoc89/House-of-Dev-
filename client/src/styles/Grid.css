@@ -52,3 +52,13 @@
     border-radius: 19px;
     font-size: 13px;
 }
+#filtro-grid{
+    width: 69.6%;
+    margin-top: 2%;
+    margin-left: 13%;
+    background-color: transparent;
+    border: 1px solid #123AC8;
+    color: #123AC8;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
