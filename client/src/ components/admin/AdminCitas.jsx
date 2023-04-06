@@ -11,12 +11,6 @@ import { useSelector } from "react-redux";
 export default function AdminCitas() {
   const [quotes, setQuotes] = useState([]);
 
-  const randomHour = Math.floor(Math.random() * 8) + 9;
-  const randomMinute = Math.floor(Math.random() * 60);
-  const appointmentTime = `${randomHour
-    .toString()
-    .padStart(2, "0")}:${randomMinute.toString().padStart(2, "0")}`;
-
   const cardSize = {
     width: "29rem",
     height: "16rem",
@@ -29,7 +23,7 @@ export default function AdminCitas() {
         setQuotes(citas.data);
       });
   }, []);
-
+console.log(quotes);
   return (
     <>
       <div
@@ -64,8 +58,6 @@ export default function AdminCitas() {
           PROXIMAS CITAS
         </h6>
       </div>
-
-      <div></div>
       <Container style={{ width: "100%", color: "#123AC8" }}>
         <Row>
           {quotes.map((cita) => {
@@ -126,7 +118,7 @@ export default function AdminCitas() {
                               border: "1px solid #123AC8",
                             }}
                           >
-                            {cita.date}
+                            {cita.date.slice(8, 10)}-{cita.date.slice(5, 7)}-{cita.date.slice(0, 4)}
                           </div>
                           <div
                             style={{
@@ -139,7 +131,7 @@ export default function AdminCitas() {
                               border: "1px solid #123AC8",
                             }}
                           >
-                            {appointmentTime + " hs"}
+                            {cita.date.slice(11,16)+ " hs"}
                           </div>
                         </div>
                         <div style={{ display: "flex" }}>

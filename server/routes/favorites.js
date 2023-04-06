@@ -21,8 +21,8 @@ router.post("/:id", validateAuth, async (req, res) => {
     const property = await Property.findByPk(idProperty);
 
     if (type === "add") {
-      const addFavorite = await favorites.addProperty(property);
-      res.send(addFavorite).status(200);
+      await favorites.addProperty(property);
+      res.send(property).status(200);
     } else {
       const addFavorite = await Favorites.removeProperties(property);
       res.status(200).send(addFavorite);
