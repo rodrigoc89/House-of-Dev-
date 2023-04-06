@@ -21,7 +21,7 @@ function ModalABM() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     setShow(false);
     event.preventDefault();
     const property = {
@@ -35,14 +35,14 @@ function ModalABM() {
       available: true,
       description: description,
     };
-    try {
-      await axios.post("http://localhost:3001/api/property", property, {
+
+    axios
+      .post("http://localhost:3001/api/property", property, {
         withCredentials: true,
+      })
+      .then(() => {
+        console.log("create"), dispatch(setDebuggerProperty(true));
       });
-      console.log("create"), dispatch(setDebuggerProperty(true));
-    } catch (error) {
-      console.log(error);
-    }
   };
   const handleClick = (event) => {
     const form = event.currentTarget;

@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import svgs from "../../commons/svgs";
 import "../../styles/CitasAdmin.css";
+import { useSelector } from "react-redux";
 
 export default function AdminCitas() {
   const [quotes, setQuotes] = useState([]);
@@ -16,19 +17,13 @@ export default function AdminCitas() {
   };
 
   useEffect(() => {
-    const fetchAppointment = async () => {
-      try {
-        const appointments = await axios.get(
-          "http://localhost:3001/api/appointment",
-          { withCredentials: true }
-        );
-        setQuotes(appointments);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchAppointment();
+    axios
+      .get("http://localhost:3001/api/appointment", { withCredentials: true })
+      .then((citas) => {
+        setQuotes(citas.data);
+      });
   }, []);
+console.log(quotes);
   return (
     <>
       <div
@@ -65,11 +60,11 @@ export default function AdminCitas() {
       </div>
       <Container style={{ width: "100%", color: "#123AC8" }}>
         <Row>
-          {quotes.map((appointment) => {
+          {quotes.map((cita) => {
             return (
               <Col xs={12} md={6} lg={5} style={{ padding: "1.6%" }}>
                 <Card
-                  id={appointment.id}
+                  id={cita.id}
                   style={{
                     ...cardSize,
                     border: "none",
@@ -94,11 +89,11 @@ export default function AdminCitas() {
                             padding: "2%",
                             borderRadius: "0%",
                           }}
-                          src={appointment.image}
+                          src={cita.image}
                         />
                       </div>
 
-                      <button className="buton-appointments-admin">
+                      <button className="buton-citas-admin">
                         CHAT {svgs.message}
                       </button>
                     </Col>
@@ -123,9 +118,7 @@ export default function AdminCitas() {
                               border: "1px solid #123AC8",
                             }}
                           >
-                            {appointment.date.slice(8, 10)}-
-                            {appointment.date.slice(5, 7)}-
-                            {appointment.date.slice(0, 4)}
+                            {cita.date.slice(8, 10)}-{cita.date.slice(5, 7)}-{cita.date.slice(0, 4)}
                           </div>
                           <div
                             style={{
@@ -138,40 +131,36 @@ export default function AdminCitas() {
                               border: "1px solid #123AC8",
                             }}
                           >
-                            {appointment.date.slice(11, 16) + " hs"}
+                            {cita.date.slice(11,16)+ " hs"}
                           </div>
                         </div>
                         <div style={{ display: "flex" }}>
                           <div className="container-text-admin">
                             {svgs.ubicacion}
                             <p style={{ marginTop: "6%", marginLeft: "3%" }}>
-                              {appointment.address}
+                              {cita.address}
                             </p>
                           </div>
                         </div>
                         <div className="container-text-admin">
-                          <p className="p-appointments-admin">User</p>
-                          <h6 className="h6-appointments-admin">
-                            {appointment.userName.charAt(0).toUpperCase() +
-                              appointment.userName.slice(1)}{" "}
-                            {appointment.userLastName.charAt(0).toUpperCase() +
-                              appointment.userLastName.slice(1)}
+                          <p className="p-citas-admin">User</p>
+                          <h6 className="h6-citas-admin">
+                            {cita.userName.charAt(0).toUpperCase() +
+                              cita.userName.slice(1)}{" "}
+                            {cita.userLastName.charAt(0).toUpperCase() +
+                              cita.userLastName.slice(1)}
                           </h6>
                         </div>
                         <div className="container-text-admin">
-                          <p className="p-appointments-admin">Telefono</p>
-                          <h6 className="h6-appointments-admin">
-                            {appointment.userPhone}
-                          </h6>
+                          <p className="p-citas-admin">Telefono</p>
+                          <h6 className="h6-citas-admin">{cita.userPhone}</h6>
                         </div>
                         <div
                           style={{ borderLeft: "1px solid #123AC8" }}
                           className="container-text-admin"
                         >
-                          <p className="p-appointments-admin">Email</p>
-                          <h6 className="h6-appointments-admin">
-                            {appointment.userEmail}
-                          </h6>
+                          <p className="p-citas-admin">Email</p>
+                          <h6 className="h6-citas-admin">{cita.userEmail}</h6>
                         </div>
                       </Card.Body>
                     </Col>

@@ -24,25 +24,24 @@ function Grid() {
   const user = useSelector((state) => state.user);
   const type = useSelector((state) => state.type);
   const value = useSelector((state) => state.value);
-  const favorite = useSelector((state) => state.favorite);
+  const favorite = useSelector((state)=> state.favorite)
 
   const cardSize = {
     width: "29rem",
     height: "16rem",
   };
+    
+    const addToFavoriteHandler = (home) => {
+      // Comprobar si la propiedad ya está en la lista de favoritos
+      const isAlreadyFavorited = favorite.some((favorite) => favorite.id === home.id);
+      if (isAlreadyFavorited) {
+        Swal.fire({
+          title: "Esta propiedad ya está en favoritos",
+          icon: "warning",
+          timer: "2000",
+        });
 
-  const addToFavoriteHandler = (home) => {
-    // Comprobar si la propiedad ya está en la lista de favoritos
-    const isAlreadyFavorited = favorite.some(
-      (favorite) => favorite.id === home.id
-    );
-    if (isAlreadyFavorited) {
-      Swal.fire({
-        title: "Esta propiedad ya está en favoritos",
-        icon: "warning",
-        timer: "2000",
-      });
-    } else {
+      }else{
       const data = {
         id: home.id,
         type: "add",
@@ -62,27 +61,21 @@ function Grid() {
             timer: "2000",
           });
         });
-    }
-  };
-
-  useEffect(() => {
-    const fetchHouse = async () => {
-      if (type && value) {
-        const house = await axios.get(
-          `http://localhost:3001/api/property/${type}/${value}`,
-          {
-            withCredentials: true,
-          }
-        );
-        setProperties(house.data);
-      } else {
-        const house = await axios.get("http://localhost:3001/api/property", {
-          withCredentials: true,
-        });
-        setProperties(house.data);
       }
     };
-    fetchHouse();
+    
+  useEffect(() => {
+    if (type && value) {
+      axios
+        .get(`http://localhost:3001/api/property/${type}/${value}`, {
+          withCredentials: true,
+        })
+        .then((house) => setProperties(house.data));
+    } else {
+      axios
+        .get("http://localhost:3001/api/property", { withCredentials: true })
+        .then((house) => setProperties(house.data));
+    }
   }, [value]);
 
   return (
@@ -159,40 +152,40 @@ function Grid() {
             <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
           </svg>
         </button>
-        <Link to={"/favorites"}>
-          <button
+        <Link  to={"/favorites"}>
+        <button
+          style={{
+            color: "#123AC8",
+            backgroundColor: "transparent",
+            height:"100%",
+            width: "115px",
+            marginLeft: "5%",
+            borderRadius: "20px 0px 0px 20px",
+            border: "1px solid #123AC8",
+            fontSize: "13px",
+          }}
+          
+        >
+          FAVORITOS
+          <svg
             style={{
-              color: "#123AC8",
-              backgroundColor: "transparent",
-              height: "100%",
-              width: "115px",
               marginLeft: "5%",
-              borderRadius: "20px 0px 0px 20px",
-              border: "1px solid #123AC8",
-              fontSize: "13px",
+              width: "26px",
+              height: "26px",
+              padding: "6%",
+              borderRadius: "20px",
+              border: "1px solid #FE4236",
             }}
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-heart"
+            viewBox="0 0 16 16"
           >
-            FAVORITOS
-            <svg
-              style={{
-                marginLeft: "5%",
-                width: "26px",
-                height: "26px",
-                padding: "6%",
-                borderRadius: "20px",
-                border: "1px solid #FE4236",
-              }}
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-heart"
-              viewBox="0 0 16 16"
-            >
-              <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-            </svg>
-          </button>
-        </Link>
+            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+          </svg>
+        </button></Link>
       </div>
       <div className="baner">
         <div
@@ -236,7 +229,7 @@ function Grid() {
 
       <div className="division"></div>
       <Form.Select
-        id="filtro-grid"
+      id="filtro-grid"
         aria-label="Default select example"
         onClick={(e) => {
           dispatch(setValue(e.target.value)), dispatch(setType("filterPrice"));

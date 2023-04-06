@@ -16,10 +16,11 @@ function FormRegister() {
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const data = await axios.post(
+    console.log(phone);
+    axios
+      .post(
         "http://localhost:3001/api/user/register",
         {
           name: name,
@@ -27,13 +28,14 @@ function FormRegister() {
           email: email,
           password: password,
           phone: phone,
+
         },
         { withCredentials: true }
-      );
-      navigate("/login");
-    } catch (error) {
-      console.log(error);
-    }
+      )
+      .then((data) => {
+        navigate("/login");
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
