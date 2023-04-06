@@ -44,3 +44,10 @@
     padding: 0%;
     margin-bottom: 9%;
 }
+.text-h1-admin{
+    -webkit-text-stroke: 1.2px white;
+    margin-left: 200%;
+    font-weight: bolder;
+    font-size: 33px;
+    color: white;
+}
