@@ -12,13 +12,20 @@ function CardIndividual() {
   const { id } = useParams();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/property/${id}`, {
-        withCredentials: true,
-      })
-      .then((home) => {
+    const fetchData = async () => {
+      try {
+        const home = await axios.get(
+          `http://localhost:3001/api/property/${id}`,
+          {
+            withCredentials: true,
+          }
+        );
         setProperty(home.data);
-      });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
 
   return (

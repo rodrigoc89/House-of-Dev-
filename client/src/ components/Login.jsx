@@ -11,22 +11,22 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post(
+    try {
+      const user = await axios.post(
         "http://localhost:3001/api/user/login",
         {
           email: email,
           password: password,
         },
         { withCredentials: true }
-      )
-      .then((user) => {
-        dispatch(setUser(user.data));
-        navigate("/");
-      })
-      .catch((error) => console.log(error, "no funciona"));
+      );
+      dispatch(setUser(user.data));
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

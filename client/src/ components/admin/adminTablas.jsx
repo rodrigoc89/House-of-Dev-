@@ -100,28 +100,40 @@ function TableAdmin() {
   };
 
   useEffect(() => {
-    if (debuggerUser) {
-      axios
-        .get("http://localhost:3001/api/user", { withCredentials: true })
-        .then((response) => {
+    const fetchData = async () => {
+      try {
+        if (debuggerUser) {
+          const response = await axios.get("http://localhost:3001/api/user", {
+            withCredentials: true,
+          });
           setUsers(response.data);
           dispatch(setDebuggerUser(false));
-        });
-    }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, [debuggerUser]);
 
   useEffect(() => {
-    if (debuggerProperty) {
-      axios
-        .get("http://localhost:3001/api/property", { withCredentials: true })
-        .then((response) => {
+    const fetchData = async () => {
+      try {
+        if (debuggerProperty) {
+          const response = await axios.get(
+            "http://localhost:3001/api/property",
+            {
+              withCredentials: true,
+            }
+          );
           setProperties(response.data);
           dispatch(setDebuggerProperty(false));
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, [debuggerProperty]);
 
   return (

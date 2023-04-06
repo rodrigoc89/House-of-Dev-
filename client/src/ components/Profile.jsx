@@ -13,10 +13,10 @@ const Profile = () => {
   const [lastName, setLastName] = useState(user.lastName);
   const [phone, setPhone] = useState(user.phone);
 
-  function handleEditClick() {
-    if (isEditing) {
-      axios
-        .put(
+  const handleEditClick = async () => {
+    try {
+      if (isEditing) {
+        const user = await axios.put(
           `http://localhost:3001/api/user/profile/${user.id}`,
           {
             name: name,
@@ -24,19 +24,16 @@ const Profile = () => {
             phone: phone,
           },
           { withCredentials: true }
-        )
-        .then((user) => {
-          dispatch(setUser(user.data));
-          console.log(user.data);
-          setIsEditing(false);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      setIsEditing(true);
+        );
+        dispatch(setUser(user.data));
+        setIsEditing(false);
+      } else {
+        setIsEditing(true);
+      }
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
   return (
     <>
