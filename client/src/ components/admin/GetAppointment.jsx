@@ -19,7 +19,7 @@ function GetAppointment({
 }) {
   const appointments = useSelector((state) => state.appointment);
   const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
   const [show, setShow] = useState(false);
   const user = useSelector((state) => state.user);
   const handleClose = () => setShow(false);
@@ -31,6 +31,7 @@ function GetAppointment({
 
     if (!verify) {
       console.log(email, name, userId, phone);
+      console.log(startDate, "en el if");
       axios
         .post(
           `http://localhost:3001/api/appointment/${userId}`,
@@ -45,8 +46,9 @@ function GetAppointment({
           },
           { withCredentials: true }
         )
-        .then((appointmentAdd) => {
-          dispatch(addAppointment(appointmentAdd.data));
+        .then((date) => {
+          console.log(date.data);
+          dispatch(addAppointment(date.data));
         });
     } else {
       alert("no puedes hacer otra cita para esta vivienda");
@@ -54,6 +56,7 @@ function GetAppointment({
 
     setShow(false);
   };
+  console.log(startDate);
   return (
     <>
       <svg
@@ -76,16 +79,17 @@ function GetAppointment({
         </Modal.Header>
         <Modal.Body>
           <MomentInput
-            max={moment().add(5, "days")}
+            max={moment().calendar()}
             min={moment()}
-            value={moment()}
+            // value={moment()}
             isOpen={false}
-            format="YYYY-MM-DD HH:mm"
+            format={moment().format("MM/DD/YYYY  HH:mm")}
             options={true}
-            readOnly={false}
+            readOnly={true}
             icon={true}
-            onChange={(date) => {
-              setStartDate(date);
+            onSave={(date) => {
+              console.log(date._d);
+              setStartDate(date._d);
             }}
           />
         </Modal.Body>

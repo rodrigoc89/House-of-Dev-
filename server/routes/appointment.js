@@ -33,7 +33,7 @@ router.post("/:id", validateAuth, async (req, res) => {
     const appointment = await Appointment.create(data);
     res.status(201).send(appointment);
   } catch (error) {
-    console.log(error);
+    res.sendStatus(400);
   }
 });
 
