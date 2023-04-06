@@ -26,23 +26,16 @@ function ModalProperty({ id }) {
   // CLOSE MODAL
   const handleClose = () => setShow(false);
   // OPEN AND SHOW DATA OF PROPERTY
-  const handleShow = async () => {
-    try {
-      const property = await axios.get(
-        `http://localhost:3001/api/property/${id}`,
-        {
-          withCredentials: true,
-        }
-      );
-      setProperty(property.data);
-    } catch (error) {
-      console.log(error);
-    }
-
+  const handleShow = () => {
+    axios
+      .get(`http://localhost:3001/api/property/${id}`, {
+        withCredentials: true,
+      })
+      .then((property) => setProperty(property.data));
     setShow(true);
   };
   // SEND UPDATE DATA OF PROPERTY
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     setShow(false);
     const property = {
       address: address,
@@ -56,14 +49,13 @@ function ModalProperty({ id }) {
       description: description,
     };
     event.preventDefault();
-    try {
-      await axios.put(`http://localhost:3001/api/property/${id}`, property, {
+    axios
+      .put(`http://localhost:3001/api/property/${id}`, property, {
         withCredentials: true,
+      })
+      .then(() => {
+        console.log("actualized"), dispatch(setDebuggerProperty(true));
       });
-      console.log("Update"), dispatch(setDebuggerProperty(true));
-    } catch (error) {
-      console.log(error);
-    }
   };
   // VALIDATE INPUTS
   const handleClick = (event) => {

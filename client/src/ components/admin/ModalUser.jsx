@@ -17,32 +17,28 @@ function ModalUser({ id }) {
   const handleCheckboxChange = (event) => {
     setIsAdmin(event.target.checked);
   };
-  const handleClick = async () => {
+  const handleClick = () => {
     setShow(true);
-    try {
-      const user = await axios.get(
-        `http://localhost:3001/api/user/admin/${id}`,
-        {
-          withCredentials: true,
-        }
-      );
-      setUser(user.data);
-    } catch (error) {
-      console.log(error);
-    }
+    axios
+      .get(`http://localhost:3001/api/user/admin/${id}`, {
+        withCredentials: true,
+      })
+      .then((user) => setUser(user.data));
   };
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     setShow(false);
-    try {
-      await axios.put(
+    axios
+      .put(
         `http://localhost:3001/api/user/${id}`,
         { admin: isAdmin },
         { withCredentials: true }
-      );
-      dispatch(setDebuggerUser(true));
-    } catch (error) {
-      console.error(error);
-    }
+      )
+      .then(() => {
+        dispatch(setDebuggerUser(true));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
   return (
     <div
