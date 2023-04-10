@@ -2,10 +2,11 @@ import axios from "axios";
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import DatePicker from "react-datepicker";
 import { useDispatch, useSelector } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
-import { addAppointment, setAppointment } from "../../state/appointment";
+import { addAppointment } from "../../state/appointment";
+import MomentInput from "react-moment-input";
+import moment from "moment";
 
 function GetAppointment({
   address,
@@ -18,7 +19,7 @@ function GetAppointment({
 }) {
   const appointments = useSelector((state) => state.appointment);
   const dispatch = useDispatch();
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState();
   const [show, setShow] = useState(false);
   const user = useSelector((state) => state.user);
   const handleClose = () => setShow(false);
@@ -28,9 +29,9 @@ function GetAppointment({
   const handleSubmit = () => {
     const verify = appointments.some((x) => x.address === address);
 
-    console.log(userId);
     if (!verify) {
       console.log(email, name, userId, phone);
+      console.log(startDate, "en el if");
       axios
         .post(
           `http://localhost:3001/api/appointment/${userId}`,
@@ -45,9 +46,9 @@ function GetAppointment({
           },
           { withCredentials: true }
         )
-        .then((appointmentAdd) => {
-          console.log("tuve exito");
-          dispatch(addAppointment(appointmentAdd.data));
+        .then((date) => {
+          console.log(date.data);
+          dispatch(addAppointment(date.data));
         });
     } else {
       alert("no puedes hacer otra cita para esta vivienda");
@@ -55,6 +56,7 @@ function GetAppointment({
 
     setShow(false);
   };
+  console.log(startDate);
   return (
     <>
       <svg
@@ -76,10 +78,19 @@ function GetAppointment({
           <Modal.Title>Select Date</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            required
+          <MomentInput
+            max={moment().calendar()}
+            min={moment()}
+            // value={moment()}
+            isOpen={false}
+            format={moment().format("MM/DD/YYYY  HH:mm")}
+            options={true}
+            readOnly={true}
+            icon={true}
+            onSave={(date) => {
+              console.log(date._d);
+              setStartDate(date._d);
+            }}
           />
         </Modal.Body>
         <Modal.Footer>

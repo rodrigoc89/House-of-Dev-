@@ -15,5 +15,8 @@ router.get("/", validateAuth, validateAdmin, gettAllAppointments);
 
 router.post("/:id", validateAuth, createAAppointment);
 
+
 router.get("/:id", validateAuth, getAllYourAppointment);
+
+
 module.exports = router;

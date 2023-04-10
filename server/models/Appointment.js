@@ -6,29 +6,37 @@ class Appointment extends S.Model {}
 Appointment.init(
   {
     date: {
-      type: S.STRING,
+      type: S.DATE,
+      validate: {
+        isDate: true,
+      },
     },
     address: {
       type: S.STRING,
+      allowNull: false,
     },
 
-    image:{
-      type: S.TEXT
+    image: {
+      type: S.TEXT,
+      allowNull: false,
     },
-    hour:{
-      type:S.STRING
+    userPhone: {
+      type: S.BIGINT,
+      allowNull: false,
     },
-    userPhone:{
-      type:S.BIGINT
+    userName: {
+      type: S.STRING,
+      allowNull: false,
     },
-    userName:{
-      type:S.STRING
+    userLastName: {
+      type: S.STRING,
+      allowNull: false,
     },
-    userLastName:{
-      type:S.STRING
-    },
-    userEmail:{
-      type:S.STRING
+    userEmail: {
+      type: S.STRING,
+      validate: {
+        isEmail: true,
+      },
     },
   },
   { sequelize: db, modelName: "Appointment" }

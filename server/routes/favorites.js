@@ -11,7 +11,10 @@ const router = Router();
 
 router.post("/:id", validateAuth, addOrDeleteFavorite);
 
+
 router.get("/:id", validateAuth, getAllYourFavorites);
+
+
 
 // ADMIN
 
