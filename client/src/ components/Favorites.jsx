@@ -4,14 +4,40 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NavbarUser from "./Navbar";
 import shortUbication from "./function/shotUbacation";
+import axios from "axios";
+import { addOrRemoveToFavorite } from "../state/favorites";
+import Swal from "sweetalert2";
 
 const Favorites = () => {
   const cardSize = {
     width: "29rem",
     height: "16rem",
+  };
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const deleteFavoriteHandler = (home) => {
+    const data = {
+      id: home.id,
+      type: "remove",
+    };
+    axios
+      .post(`http://localhost:3001/api/favorite/${user.id}`, data, {
+        withCredentials: true,
+      })
+      .then((fa) => {
+        console.log(fa.data, "soy el que intentas eliminar. owo");
+        dispatch(addOrRemoveToFavorite(fa.data));
+      })
+      .then(() => {
+        Swal.fire({
+          title: "eliminado de favoritos",
+          icon: "success",
+          timer: "2000",
+        });
+      });
   };
   const favorites = useSelector((state) => state.favorite);
   return favorites[0] ? (
@@ -214,7 +240,14 @@ const Favorites = () => {
                             {home.bathrooms + "baños"}
                           </div>
                         </div>
-                        <Card.Text style={{ padding: "5%", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>
+                        <Card.Text
+                          style={{
+                            padding: "5%",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                          }}
+                        >
                           {home.description}
                         </Card.Text>
                         <div
@@ -226,19 +259,24 @@ const Favorites = () => {
                           }}
                         >
                           <div style={{ marginLeft: "30%" }}>
-                            <Link>
-                              <svg
-                                id="icon-grid"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                fill="currentColor"
-                                class="bi bi-heart"
-                                viewBox="0 0 16 16"
-                              >
-                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                              </svg>
-                            </Link>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              id="icon-grid"
+                              height="16"
+                              fill="currentColor"
+                              class="bi bi-heart-fill"
+                              style={{ color: "red" }}
+                              viewBox="0 0 16 16"
+                              onClick={() => {
+                                deleteFavoriteHandler(home);
+                              }}
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                              />
+                            </svg>
                           </div>
 
                           <div style={{ marginLeft: "8%" }}>

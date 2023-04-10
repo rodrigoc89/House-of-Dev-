@@ -23,7 +23,7 @@ export default function AdminCitas() {
         setQuotes(citas.data);
       });
   }, []);
-console.log(quotes);
+  console.log(quotes);
   return (
     <>
       <div
@@ -118,7 +118,7 @@ console.log(quotes);
                               border: "1px solid #123AC8",
                             }}
                           >
-                            {cita.date.slice(8, 10)}-{cita.date.slice(5, 7)}-{cita.date.slice(0, 4)}
+                            {cita.date.slice(4, 15)}
                           </div>
                           <div
                             style={{
@@ -131,7 +131,7 @@ console.log(quotes);
                               border: "1px solid #123AC8",
                             }}
                           >
-                            {cita.date.slice(11,16)+ " hs"}
+                            {cita.date.slice(16, 21) + " hs"}
                           </div>
                         </div>
                         <div style={{ display: "flex" }}>
