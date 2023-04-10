@@ -13,6 +13,7 @@ const createAAppointment = async (req, res) => {
   const { id } = req.params;
 
   try {
+    console.log(req.body, "soy del back");
     const data = {
       date: req.body.date,
       address: req.body.address,

@@ -7,7 +7,7 @@ import "../styles/Grid.css";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavorite, setFavorite } from "../state/favorites";
+import { addOrRemoveToFavorite } from "../state/favorites";
 import shortUbication from "./function/shotUbacation";
 import GetAppointment from "./admin/GetAppointment";
 import { useEffect, useState } from "react";
@@ -26,12 +26,15 @@ function Grid() {
   const type = useSelector((state) => state.type);
   const value = useSelector((state) => state.value);
   const favorite = useSelector((state) => state.favorite);
+
   const [cont, setCont] = useState(null);
+
 
   const cardSize = {
     width: "29rem",
     height: "16rem",
   };
+
 
   useEffect(() => {
     const num = favorite.length;
@@ -44,11 +47,28 @@ function Grid() {
       (favorite) => favorite.id === home.id
     );
     if (isAlreadyFavorited) {
-      Swal.fire({
-        title: "Esta propiedad ya está en favoritos",
-        icon: "warning",
-        timer: "2000",
-      });
+
+      const data = {
+        id: home.id,
+        type: "remove",
+      };
+      axios
+        .post(`http://localhost:3001/api/favorite/${user.id}`, data, {
+          withCredentials: true,
+        })
+        .then((fa) => {
+          console.log(fa.data, "soy el que intentas eliminar. owo");
+          dispatch(addOrRemoveToFavorite(fa.data));
+        })
+        .then(() => {
+          Swal.fire({
+            title: "eliminado de favoritos",
+            icon: "success",
+            timer: "2000",
+          });
+        });
+
+
     } else {
       const data = {
         id: home.id,
@@ -59,9 +79,12 @@ function Grid() {
           withCredentials: true,
         })
         .then((fa) => {
-          console.log(fa.data);
-          dispatch(addToFavorite(fa.data));
-          
+
+          dispatch(addOrRemoveToFavorite(fa.data));
+        })
+        .then(() => {
+
+     
           Swal.fire({
             title: "agregado a favoritos",
             icon: "success",
@@ -84,7 +107,7 @@ function Grid() {
         .then((house) => setProperties(house.data));
     }
   }, [value]);
-
+  console.log(favorite);
   return (
     <>
       <div
@@ -159,9 +182,11 @@ function Grid() {
             <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
           </svg>
         </button>
+
         <Badge id="badge-grid" bg="danger">
           3
         </Badge>
+
         <Link to={"/favorites"}>
           <button
             style={{
@@ -175,6 +200,7 @@ function Grid() {
               fontSize: "13px",
             }}
           >
+
             {cont >= 1 ? (
               <Badge id="badge-grid-2" bg="danger">
                 {cont}
@@ -182,6 +208,7 @@ function Grid() {
             ) : (
               ""
             )}
+
             FAVORITOS
             <svg
               style={{
@@ -387,23 +414,49 @@ function Grid() {
                             alignItems: "center",
                           }}
                         >
-                          <div style={{ marginLeft: "30%" }}>
-                            <Link>
+                          <div
+                            style={{
+                              marginLeft: "30%",
+                            }}
+                          >
+                            {favorite.some(
+                              (favorite) => favorite.id === home.id
+                            ) ? (
                               <svg
-                                id="icon-grid"
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
                                 height="16"
+                                id="icon-grid"
+                                fill="currentColor"
+                                class="bi bi-heart-fill"
+                                viewBox="0 0 16 16"
+                                style={{ color: "red" }}
+                                onClick={() => {
+                                  addToFavoriteHandler(home);
+                                }}
+                              >
+                                <path
+                                  fill-rule="evenodd"
+                                  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                                />
+                              </svg>
+                            ) : (
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                id="icon-grid"
                                 fill="currentColor"
                                 class="bi bi-heart"
                                 viewBox="0 0 16 16"
+                                style={{ color: "blue" }}
                                 onClick={() => {
                                   addToFavoriteHandler(home);
                                 }}
                               >
                                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                               </svg>
-                            </Link>
+                            )}
                           </div>
                           <div style={{ marginLeft: "8%" }}>
                             <GetAppointment
@@ -416,7 +469,6 @@ function Grid() {
                               lastName={user.lastName}
                             />
                           </div>
-
                           <button
                             className="buton-grid"
                             onClick={() => {

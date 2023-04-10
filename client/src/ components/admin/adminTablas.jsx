@@ -6,16 +6,18 @@ import ModalProperty from "./ModalProperty";
 import ModalUser from "./ModalUser";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { setDebuggerUser } from "../../state/debuggerUser";
-import { setDebuggerProperty } from "../../state/debuggerProperty";
+import { removeUser, setDebuggerUser } from "../../state/debuggerUser";
+import {
+  removeProperty,
+  setDebuggerProperty,
+} from "../../state/debuggerProperty";
 
 function TableAdmin() {
   const userOnly = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const debuggerUser = useSelector((state) => state.debuggerUser);
   const debuggerProperty = useSelector((state) => state.debuggerProperty);
-  const [users, setUsers] = useState([]);
-  const [properties, setProperties] = useState([]);
+
 
   const handleDeleteUser = (userId) => {
     if (userId) {
@@ -35,8 +37,7 @@ function TableAdmin() {
             })
             .then(() => {
               console.log("USUARIO ELIMINADO");
-              setUsers(users.filter((user) => user.id !== userId));
-
+              dispatch(removeUser(userId));
               Swal.fire({
                 title: "Alerta",
                 text: "usuario eliminado",
@@ -75,9 +76,8 @@ function TableAdmin() {
             })
             .then(() => {
               console.log("YA BORREEEE LA PROPIEDAAAAAD");
-              setProperties(
-                properties.filter((property) => property.id !== propertyId)
-              );
+
+              dispatch(removeProperty(propertyId));
 
               Swal.fire({
                 title: "Alerta",
@@ -104,25 +104,23 @@ function TableAdmin() {
       axios
         .get("http://localhost:3001/api/user", { withCredentials: true })
         .then((response) => {
-          setUsers(response.data);
-          dispatch(setDebuggerUser(false));
+          dispatch(setDebuggerUser(response.data));
         });
     }
-  }, [debuggerUser]);
+  }, []);
 
   useEffect(() => {
     if (debuggerProperty) {
       axios
         .get("http://localhost:3001/api/property", { withCredentials: true })
         .then((response) => {
-          setProperties(response.data);
-          dispatch(setDebuggerProperty(false));
+          dispatch(setDebuggerProperty(response.data));
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  }, [debuggerProperty]);
+  }, []);
 
   return (
     <>
@@ -180,10 +178,10 @@ function TableAdmin() {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => {
+          {debuggerUser.map((user) => {
             return (
               <tr key={user.id}>
-                <td style={{ textAlign:"center"}}>{user.id}</td>
+                <td style={{ textAlign: "center" }}>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.lastName}</td>
                 <td>{user.email}</td>
@@ -282,11 +280,11 @@ function TableAdmin() {
           </tr>
         </thead>
         <tbody>
-          {properties.map((property) => {
+          {debuggerProperty.map((property) => {
             return (
               <tr key={property.id}>
-                <td style={{textAlign:"center"}}>{property.id}</td>
-                <td style={{wordSpacing:"4px"}}>{property.address}</td>
+                <td style={{ textAlign: "center" }}>{property.id}</td>
+                <td style={{ wordSpacing: "4px" }}>{property.address}</td>
                 <td>{property.bathrooms}</td>
                 <td>{property.bedrooms}</td>
                 <td>{property.price + " $"}</td>
