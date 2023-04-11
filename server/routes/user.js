@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const { validateAuth, validateAdmin } = require("../middleware/auth");
+const { passwordValidator } = require("../middleware/passwordValidator");
 const {
   permanence,
   login,
@@ -15,7 +16,7 @@ const {
 
 router.get("/me", validateAuth, permanence);
 
-router.post("/register", register);
+router.post("/register", passwordValidator, register);
 
 router.post("/login", login);
 
