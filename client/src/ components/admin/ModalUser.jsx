@@ -15,21 +15,25 @@ function ModalUser({ id }) {
   const [isAdmin, setIsAdmin] = useState(false);
 
   const handleCheckboxChange = (event) => {
+    console.log(event);
     setIsAdmin(event.target.checked);
   };
   const handleClick = () => {
     setShow(true);
+    console.log("estoy aquiii");
     axios
       .get(`http://localhost:3001/api/user/admin/${id}`, {
         withCredentials: true,
       })
       .then((user) => {
+        console.log("entree");
         setUser(user.data);
         setIsAdmin(user.data.admin);
       });
   };
   const handleSubmit = () => {
     setShow(false);
+    console.log(isAdmin, "soy el valor de admin en el sumiteo")
     axios
       .put(
         `http://localhost:3001/api/user/${id}`,
@@ -37,7 +41,7 @@ function ModalUser({ id }) {
         { withCredentials: true }
       )
       .then((userUpdated) => {
-        console.log(userUpdated);
+        console.log(userUpdated, "soy el usuario actualizado");
         dispatch(updateInfoUser(userUpdated.data));
       })
       .catch((error) => {
@@ -96,7 +100,7 @@ function ModalUser({ id }) {
               <Form.Check
                 type="checkbox"
                 label="admin"
-                onChange={handleCheckboxChange}
+                onChange={(e) => handleCheckboxChange(e)}
                 checked={isAdmin}
               />
             </Form.Group>

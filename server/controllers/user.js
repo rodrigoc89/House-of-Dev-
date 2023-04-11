@@ -101,10 +101,10 @@ const infoUser = async (req, res) => {
 
 const editUser = async (req, res) => {
   const { id } = req.params;
-  const { available } = req.body;
+  const { admin } = req.body;
   try {
     const user = await User.findByPk(id);
-    user.update({ available });
+    user.update({ admin });
     res.status(202).send(user);
   } catch (error) {
     res.status(400).send(error);
@@ -114,8 +114,8 @@ const editUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   const { id } = req.params;
   try {
-    await User.destroy({ where: { id: id } });
-    res.status(202);
+   const user= await User.destroy({ where: { id: id } });
+    res.status(202).send("polo");
   } catch (error) {
     res.status(400).send(error);
   }
