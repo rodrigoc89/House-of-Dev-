@@ -28,6 +28,7 @@ function TableAdmin() {
         denyButtonText: "no",
         confirmButtonText: "si",
         confirmButtonColor: "#123AC8",
+        heightAuto: true,
       }).then((response) => {
         if (response.isConfirmed) {
           axios
@@ -123,7 +124,7 @@ function TableAdmin() {
 
   return (
     <>
-      <div className="sizeTables" id="titlesTables">
+      <div className="sizeTables" id="titleTableUser">
         <div className="containerTables"></div>
         <h6
           style={{
@@ -198,7 +199,7 @@ function TableAdmin() {
         </tbody>
       </Table>
 
-      <div className="sizeTables" id="titlesTables">
+      <div className="sizeTables" id="titleTableProperty">
         <div className="containerTables"></div>
         <h6
           style={{
