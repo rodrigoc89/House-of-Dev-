@@ -4,6 +4,7 @@ import Table from "react-bootstrap/Table";
 import ModalABM from "./ModalABM";
 import ModalProperty from "./ModalProperty";
 import ModalUser from "./ModalUser";
+import ShowFavorites from "./ShowFavorites";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { removeUser, setDebuggerUser } from "../../state/debuggerUser";
@@ -17,7 +18,6 @@ function TableAdmin() {
   const dispatch = useDispatch();
   const debuggerUser = useSelector((state) => state.debuggerUser);
   const debuggerProperty = useSelector((state) => state.debuggerProperty);
-
 
   const handleDeleteUser = (userId) => {
     if (userId) {
@@ -172,6 +172,7 @@ function TableAdmin() {
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Email</th>
+            <th>Favoritos</th>
             <th>Admin</th>
             <th>Editar</th>
             <th>Eliminar</th>
@@ -185,6 +186,13 @@ function TableAdmin() {
                 <td>{user.name}</td>
                 <td>{user.lastName}</td>
                 <td>{user.email}</td>
+                <td>
+                  {user.name == "admin" || user.name === userOnly.name ? (
+                    ""
+                  ) : (
+                    <ShowFavorites id={user.id} />
+                  )}
+                </td>
                 <td>{user.admin ? "True" : "False"}</td>
                 <td>
                   {user.name == "admin" || user.name === userOnly.name ? (
