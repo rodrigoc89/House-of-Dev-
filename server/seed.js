@@ -2,29 +2,21 @@ const User = require("./models/User");
 const Property = require("./models/Property");
 const fakeHouse = require("./fakeData/fakeHouse.json");
 
-const seed = () => {
-  Property.bulkCreate(fakeHouse)
-    .then(() => {
-      console.log("Properties inserted in the database");
-    })
-    .catch((error) => {
-      console.error("Error inserting records: ", error);
+const seed = async () => {
+  try {
+    await Property.bulkCreate(fakeHouse);
+    await User.create({
+      name: "admin",
+      lastName: "superAdmin",
+      email: "admin@admin.com",
+      password: "352Admin*",
+      phone: 13478989851,
+      admin: true,
     });
-
-  User.create({
-    name: "admin",
-    lastName: "superAdmin",
-    email: "admin@admin.com",
-    password: "test",
-    phone:7898985,
-    admin: true,
-  })
-    .then(() => {
-      console.log("ADMIN CREATED");
-    })
-    .catch((error) => {
-      console.error("Error inserting records: ", error);
-    });
+    console.log("Seeded complete");
+  } catch (error) {
+    console.log(error, "Seeded Failed");
+  }
 };
 
 seed();

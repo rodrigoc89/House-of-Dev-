@@ -35,6 +35,9 @@ Property.init(
     image: {
       type: S.TEXT,
       allowNull: false,
+      validate: {
+        isUrl: { args: true, msg: "you must enter a valid format" },
+      },
     },
     available: {
       type: S.BOOLEAN,
