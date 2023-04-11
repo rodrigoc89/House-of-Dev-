@@ -18,7 +18,6 @@ function TableAdmin() {
   const debuggerUser = useSelector((state) => state.debuggerUser);
   const debuggerProperty = useSelector((state) => state.debuggerProperty);
 
-
   const handleDeleteUser = (userId) => {
     if (userId) {
       Swal.fire({
@@ -124,27 +123,8 @@ function TableAdmin() {
 
   return (
     <>
-      <div
-        style={{
-          border: "1px solid #123AC8",
-          width: "69.5%",
-          marginTop: "2%",
-          marginLeft: "13%",
-          height: "42px",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            width: "75%",
-            height: "1px",
-            backgroundColor: "#123AC8",
-            position: "absolute",
-            bottom: "20%",
-            left: "0%",
-            marginLeft: "25%",
-          }}
-        ></div>
+      <div className="sizeTables" id="titlesTables">
+        <div className="containerTables"></div>
         <h6
           style={{
             paddingTop: "1.9%",
@@ -157,27 +137,19 @@ function TableAdmin() {
         </h6>
       </div>
 
-      <Table
-        style={{
-          width: "69.5%",
-          marginLeft: "13%",
-          marginTop: "2%",
-          border: "3px solid #123AC8",
-        }}
-        striped
-      >
+      <Table className="sizeTables">
         <thead style={{ backgroundColor: "#123AC8", color: "white" }}>
           <tr>
             <th>ID</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
+            <th>name</th>
+            <th>LastName</th>
             <th>Email</th>
             <th>Admin</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="SHORTCUT">
           {debuggerUser.map((user) => {
             return (
               <tr key={user.id}>
@@ -226,27 +198,8 @@ function TableAdmin() {
         </tbody>
       </Table>
 
-      <div
-        style={{
-          border: "1px solid #123AC8",
-          width: "69.5%",
-          marginTop: "2%",
-          marginLeft: "13%",
-          height: "42px",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            width: "75%",
-            height: "1px",
-            backgroundColor: "#123AC8",
-            position: "absolute",
-            bottom: "20%",
-            left: "0%",
-            marginLeft: "25%",
-          }}
-        ></div>
+      <div className="sizeTables" id="titlesTables">
+        <div className="containerTables"></div>
         <h6
           style={{
             paddingTop: "1.9%",
@@ -259,24 +212,16 @@ function TableAdmin() {
         </h6>
       </div>
       <ModalABM />
-      <Table
-        style={{
-          width: "69.5%",
-          marginLeft: "13%",
-          marginTop: "2%",
-          border: "3px solid #123AC8",
-        }}
-        striped
-      >
+      <Table className="sizeTables">
         <thead style={{ backgroundColor: "#123AC8", color: "white" }}>
           <tr>
             <th>ID</th>
-            <th>Direccion</th>
-            <th>Baños</th>
-            <th>Dormitorios</th>
-            <th>Precio</th>
-            <th>EDITAR</th>
-            <th>Eliminar</th>
+            <th>Address</th>
+            <th>Bathing</th>
+            <th>Beedrooms</th>
+            <th>Price</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
           </tr>
         </thead>
         <tbody>
@@ -284,7 +229,7 @@ function TableAdmin() {
             return (
               <tr key={property.id}>
                 <td style={{ textAlign: "center" }}>{property.id}</td>
-                <td style={{ wordSpacing: "4px" }}>{property.address}</td>
+                <td>{property.address}</td>
                 <td>{property.bathrooms}</td>
                 <td>{property.bedrooms}</td>
                 <td>{property.price + " $"}</td>
