@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { setDebuggerUser } from "../../state/debuggerUser";
+import { setDebuggerUser, updateInfoUser } from "../../state/debuggerUser";
 
 function ModalUser({ id }) {
   const dispatch = useDispatch();
@@ -23,7 +23,10 @@ function ModalUser({ id }) {
       .get(`http://localhost:3001/api/user/admin/${id}`, {
         withCredentials: true,
       })
-      .then((user) => setUser(user.data));
+      .then((user) => {
+        setUser(user.data);
+        setIsAdmin(user.data.admin);
+      });
   };
   const handleSubmit = () => {
     setShow(false);
@@ -33,13 +36,15 @@ function ModalUser({ id }) {
         { admin: isAdmin },
         { withCredentials: true }
       )
-      .then(() => {
-        dispatch(setDebuggerUser(true));
+      .then((userUpdated) => {
+        console.log(userUpdated);
+        dispatch(updateInfoUser(userUpdated.data));
       })
       .catch((error) => {
         console.error(error);
       });
   };
+  console.log(user), console.log(isAdmin);
   return (
     <div
       className="modal show"

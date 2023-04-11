@@ -31,13 +31,13 @@ function GetAppointment({
 
     if (!verify) {
       console.log(email, name, userId, phone);
-      console.log(startDate, "en el if");
+      console.log(typeof startDate, "en el if");
       axios
         .post(
           `http://localhost:3001/api/appointment/${userId}`,
           {
             address: address,
-            date: startDate,
+            date: startDate.toString(),
             image: imgUser,
             userName: name,
             userPhone: phone,
@@ -56,7 +56,7 @@ function GetAppointment({
 
     setShow(false);
   };
-  console.log(startDate);
+
   return (
     <>
       <svg

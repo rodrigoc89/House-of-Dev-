@@ -6,10 +6,7 @@ class Appointment extends S.Model {}
 Appointment.init(
   {
     date: {
-      type: S.DATE,
-      validate: {
-        isDate: true,
-      },
+      type: S.STRING,
     },
     address: {
       type: S.STRING,

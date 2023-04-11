@@ -10,7 +10,7 @@ const reducer = createReducer(initialState, {
     return action.payload;
   },
   [addAppointment]: (state, action) => {
-    state[0] ? [...state, action.payload] : [action.payload];
+    return state[0] ? [...state, action.payload] : [action.payload];
   },
 });
 
