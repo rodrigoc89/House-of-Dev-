@@ -81,7 +81,6 @@ const filterPrice = async (req, res) => {
 
 const createProperty = async (req, res) => {
   try {
-   
     const property = await Property.create(req.body);
     res.status(201).send(property);
   } catch (error) {

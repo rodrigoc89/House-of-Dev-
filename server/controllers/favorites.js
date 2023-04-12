@@ -31,7 +31,7 @@ const getAllYourFavorites = async (req, res) => {
   const { id } = req.params;
   try {
     const favorites = await Favorites.findOne({
-      where: { UserId: req.params.id },
+      where: { UserId: id },
     });
     const AllFavorites = await favorites.getProperties();
     res.send(AllFavorites);
@@ -43,7 +43,7 @@ const getAllYourFavorites = async (req, res) => {
 const getFavoritesOfUser = async (req, res) => {
   const { id } = req.params;
   try {
-    const favorites = await Favorites.findByPk(id);
+    const favorites = await Favorites.findOne(id);
     const AllFavorites = await favorites.getProperties();
     res.status(200).send(AllFavorites);
   } catch (error) {

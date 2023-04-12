@@ -30,7 +30,7 @@ router.get("/filterPrice/:filterMajorToMinor", filterPrice);
 
 router.post("/", validateAdmin, validateAuth, createProperty);
 
-router.put("/:id", validateAdmin, validateAuth, editInfoProperty);
+router.put("/:id", validateAuth, validateAdmin, editInfoProperty);
 
 router.delete("/:id", validateAdmin, validateAuth, deleteAProperty);
 module.exports = router;
