@@ -31,8 +31,7 @@ function Grid() {
 
 
   const cardSize = {
-    width: "29rem",
-    height: "16rem",
+    width: "97%",
   };
 
 
@@ -110,35 +109,11 @@ function Grid() {
   console.log(favorite);
   return (
     <>
-      <div
-        style={{
-          border: "1px solid #123AC8",
-          width: "69.5%",
-          marginTop: "2%",
-          marginLeft: "13%",
-          height: "42px",
-          position: "relative",
-        }}
-      >
+      <div className="conteiner-grid-title">
         <div
-          style={{
-            width: "75%",
-            height: "1px",
-            backgroundColor: "#123AC8",
-            position: "absolute",
-            bottom: "20%",
-            left: "0%",
-            marginLeft: "25%",
-          }}
-        ></div>
+        className="title-decoration" ></div>
         <h6
-          style={{
-            paddingTop: "1.9%",
-            paddingLeft: "1%",
-            color: "#123AC8",
-            fontWeight: "bolder",
-          }}
-        >
+        className="grid-title">
           PROPIEDADES EN ALQUILER
         </h6>
       </div>
@@ -151,36 +126,9 @@ function Grid() {
           padding: "0.6% 0% 0.6% 0%",
         }}
       >
-        <button
-          style={{
-            color: "#123AC8",
-            backgroundColor: "transparent",
-            width: "157px",
-            height: "39px",
-            borderRadius: "20px",
-            border: "1px solid #123AC8",
-            fontSize: "13px",
-          }}
-        >
+        <button className="button-notifications">
           NOTIFICACIONES
-          <svg
-            style={{
-              marginLeft: "5%",
-              width: "26px",
-              height: "26px",
-              padding: "4%",
-              borderRadius: "20px",
-              border: "1px solid #FE4236",
-            }}
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-bell"
-            viewBox="0 0 16 16"
-          >
-            <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
-          </svg>
+          <span id="icon-notifications" >{svgs.notifications}</span>
         </button>
 
         <Badge id="badge-grid" bg="danger">
@@ -188,19 +136,7 @@ function Grid() {
         </Badge>
 
         <Link to={"/favorites"}>
-          <button
-            style={{
-              color: "#123AC8",
-              backgroundColor: "transparent",
-              height: "100%",
-              width: "115px",
-              marginLeft: "5%",
-              borderRadius: "20px 0px 0px 20px",
-              border: "1px solid #123AC8",
-              fontSize: "13px",
-            }}
-          >
-
+          <button className="button-favorite">
             {cont >= 1 ? (
               <Badge id="badge-grid-2" bg="danger">
                 {cont}
@@ -211,14 +147,7 @@ function Grid() {
 
             FAVORITOS
             <svg
-              style={{
-                marginLeft: "5%",
-                width: "26px",
-                height: "26px",
-                padding: "6%",
-                borderRadius: "20px",
-                border: "1px solid #FE4236",
-              }}
+            id="icon-favorite"
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
@@ -232,46 +161,17 @@ function Grid() {
         </Link>
       </div>
       <div className="baner">
-        <div
-          style={{
-            width: "45%",
-            marginLeft: "55%",
-            height: "100%",
-            paddingTop: "15%",
-            paddingRight: "3%",
-            background: "linear-gradient(to right, transparent, #123AC8",
-          }}
-        >
+        <div className="conteiner-baner">
           <h1 className="h1-grid">Lorem ipsum dolor</h1>
-          <h1 className="h1-grid">amet consectetur adipisicing elit.</h1>
+          <h1 className="h1-grid">amet, consectetur adipisicing elit.</h1>
           <button className="buton-baner">
             INMOBILIARIA
-            <svg
-              style={{
-                marginLeft: "5%",
-                width: "26px",
-                height: "26px",
-                padding: "3%",
-                borderRadius: "20px",
-                border: "1px solid #FE4236",
-              }}
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-arrow-right"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"
-              />
-            </svg>
+          {svgs.flecha_ir}
           </button>
         </div>
       </div>
 
-      <div className="division"></div>
+      <div className="divider"></div>
       <Form.Select
         id="filtro-grid"
         aria-label="Default select example"
@@ -283,11 +183,12 @@ function Grid() {
         <option value="minor">Mostrar de menor a mayor precio</option>
         <option value="major">Mostrar de mayor a mejor precio</option>
       </Form.Select>
-      <Container style={{ width: "100%", color: "#123AC8" }}>
+      <Container className="conteiner-cards-grid" >
         <Row>
           {properties.map((home) => {
             return (
               <Col
+              className="columnas-grid"
                 xs={12}
                 md={6}
                 lg={5}
@@ -295,7 +196,7 @@ function Grid() {
                 key={home.id}
               >
                 <Card
-                  id={home.id}
+                  className="card-grid"
                   style={{
                     ...cardSize,
                     height: "110%",
@@ -307,13 +208,7 @@ function Grid() {
                   <Row>
                     <Col xs={5}>
                       <Card.Img
-                        style={{
-                          height: "110%",
-                          borderRight: "1px solid #123AC8",
-                          padding: "2%",
-                          marginLeft: "5%",
-                          borderRadius: "0%",
-                        }}
+                      className="card-img-grid"
                         src={home.image}
                       />
                     </Col>
@@ -326,99 +221,38 @@ function Grid() {
                           height: "110%",
                         }}
                       >
-                        <div style={{ width: "100%", display: "flex" }}>
-                          <div
-                            style={{
-                              width: "40%",
-                              padding: "3%",
-                              display: "flex",
-                              alignItems: "center",
-                              fontSize: "12px",
-                              border: "1px solid #123AC8",
-                            }}
-                          >
+                        <div className="location-and-price-grid" >
+                          <div className="price-grid" >
                             {svgs.dolar}
                             {home.price}
                           </div>
-                          <div
-                            style={{
-                              width: "60%",
-                              fontSize: "11px",
-                              padding: "3%",
-                              display: "flex",
-                              alignItems: "center",
-                              border: "1px solid #123AC8",
-                            }}
-                          >
+                          <div className="location-grid" >
                             {svgs.ubicacion}
                             {shortUbication(home.address)}
                           </div>
                         </div>
-                        <div style={{ display: "flex" }}>
+                        <div className="bathrooms-bedrooms-meters-grid">
                           <div
-                            style={{
-                              width: "34%",
-                              padding: "3%",
-                              display: "flex",
-                              alignItems: "center",
-                              fontSize: "13px",
-                              border: "1px solid #123AC8",
-                            }}
-                          >
+                          className="meters-grid">
                             {svgs.regla}
                             {home.m2 + "m²"}
                           </div>
                           <div
-                            style={{
-                              width: "33%",
-                              padding: "2%",
-                              display: "flex",
-                              alignItems: "center",
-                              fontSize: "13px",
-                              border: "1px solid #123AC8",
-                            }}
-                          >
+                          className="bedrooms-grid" >
                             {svgs.cama}
                             {home.bedrooms + " dorm."}
                           </div>
 
-                          <div
-                            style={{
-                              width: "33%",
-                              padding: "2%",
-                              display: "flex",
-                              alignItems: "center",
-                              fontSize: "13px",
-                              border: "1px solid #123AC8",
-                            }}
-                          >
+                          <div className="bathrooms-grid" >
                             {svgs.baño}
                             {home.bathrooms + "baños"}
                           </div>
                         </div>
-                        <Card.Text
-                          style={{
-                            padding: "5%",
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                          }}
-                        >
+                        <Card.Text className="description-grid">
                           {home.description}
                         </Card.Text>
-                        <div
-                          style={{
-                            borderTop: "1px solid #123AC8",
-                            height: "25%",
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <div
-                            style={{
-                              marginLeft: "30%",
-                            }}
-                          >
+                        <div className="conteiner-buttons-card-grid">
+                          <div className="conteiner-icon-favorite">
                             {favorite.some(
                               (favorite) => favorite.id === home.id
                             ) ? (
@@ -458,7 +292,7 @@ function Grid() {
                               </svg>
                             )}
                           </div>
-                          <div style={{ marginLeft: "8%" }}>
+                          <div className="conteiner-icon-appointment">
                             <GetAppointment
                               userId={user.id}
                               address={home.address}
@@ -470,7 +304,7 @@ function Grid() {
                             />
                           </div>
                           <button
-                            className="buton-grid"
+                            className="buton-grid-ver-mas"
                             onClick={() => {
                               navigate(`/card/${home.id}`);
                             }}
