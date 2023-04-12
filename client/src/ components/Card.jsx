@@ -24,48 +24,19 @@ function CardIndividual() {
   return (
     <>
       <NavbarUser />
-      <div
-        style={{
-          border: "1px solid #123AC8",
-          width: "75%",
-          marginTop: "2%",
-          marginLeft: "12.4%",
-          height: "42px",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            width: "75%",
-            height: "1px",
-            backgroundColor: "#123AC8",
-            position: "absolute",
-            bottom: "20%",
-            left: "0%",
-            marginLeft: "25%",
-          }}
-        ></div>
-        <h6
-          style={{
-            paddingTop: "1.9%",
-            paddingLeft: "1%",
-            color: "#123AC8",
-            fontWeight: "bolder",
-          }}
-        >
-          DETALLES DE LA CASA
-        </h6>
+      <div className="conteiner-title-decoration-card" >
+        <div className="decoration-card"></div>
+        <h6 className="title-card"> DETALLES DE LA CASA </h6>
       </div>
-      <Card className="text-center conteiner-card">
-        <div style={{ display: "flex", flexDirection: "row" }}>
-          <div style={{ flex: 1 }}>
+        <div className="conteiner-card">
+          <div className="conteiner-card-img">
             <Card.Img
-              style={{ padding: "5%", height: "100%", width: "100%" }}
+            className="img-card"
               variant="top"
               src={property.image}
             />
           </div>
-          <div style={{ flex: 2 }}>
+          <div className="conteiner-card-tex" >
             <Card.Body className="card-tex">
               <ListGroup className="list-group-flush">
                 <ListGroup.Item>
@@ -86,9 +57,9 @@ function CardIndividual() {
                 <ListGroup.Item>
                   <strong> Precio: </strong>${property.price}
                 </ListGroup.Item>
-                <div style={{ display: "flex", marginTop: "5%" }}>
+                <div className="conteiner-buttons">
                   <a href="/">
-                    <button className="buton-card">
+                    <button className="buton-card button-volver-atras">
                       {svgs.regresar}
                       Volver atras
                     </button>
@@ -96,9 +67,7 @@ function CardIndividual() {
 
                   <a href="">
                     <button
-                      className="buton-card"
-                      style={{ marginLeft: "35%" }}
-                    >
+                      className="buton-card button-pedir-cita">
                       {svgs.telefono}
                       Pedir cita
                     </button>
@@ -108,7 +77,6 @@ function CardIndividual() {
             </Card.Body>
           </div>
         </div>
-      </Card>
     </>
   );
 }
