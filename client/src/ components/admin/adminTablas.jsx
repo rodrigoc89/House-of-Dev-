@@ -161,7 +161,7 @@ function TableAdmin() {
                 <td>{user.lastName}</td>
                 <td>{user.email}</td>
                 <td>{user.admin ? "True" : "False"}</td>
-                <td>
+                <td className="thFavorite">
                   {user.name == "admin" || user.name === userOnly.name ? (
                     ""
                   ) : (
