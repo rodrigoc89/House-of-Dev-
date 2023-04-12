@@ -12,7 +12,6 @@ const validateAuth = (req, res, next) => {
   next();
 };
 const validateAdmin = (req, res, next) => {
-
   const { admin } = req.user.user
 
   if (!admin)

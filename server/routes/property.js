@@ -28,9 +28,9 @@ router.get("/filterPrice/:filterMajorToMinor", filterPrice);
 
 //ADMIN ROUTES FIND AND EDIT PROPERTY
 
-router.post("/", validateAdmin, validateAuth, createProperty);
+router.post("/", validateAuth, validateAdmin, createProperty);
 
-router.put("/:id", validateAdmin, validateAuth, editInfoProperty);
+router.put("/:id", validateAuth, validateAdmin, editInfoProperty);
 
-router.delete("/:id", validateAdmin, validateAuth, deleteAProperty);
+router.delete("/:id", validateAuth, validateAdmin, deleteAProperty);
 module.exports = router;
