@@ -31,7 +31,7 @@ const getAllYourFavorites = async (req, res) => {
   const { id } = req.params;
   try {
     const favorites = await Favorites.findOne({
-      where: { UserId: id },
+      where: { UserId: req.params.id },
     });
     const AllFavorites = await favorites.getProperties();
     res.send(AllFavorites);
@@ -39,13 +39,11 @@ const getAllYourFavorites = async (req, res) => {
     res.status(400).send(error);
   }
 };
-// ADMIN
+
 const getFavoritesOfUser = async (req, res) => {
   const { id } = req.params;
   try {
-    const favorites = await Favorites.findOne({
-      where: { UserId: id },
-    });
+    const favorites = await Favorites.findByPk(id);
     const AllFavorites = await favorites.getProperties();
     res.status(200).send(AllFavorites);
   } catch (error) {

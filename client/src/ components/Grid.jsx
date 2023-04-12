@@ -29,10 +29,12 @@ function Grid() {
 
   const [cont, setCont] = useState(null);
 
+
   const cardSize = {
     width: "29rem",
     height: "16rem",
   };
+
 
   useEffect(() => {
     const num = favorite.length;
@@ -45,6 +47,7 @@ function Grid() {
       (favorite) => favorite.id === home.id
     );
     if (isAlreadyFavorited) {
+
       const data = {
         id: home.id,
         type: "remove",
@@ -54,6 +57,7 @@ function Grid() {
           withCredentials: true,
         })
         .then((fa) => {
+          console.log(fa.data, "soy el que intentas eliminar. owo");
           dispatch(addOrRemoveToFavorite(fa.data));
         })
         .then(() => {
@@ -63,6 +67,8 @@ function Grid() {
             timer: "2000",
           });
         });
+
+
     } else {
       const data = {
         id: home.id,
@@ -73,9 +79,12 @@ function Grid() {
           withCredentials: true,
         })
         .then((fa) => {
+
           dispatch(addOrRemoveToFavorite(fa.data));
         })
         .then(() => {
+
+     
           Swal.fire({
             title: "agregado a favoritos",
             icon: "success",
@@ -191,6 +200,7 @@ function Grid() {
               fontSize: "13px",
             }}
           >
+
             {cont >= 1 ? (
               <Badge id="badge-grid-2" bg="danger">
                 {cont}
@@ -198,6 +208,7 @@ function Grid() {
             ) : (
               ""
             )}
+
             FAVORITOS
             <svg
               style={{
