@@ -84,7 +84,7 @@ const createProperty = async (req, res) => {
     const property = await Property.create(req.body);
     res.status(201).send(property);
   } catch (error) {
-    res.status(400);
+    console.log(error);
   }
 };
 
@@ -108,7 +108,7 @@ const deleteAProperty = async (req, res) => {
   const { id } = req.params;
   try {
     await Property.destroy({ where: { id: id } });
-    res.status(202);
+    res.status(202).send("ready");
   } catch (error) {
     res.status(400);
   }

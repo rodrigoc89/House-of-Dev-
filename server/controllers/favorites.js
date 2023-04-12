@@ -43,7 +43,13 @@ const getAllYourFavorites = async (req, res) => {
 const getFavoritesOfUser = async (req, res) => {
   const { id } = req.params;
   try {
-    const favorites = await Favorites.findOne(id);
+
+    const favorites = await Favorites.findOne({
+      where: {
+        UserId: id,
+      },
+    });
+
     const AllFavorites = await favorites.getProperties();
     res.status(200).send(AllFavorites);
   } catch (error) {
