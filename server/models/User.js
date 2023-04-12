@@ -1,6 +1,7 @@
 const S = require("sequelize");
 const db = require("../db/db");
 const bcrypt = require("bcrypt");
+// const validator = require("validator");
 
 class User extends S.Model {}
 User.init(
@@ -8,16 +9,46 @@ User.init(
     name: {
       type: S.STRING,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Field cannot be null",
+        },
+        isAlpha: {
+          args: true,
+          msg: "Name can only contain letters",
+        },
+        len: {
+          args: [3, 255],
+          msg: "The name can only be greater than 3 characters up to 255 characters",
+        },
+      },
     },
     lastName: {
       type: S.STRING,
       allowNull: false,
+      validate: {
+        notNull: {
+          msg: "Field cannot be null",
+        },
+        isAlpha: {
+          args: true,
+          msg: "Last name can only contain letters",
+        },
+        len: {
+          args: [3, 255],
+          msg: "The last name can only be greater than 3 characters up to 255 characters",
+        },
+      },
     },
     phone: {
-      type: S.BIGINT,
+      type: S.STRING,
       allowNull: false,
+      unique: true,
       validate: {
-        min: 7,
+        len: {
+          args: [10, 15],
+          msg: "Validation len on phone failed",
+        },
       },
     },
     email: {
@@ -25,21 +56,15 @@ User.init(
       allowNull: false,
       unique: true,
       validate: {
-        isEmail: true,
+        isEmail: {
+          args: true,
+          msg: "The field has to be a valid email",
+        },
       },
     },
     password: {
       type: S.STRING,
       allowNull: false,
-      validate: {
-        isStrongPassword: {
-          minLength: 8,
-          minLowercase: 0,
-          minUppercase: 0,
-          minNumbers: 0,
-          minSymbols: 0,
-        },
-      },
     },
     salt: {
       type: S.STRING,

@@ -1,11 +1,11 @@
 const { Appointment, User } = require("../models");
 
-const gettAllAppointments = async (req, res) => {
+const getAllAppointments = async (req, res) => {
   try {
     const appointments = await Appointment.findAll();
     res.status(200).send(appointments);
   } catch (error) {
-    res.sendStatus(402);
+    res.status(400).send(error);
   }
 };
 
@@ -13,6 +13,7 @@ const createAAppointment = async (req, res) => {
   const { id } = req.params;
 
   try {
+    console.log(req.body, "soy del back");
     const data = {
       date: req.body.date,
       address: req.body.address,
@@ -26,7 +27,7 @@ const createAAppointment = async (req, res) => {
     const appointment = await Appointment.create(data);
     res.status(201).send(appointment);
   } catch (error) {
-    console.log(error);
+    res.status(400).send(error);
   }
 };
 
@@ -37,11 +38,11 @@ const getAllYourAppointment = async (req, res) => {
     });
     res.status(200).send(appointments);
   } catch (error) {
-    res.sendStatus(402);
+    res.status(400).send(error);
   }
 };
 module.exports = {
-  gettAllAppointments,
+  getAllAppointments,
   createAAppointment,
   getAllYourAppointment,
 };

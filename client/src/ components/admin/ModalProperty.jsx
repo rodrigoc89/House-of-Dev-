@@ -5,7 +5,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
-import { setDebuggerProperty } from "../../state/debuggerProperty";
+import { setDebuggerProperty, updateInfo } from "../../state/debuggerProperty";
 
 function ModalProperty({ id }) {
   const dispatch = useDispatch();
@@ -13,15 +13,19 @@ function ModalProperty({ id }) {
   const [validated, setValidated] = useState(false);
 
   const [property, setProperty] = useState({});
+  const [options, setOptions] = useState(undefined);
   const [address, setAddress] = useState(property.address);
   const [bathrooms, setBathrooms] = useState(property.bathrooms);
   const [bedrooms, setBedrooms] = useState(property.bedrooms);
   const [price, setPrice] = useState(property.price);
   const [m2, setM2] = useState(property.m2);
   const [image, setImage] = useState(property.image);
-  const [options, setOptions] = useState(property.options);
+
   const [description, setDescription] = useState(property.description);
-  const [available, setAvailable] = useState(false);
+  const [available, setAvailable] = useState(property.available);
+
+  console.log(property, "spy la propiedad");
+  console.log(available);
 
   // CLOSE MODAL
   const handleClose = () => setShow(false);
@@ -53,14 +57,16 @@ function ModalProperty({ id }) {
       .put(`http://localhost:3001/api/property/${id}`, property, {
         withCredentials: true,
       })
-      .then(() => {
-        console.log("actualized"), dispatch(setDebuggerProperty(true));
+      .then((propertyUpdated) => {
+        console.log(propertyUpdated, "actualized"),
+          dispatch(updateInfo(propertyUpdated.data[1][0]));
       });
   };
   // VALIDATE INPUTS
   const handleClick = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
+      console.log("entree");
       event.preventDefault();
       event.stopPropagation();
     }
@@ -73,7 +79,7 @@ function ModalProperty({ id }) {
       className="modal show"
       style={{ display: "block", position: "initial" }}
     >
-    <svg
+      <svg
         style={{ color: "blue", marginLeft: "20%" }}
         onClick={handleShow}
         type="button"
@@ -97,7 +103,7 @@ function ModalProperty({ id }) {
           <Modal.Title>Edit Property</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Form noValidate onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicAddress">
               <Form.Label>Address</Form.Label>
               <Form.Control
@@ -184,6 +190,18 @@ function ModalProperty({ id }) {
                   value="sale"
                   name="options"
                   type="radio"
+                  checked={
+                    options
+                      ? options === "sale"
+                        ? true
+                        : false
+                      : property.options === "sale"
+                      ? true
+                      : false
+                  }
+                  onClick={(e) => {
+                    setOptions(e.target.checked);
+                  }}
 
                   // checked={property.options == "venta" ? "checked" : null}
                 />
@@ -194,6 +212,18 @@ function ModalProperty({ id }) {
                   value="rent"
                   name="options"
                   type="radio"
+                  checked={
+                    options
+                      ? options === "rent"
+                        ? true
+                        : false
+                      : property.options === "rent"
+                      ? true
+                      : false
+                  }
+                  onClick={(e) => {
+                    setOptions(e.target.checked);
+                  }}
 
                   // checked={property.options == "alquiler" ? "checked" : null}
                 />
@@ -215,11 +245,21 @@ function ModalProperty({ id }) {
               <Form.Label>Available</Form.Label>
 
               <Form.Check
-                label={property.available ? "YES" : "NO"}
+                label={
+                  available !== undefined
+                    ? available
+                      ? "YES"
+                      : "NO"
+                    : property.available
+                    ? "YES"
+                    : "NO"
+                }
                 type="switch"
                 name="available"
                 onChange={(e) => setAvailable(e.target.checked)}
-                checked={property.available}
+                checked={
+                  available !== undefined ? available : property.available
+                }
               />
             </Form.Group>
 

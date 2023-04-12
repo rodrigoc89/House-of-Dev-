@@ -11,11 +11,6 @@ import { useSelector } from "react-redux";
 export default function AdminCitas() {
   const [quotes, setQuotes] = useState([]);
 
-  const cardSize = {
-    width: "29rem",
-    height: "16rem",
-  };
-
   useEffect(() => {
     axios
       .get("http://localhost:3001/api/appointment", { withCredentials: true })
@@ -23,30 +18,11 @@ export default function AdminCitas() {
         setQuotes(citas.data);
       });
   }, []);
-console.log(quotes);
+  console.log(quotes);
   return (
     <>
-      <div
-        style={{
-          border: "1px solid #123AC8",
-          width: "69.5%",
-          marginTop: "2%",
-          marginLeft: "13%",
-          height: "42px",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            width: "75%",
-            height: "1px",
-            backgroundColor: "#123AC8",
-            position: "absolute",
-            bottom: "20%",
-            left: "0%",
-            marginLeft: "25%",
-          }}
-        ></div>
+      <div className="sizeTables" id="titleAppointmentsSize">
+        <div className="containerTables"></div>
         <h6
           style={{
             paddingTop: "1.9%",
@@ -63,16 +39,7 @@ console.log(quotes);
           {quotes.map((cita) => {
             return (
               <Col xs={12} md={6} lg={5} style={{ padding: "1.6%" }}>
-                <Card
-                  id={cita.id}
-                  style={{
-                    ...cardSize,
-                    border: "none",
-                    height: "100%",
-                    borderRadius: "0px",
-                    marginLeft: "15%",
-                  }}
-                >
+                <Card id={cita.id} className="cardZiseAppointments" class>
                   <Row>
                     <Col xs={5}>
                       <div
@@ -118,20 +85,10 @@ console.log(quotes);
                               border: "1px solid #123AC8",
                             }}
                           >
-                            {cita.date.slice(8, 10)}-{cita.date.slice(5, 7)}-{cita.date.slice(0, 4)}
+                            {cita.date.slice(4, 15)}
                           </div>
-                          <div
-                            style={{
-                              fontWeight: "bolder",
-                              width: "25%",
-                              fontSize: "11px",
-                              padding: "3%",
-                              display: "flex",
-                              alignItems: "center",
-                              border: "1px solid #123AC8",
-                            }}
-                          >
-                            {cita.date.slice(11,16)+ " hs"}
+                          <div className="hourInAppointment">
+                            {cita.date.slice(16, 21) + " hs"}
                           </div>
                         </div>
                         <div style={{ display: "flex" }}>

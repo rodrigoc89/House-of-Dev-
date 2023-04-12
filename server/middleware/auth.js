@@ -2,22 +2,22 @@ const { validateToken } = require("../config/token");
 
 const validateAuth = (req, res, next) => {
   const token = req.cookies.token;
-  if (!token) return res.sendStatus(401);
+  if (!token) return res.status(400).json({ error: "token does not exist" });
 
   const user = validateToken(token);
-  if (!user) return res.sendStatus(401);
+  if (!user)
+    return res.status(401).json({ error: "the user is not logged in" });
 
   req.user = user;
   next();
 };
 const validateAdmin = (req, res, next) => {
-  const token = req.cookies.token;
-  if (!token) return res.sendStatus(401);
-  const data = validateToken(token);
+  const { admin } = req.user.user;
 
-  const { admin } = data.user;
-
-  if (!admin) return res.sendStatus(401);
+  if (!admin)
+    return res
+      .status(401)
+      .json({ error: "there are no administrator permissions" });
 
   next();
 };

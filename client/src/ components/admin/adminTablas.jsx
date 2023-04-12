@@ -6,16 +6,17 @@ import ModalProperty from "./ModalProperty";
 import ModalUser from "./ModalUser";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
-import { setDebuggerUser } from "../../state/debuggerUser";
-import { setDebuggerProperty } from "../../state/debuggerProperty";
+import { removeUser, setDebuggerUser } from "../../state/debuggerUser";
+import {
+  removeProperty,
+  setDebuggerProperty,
+} from "../../state/debuggerProperty";
 
 function TableAdmin() {
   const userOnly = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const debuggerUser = useSelector((state) => state.debuggerUser);
   const debuggerProperty = useSelector((state) => state.debuggerProperty);
-  const [users, setUsers] = useState([]);
-  const [properties, setProperties] = useState([]);
 
   const handleDeleteUser = (userId) => {
     if (userId) {
@@ -27,6 +28,7 @@ function TableAdmin() {
         denyButtonText: "no",
         confirmButtonText: "si",
         confirmButtonColor: "#123AC8",
+        heightAuto: true,
       }).then((response) => {
         if (response.isConfirmed) {
           axios
@@ -35,8 +37,7 @@ function TableAdmin() {
             })
             .then(() => {
               console.log("USUARIO ELIMINADO");
-              setUsers(users.filter((user) => user.id !== userId));
-
+              dispatch(removeUser(userId));
               Swal.fire({
                 title: "Alerta",
                 text: "usuario eliminado",
@@ -75,9 +76,8 @@ function TableAdmin() {
             })
             .then(() => {
               console.log("YA BORREEEE LA PROPIEDAAAAAD");
-              setProperties(
-                properties.filter((property) => property.id !== propertyId)
-              );
+
+              dispatch(removeProperty(propertyId));
 
               Swal.fire({
                 title: "Alerta",
@@ -104,49 +104,28 @@ function TableAdmin() {
       axios
         .get("http://localhost:3001/api/user", { withCredentials: true })
         .then((response) => {
-          setUsers(response.data);
-          dispatch(setDebuggerUser(false));
+          dispatch(setDebuggerUser(response.data));
         });
     }
-  }, [debuggerUser]);
+  }, []);
 
   useEffect(() => {
     if (debuggerProperty) {
       axios
         .get("http://localhost:3001/api/property", { withCredentials: true })
         .then((response) => {
-          setProperties(response.data);
-          dispatch(setDebuggerProperty(false));
+          dispatch(setDebuggerProperty(response.data));
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  }, [debuggerProperty]);
+  }, []);
 
   return (
     <>
-      <div
-        style={{
-          border: "1px solid #123AC8",
-          width: "69.5%",
-          marginTop: "2%",
-          marginLeft: "13%",
-          height: "42px",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            width: "75%",
-            height: "1px",
-            backgroundColor: "#123AC8",
-            position: "absolute",
-            bottom: "20%",
-            left: "0%",
-            marginLeft: "25%",
-          }}
-        ></div>
+      <div className="sizeTables" id="titleTableUser">
+        <div className="containerTables"></div>
         <h6
           style={{
             paddingTop: "1.9%",
@@ -159,31 +138,23 @@ function TableAdmin() {
         </h6>
       </div>
 
-      <Table
-        style={{
-          width: "69.5%",
-          marginLeft: "13%",
-          marginTop: "2%",
-          border: "3px solid #123AC8",
-        }}
-        striped
-      >
+      <Table className="sizeTables">
         <thead style={{ backgroundColor: "#123AC8", color: "white" }}>
           <tr>
             <th>ID</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
+            <th>name</th>
+            <th>LastName</th>
             <th>Email</th>
             <th>Admin</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
           </tr>
         </thead>
-        <tbody>
-          {users.map((user) => {
+        <tbody id="SHORTCUT">
+          {debuggerUser.map((user) => {
             return (
               <tr key={user.id}>
-                <td style={{ textAlign:"center"}}>{user.id}</td>
+                <td style={{ textAlign: "center" }}>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.lastName}</td>
                 <td>{user.email}</td>
@@ -228,27 +199,8 @@ function TableAdmin() {
         </tbody>
       </Table>
 
-      <div
-        style={{
-          border: "1px solid #123AC8",
-          width: "69.5%",
-          marginTop: "2%",
-          marginLeft: "13%",
-          height: "42px",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            width: "75%",
-            height: "1px",
-            backgroundColor: "#123AC8",
-            position: "absolute",
-            bottom: "20%",
-            left: "0%",
-            marginLeft: "25%",
-          }}
-        ></div>
+      <div className="sizeTables" id="titleTableProperty">
+        <div className="containerTables"></div>
         <h6
           style={{
             paddingTop: "1.9%",
@@ -261,32 +213,24 @@ function TableAdmin() {
         </h6>
       </div>
       <ModalABM />
-      <Table
-        style={{
-          width: "69.5%",
-          marginLeft: "13%",
-          marginTop: "2%",
-          border: "3px solid #123AC8",
-        }}
-        striped
-      >
+      <Table className="sizeTables">
         <thead style={{ backgroundColor: "#123AC8", color: "white" }}>
           <tr>
             <th>ID</th>
-            <th>Direccion</th>
-            <th>Baños</th>
-            <th>Dormitorios</th>
-            <th>Precio</th>
-            <th>EDITAR</th>
-            <th>Eliminar</th>
+            <th>Address</th>
+            <th>Bathing</th>
+            <th>Beedrooms</th>
+            <th>Price</th>
+            <th>EDIT</th>
+            <th>DELETE</th>
           </tr>
         </thead>
         <tbody>
-          {properties.map((property) => {
+          {debuggerProperty.map((property) => {
             return (
               <tr key={property.id}>
-                <td style={{textAlign:"center"}}>{property.id}</td>
-                <td style={{wordSpacing:"4px"}}>{property.address}</td>
+                <td style={{ textAlign: "center" }}>{property.id}</td>
+                <td>{property.address}</td>
                 <td>{property.bathrooms}</td>
                 <td>{property.bedrooms}</td>
                 <td>{property.price + " $"}</td>

@@ -11,19 +11,19 @@ const addOrDeleteFavorite = async (req, res) => {
       where: { UserId: id },
     });
 
-    if (!favorites) return res.sendStatus(404);
+    if (!favorites) return res.status(400).send(error);
 
     const property = await Property.findByPk(idProperty);
 
     if (type === "add") {
       const addFavorite = await favorites.addProperty(property);
-      res.send(addFavorite).status(200);
+      res.send(property).status(200);
     } else {
-      const addFavorite = await Favorites.removeProperties(property);
-      res.status(200).send(addFavorite);
+      const removeFavorite = await favorites.removeProperties(property);
+      res.send(property).status(200);
     }
   } catch (error) {
-    res.sendStatus(404);
+    res.status(400).send(error);
   }
 };
 
@@ -36,7 +36,7 @@ const getAllYourFavorites = async (req, res) => {
     const AllFavorites = await favorites.getProperties();
     res.send(AllFavorites);
   } catch (error) {
-    res.sendStatus(404);
+    res.status(400).send(error);
   }
 };
 
@@ -47,7 +47,7 @@ const getFavoritesOfUser = async (req, res) => {
     const AllFavorites = await favorites.getProperties();
     res.status(200).send(AllFavorites);
   } catch (error) {
-    res.sendStatus(404);
+    res.status(400).send(error);
   }
 };
 

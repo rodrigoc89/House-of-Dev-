@@ -4,9 +4,9 @@ const { Op } = require("sequelize");
 const getAllProperties = async (req, res) => {
   try {
     const properties = await Property.findAll();
-    res.status(202).send(properties);
+    res.status(200).send(properties);
   } catch (error) {
-    res.sendStatus(404);
+    res.status(400);
   }
 };
 
@@ -14,9 +14,9 @@ const infoProperty = async (req, res) => {
   const { id } = req.params;
   try {
     const property = await Property.findByPk(id);
-    res.status(202).send(property);
+    res.status(200).send(property);
   } catch (error) {
-    res.sendStatus(404);
+    res.status(400);
   }
 };
 
@@ -41,7 +41,7 @@ const searchBar = async (req, res) => {
     });
     res.status(200).send(result);
   } catch (error) {
-    res.sendStatus(400);
+    res.status(400);
   }
 };
 
@@ -57,7 +57,7 @@ const filterSellOrRent = async (req, res) => {
     });
     res.status(200).send(result);
   } catch (error) {
-    res.sendStatus(400);
+    res.status(400);
   }
 };
 
@@ -75,16 +75,17 @@ const filterPrice = async (req, res) => {
       res.status(200).send(majorToMinor);
     }
   } catch (error) {
-    res.sendStatus(400);
+    res.status(400);
   }
 };
 
 const createProperty = async (req, res) => {
   try {
+   
     const property = await Property.create(req.body);
     res.status(201).send(property);
   } catch (error) {
-    res.sendStatus(404);
+    res.status(400);
   }
 };
 
@@ -96,10 +97,11 @@ const editInfoProperty = async (req, res) => {
       where: {
         id: id,
       },
+      returning: true,
     });
     res.status(202).send(propertyUpdate);
   } catch (error) {
-    res.sendStatus(404);
+    res.status(400);
   }
 };
 
@@ -107,9 +109,9 @@ const deleteAProperty = async (req, res) => {
   const { id } = req.params;
   try {
     await Property.destroy({ where: { id: id } });
-    res.sendStatus(202);
+    res.status(202);
   } catch (error) {
-    res.sendStatus(404);
+    res.status(400);
   }
 };
 

@@ -4,8 +4,8 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
-import { setDebuggerProperty } from "../../state/debuggerProperty";
-
+import { addProperty, setDebuggerProperty } from "../../state/debuggerProperty";
+import "../../styles/adminNavbar.css";
 function ModalABM() {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -22,7 +22,6 @@ function ModalABM() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleSubmit = (event) => {
-    setShow(false);
     event.preventDefault();
     const property = {
       address: address,
@@ -40,8 +39,9 @@ function ModalABM() {
       .post("http://localhost:3001/api/property", property, {
         withCredentials: true,
       })
-      .then(() => {
-        console.log("create"), dispatch(setDebuggerProperty(true));
+      .then((propertyNew) => {
+        console.log("create"), dispatch(addProperty(propertyNew.data));
+        setShow(false);
       });
   };
   const handleClick = (event) => {
@@ -55,13 +55,8 @@ function ModalABM() {
 
   return (
     <div
-      className="modal show"
-      style={{
-        display: "block",
-        position: "initial",
-        marginLeft: "13%",
-        marginTop: "1%",
-      }}
+      className="modal show add-property"
+     
     >
       <Button variant="primary" onClick={handleShow}>
         Add New Property

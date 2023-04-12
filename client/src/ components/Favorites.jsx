@@ -4,15 +4,41 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NavbarUser from "./Navbar";
 import "../styles/Favorites.css"
 import shortUbication from "./function/shotUbacation";
 import svgs from "../commons/svgs";
+import axios from "axios";
+import { addOrRemoveToFavorite } from "../state/favorites";
+import Swal from "sweetalert2";
 
 const Favorites = () => {
   const cardSize = {
     width: "97%",
+  };
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const deleteFavoriteHandler = (home) => {
+    const data = {
+      id: home.id,
+      type: "remove",
+    };
+    axios
+      .post(`http://localhost:3001/api/favorite/${user.id}`, data, {
+        withCredentials: true,
+      })
+      .then((fa) => {
+        console.log(fa.data, "soy el que intentas eliminar. owo");
+        dispatch(addOrRemoveToFavorite(fa.data));
+      })
+      .then(() => {
+        Swal.fire({
+          title: "eliminado de favoritos",
+          icon: "success",
+          timer: "2000",
+        });
+      });
   };
   const favorites = useSelector((state) => state.favorite);
   return favorites[0] ? (
