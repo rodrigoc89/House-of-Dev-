@@ -53,18 +53,18 @@ const ShowFavorites = ({ id }) => {
           <Modal.Title>Favoritos</Modal.Title>
         </Modal.Header>
         <Modal.Body className="modal-body">
-          {favorites.map((house) => {
+          {favorites.map((favorite) => {
             return (
               <>
-                <Container key={house.id} className="container">
+                <Container key={favorite.id} className="container">
                   <Row>
                     <Col id="col" xs={12} md={6}>
-                      <Card.Img className="card-img" src={house.image} />
+                      <Card.Img className="card-img" src={favorite.image} />
                     </Col>
                     <Col xs={6} md={6}>
                       <div className="card-text-admin">
                         <Card.Text>Direccion</Card.Text>
-                        <Card.Text>{house.address}</Card.Text>
+                        <Card.Text>{favorite.address}</Card.Text>
                       </div>
                     </Col>
                   </Row>
