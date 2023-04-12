@@ -28,7 +28,6 @@ const Favorites = () => {
         withCredentials: true,
       })
       .then((fa) => {
-        console.log(fa.data, "soy el que intentas eliminar. owo");
         dispatch(addOrRemoveToFavorite(fa.data));
       })
       .then(() => {

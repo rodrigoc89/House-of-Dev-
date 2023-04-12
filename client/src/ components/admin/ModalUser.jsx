@@ -44,7 +44,6 @@ function ModalUser({ id }) {
         console.error(error);
       });
   };
-  console.log(user), console.log(isAdmin);
   return (
     <div
       className="modal show"
