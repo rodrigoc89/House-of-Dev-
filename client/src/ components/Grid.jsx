@@ -253,7 +253,6 @@ function Grid() {
                         </Card.Text>
                         <div className="conteiner-buttons-card-grid">
                           <div className="conteiner-icon-favorite">
-                            <Link>
                             {favorite.some(
                               (favorite) => favorite.id === home.id
                             ) ? (

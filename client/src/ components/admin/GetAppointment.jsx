@@ -27,6 +27,7 @@ function GetAppointment({
     setShow(true);
   };
   const handleSubmit = () => {
+    console.log(setStartDate,"SOY STARTDATE");
     const verify = appointments.some((x) => x.address === address);
 
     if (!verify) {
@@ -88,7 +89,7 @@ function GetAppointment({
             readOnly={true}
             icon={true}
             onSave={(date) => {
-              console.log(date._d);
+              console.log(date._d,"holaaaaaaaaaaaaaaaaaaaaaa");
               setStartDate(date._d);
             }}
           />

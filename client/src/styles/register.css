@@ -87,13 +87,13 @@
         font-size: 70%;
     }
 }
-.phone-icon{
+#phone-icon{
     position: absolute;
      margin-left: 10%;
     margin-top: 44px;
 }
 @media(max-width:700px){
-    .phone-icon{
+    #phone-icon{
         margin-top: 35px;
         margin-left: 17%;
         width: 13px;

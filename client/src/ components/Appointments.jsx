@@ -14,7 +14,7 @@ const Appointments = () => {
       <div>
         {!appointments[0] ? (
           <h1> don´t have appointments</h1>
-        ) : (
+        ):(
           <>
           <div className="conteiner-title-decoration-appointmens">
         <div className="decoration-appointments"></div>
@@ -31,8 +31,8 @@ const Appointments = () => {
                       src={appointment.image}
                       alt="non"
                       style={{
-                        padding: "2px",
-                        borderRight: "1px solid #123AC8",
+                        width: "100%",
+                        height: "100%",
                       }}
                     />
                   </div>
@@ -50,10 +50,10 @@ const Appointments = () => {
                     <strong style={{marginRight: "0.5rem"}}>Fecha: </strong> {`${appointment.date.slice(8, 10)}-${appointment.date.slice(5, 7)}-${appointment.date.slice(0, 4)}`}
                     </p>
                   </div>
-                );
-              })}
-            </div>
-          </>
+                </div>
+              );
+            })}
+          </div></>
         )}
       </div>
     </div>
