@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../state/user";
+import svgs from "../commons/svgs";
 import "../styles/login.css";
 
 const Login = () => {
@@ -32,35 +33,13 @@ const Login = () => {
   return (
     <div className="loginContainer">
       <div className="parte-de-arriba">
-        <h1
-          style={{
-            color: "white",
-            marginLeft: "2%",
-            fontSize: "50px",
-            fontWeight: "bold",
-          }}
-        >
+        <h1 className="h1-house">
           HOUSE
         </h1>
-        <h1
-          style={{
-            color: "transparent",
-            webkitTextStroke: "1px white",
-            fontSize: "50px",
-            fontWeight: "bold",
-            marginLeft: "30%",
-          }}
-        >
+        <h1 className="h1-of-dev">
           OF DEV.
         </h1>
-        <p
-          style={{
-            color: "white",
-            fontSize: "14px",
-            marginLeft: "36%",
-            marginTop: "6%",
-          }}
-        >
+        <p className="p-login" >
           Tu nueva vivienda esta aqui
         </p>
       </div>

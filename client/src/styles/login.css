@@ -8,8 +8,14 @@
   flex-direction: column;
   justify-content: center;
 }
-.parte-de-arriba{
-  background-color: #FE4236;
+@media (max-width: 700px) {
+  .loginContainer {
+    background-image: none;
+    background-color: #fe4236;
+  }
+}
+.parte-de-arriba {
+  background-color: #fe4236;
   width: 25%;
   margin: 0 auto;
   margin-left: 30%;
@@ -17,7 +23,15 @@
   padding: 2%;
   box-shadow: 0px 0px 3px #000;
 }
-.parte-de-abajo{
+@media (max-width: 700px) {
+  .parte-de-arriba {
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 21%;
+    box-shadow: none;
+  }
+}
+.parte-de-abajo {
   background-color: white;
   margin: 0 auto;
   margin-left: 30%;
@@ -25,40 +39,99 @@
   padding: 3%;
   box-shadow: 0px 0px 3px #000;
 }
-.grupo_input input{
-  width: 105%;;
+@media (max-width: 700px) {
+  .parte-de-abajo {
+    width: 100%;
+    margin: 0 auto;
+    height: 45%;
+    position: absolute;
+    bottom: 0;
+  }
+}
+.grupo_input input {
+  width: 105%;
   height: 37%;
-  font-size:smaller;
+  font-size: smaller;
   padding: 12px 0px 12px 42px;
   margin-bottom: 12px;
   outline: none;
-  border: 1px solid #123AC8;
+  border: 1px solid #123ac8;
   border-radius: 25px;
-  
 }
-#icons{
+@media (max-width: 700px) {
+  .grupo_input input {
+    width: 90%;
+    height: 50px;
+    margin-left: 4%;
+    margin-top: 3%;
+  }
+}
+#icons {
   position: absolute;
   width: 1.9%;
   height: 3.4%;
   padding: 0.3%;
   border-radius: 13px;
-  border: 1px solid #FE4236;
+  border: 1px solid #fe4236;
   margin-left: 10px;
   margin-top: 10px;
-  color: #123AC8;
+  color: #123ac8;
 }
-.butonBlue{
+@media (max-width: 700px) {
+  #icons {
+    width: 6.5%;
+    height: 8%;
+    padding: 1%;
+    margin-top: 6%;
+    margin-left: 6%;
+  }
+  .p-login {
+    display: none;
+  }
+}
+.p-login {
+  color: white;
+  font-size: 14px;
+  margin-left: 36%;
+  margin-top: 6%;
+}
+@media (max-width: 700px) {
+  .p-login {
+    display: none;
+  }
+}
+.butonBlue {
   cursor: pointer;
-  border: 1px solid #123AC8;
+  border: 1px solid #123ac8;
   border-radius: 30px;
   width: 42%;
   height: 23%;
   font-size: 0.85rem;
   margin-left: 54%;
   background-color: transparent;
-  color: #123AC8;
-  
+  color: #123ac8;
 }
-.input-login::placeholder{
-  color: #123AC8;;
+@media (max-width: 700px) {
+  .butonBlue {
+    width: 30%;
+    height: 14%;
+    margin-left: 62%;
+  }
 }
+.input-login::placeholder {
+  color: #123ac8;
+}
+.h1-house {
+  color: white;
+  margin-left: 2%;
+  font-size: 50px;
+  font-weight: bold;
+}
+.h1-of-dev {
+  color: transparent;
+  -webkit-text-stroke: 1px white;
+  font-size: 50px;
+  font-weight: bold;
+  margin-left: 30%;
+}
+

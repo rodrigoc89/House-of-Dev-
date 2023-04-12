@@ -6,66 +6,31 @@ import { Link } from "react-router-dom";
 import React from "react";
 import { useSelector } from "react-redux";
 import NavbarUser from "./Navbar";
+import "../styles/Favorites.css"
 import shortUbication from "./function/shotUbacation";
+import svgs from "../commons/svgs";
 
 const Favorites = () => {
   const cardSize = {
-    width: "29rem",
-    height: "16rem",
+    width: "97%",
   };
   const favorites = useSelector((state) => state.favorite);
   return favorites[0] ? (
     <>
       <NavbarUser />
-      <div
-        style={{
-          border: "1px solid #123AC8",
-          width: "69.5%",
-          marginTop: "2%",
-          marginLeft: "13%",
-          height: "42px",
-          position: "relative",
-        }}
-      >
-        <div
-          style={{
-            width: "75%",
-            height: "1px",
-            backgroundColor: "#123AC8",
-            position: "absolute",
-            bottom: "20%",
-            left: "0%",
-            marginLeft: "25%",
-          }}
-        ></div>
-        <h6
-          style={{
-            paddingTop: "1.9%",
-            paddingLeft: "1%",
-            color: "#123AC8",
-            fontWeight: "bolder",
-          }}
-        >
+      <div className="conteiner-title-decoration-favorite">
+        <div className="decoration-favorite"></div>
+        <h6 className="title-favorite">
           Favoritos
         </h6>
       </div>
-      <div
-        style={{
-          width: "69.5%",
-          marginLeft: "13%",
-          display: "flex",
-          justifyContent: "end",
-          padding: "0.6% 0% 0.6% 0%",
-        }}
-      ></div>
-
-      <div className="division"></div>
       <Container style={{ width: "100%", color: "#123AC8" }}>
         <Row>
           {favorites.map((home) => {
             return (
-              <Col xs={12} md={6} lg={5} style={{ padding: "1.6%" }}>
+              <Col className="columnas-favorites" xs={12} md={6} lg={5}>
                 <Card
+                className="card-favorite"
                   style={{
                     ...cardSize,
                     height: "110%",
@@ -76,14 +41,7 @@ const Favorites = () => {
                 >
                   <Row>
                     <Col xs={5}>
-                      <Card.Img
-                        style={{
-                          height: "110%",
-                          borderRight: "1px solid #123AC8",
-                          padding: "2%",
-                          marginLeft: "5%",
-                          borderRadius: "0%",
-                        }}
+                      <Card.Img className="img-card-favorites"
                         src={home.image}
                       />
                     </Col>
@@ -96,136 +54,35 @@ const Favorites = () => {
                           height: "110%",
                         }}
                       >
-                        <div style={{ width: "100%", display: "flex" }}>
-                          <div
-                            style={{
-                              width: "40%",
-                              padding: "3%",
-                              display: "flex",
-                              alignItems: "center",
-                              fontSize: "12px",
-                              border: "1px solid #123AC8",
-                            }}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              fill="currentColor"
-                              class="bi bi-currency-dollar"
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z" />
-                            </svg>
+                        <div className="conteiner-price-address-favorites">
+                          <div className="price-favorites">
+                            {svgs.dolar} 
                             {home.price}
                           </div>
-                          <div
-                            style={{
-                              width: "60%",
-                              fontSize: "11px",
-                              padding: "3%",
-                              display: "flex",
-                              alignItems: "center",
-                              border: "1px solid #123AC8",
-                            }}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              fill="currentColor"
-                              class="bi bi-geo-alt"
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                              <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                            </svg>
+                          <div className="address-favorites">
+                            {svgs.ubicacion} 
                             {shortUbication(home.address)}
                           </div>
                         </div>
-                        <div style={{ display: "flex" }}>
-                          <div
-                            style={{
-                              width: "34%",
-                              padding: "3%",
-                              display: "flex",
-                              alignItems: "center",
-                              fontSize: "13px",
-                              border: "1px solid #123AC8",
-                            }}
-                          >
-                            <svg
-                              style={{ marginRight: "3%" }}
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              fill="currentColor"
-                              class="bi bi-rulers"
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M1 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h5v-1H2v-1h4v-1H4v-1h2v-1H2v-1h4V9H4V8h2V7H2V6h4V2h1v4h1V4h1v2h1V2h1v4h1V4h1v2h1V2h1v4h1V1a1 1 0 0 0-1-1H1z" />
-                            </svg>
+                        <div className="conteiner-bathrooms-bedrooms-meters-favorites">
+                          <div className="meters-favorites" >
+                            {svgs.regla}
                             {home.m2 + "m²"}
                           </div>
-                          <div
-                            style={{
-                              width: "33%",
-                              padding: "2%",
-                              display: "flex",
-                              alignItems: "center",
-                              fontSize: "13px",
-                              border: "1px solid #123AC8",
-                            }}
-                          >
-                            <svg
-                              style={{
-                                width: "25%",
-                                height: "55%",
-                                marginRight: "3%",
-                              }}
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 640 512"
-                            >
-                              <path d="M32 32c17.7 0 32 14.3 32 32V320H288V160c0-17.7 14.3-32 32-32H544c53 0 96 43 96 96V448c0 17.7-14.3 32-32 32s-32-14.3-32-32V416H352 320 64v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V64C0 46.3 14.3 32 32 32zm144 96a80 80 0 1 1 0 160 80 80 0 1 1 0-160z" />
-                            </svg>
+                          <div className="bedrooms-favorites">
+                            {svgs.cama}
                             {home.bedrooms + " dorm."}
                           </div>
-                          <div
-                            style={{
-                              width: "33%",
-                              padding: "2%",
-                              display: "flex",
-                              alignItems: "center",
-                              fontSize: "13px",
-                              border: "1px solid #123AC8",
-                            }}
-                          >
-                            <svg
-                              style={{
-                                width: "25%",
-                                height: "55%",
-                                marginRight: "3%",
-                              }}
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 512 512"
-                            >
-                              <path d="M96 77.3c0-7.3 5.9-13.3 13.3-13.3c3.5 0 6.9 1.4 9.4 3.9l14.9 14.9C130 91.8 128 101.7 128 112c0 19.9 7.2 38 19.2 52c-5.3 9.2-4 21.1 3.8 29c9.4 9.4 24.6 9.4 33.9 0L289 89c9.4-9.4 9.4-24.6 0-33.9c-7.9-7.9-19.8-9.1-29-3.8C246 39.2 227.9 32 208 32c-10.3 0-20.2 2-29.2 5.5L163.9 22.6C149.4 8.1 129.7 0 109.3 0C66.6 0 32 34.6 32 77.3V256c-17.7 0-32 14.3-32 32s14.3 32 32 32H480c17.7 0 32-14.3 32-32s-14.3-32-32-32H96V77.3zM32 352v16c0 28.4 12.4 54 32 71.6V480c0 17.7 14.3 32 32 32s32-14.3 32-32V464H384v16c0 17.7 14.3 32 32 32s32-14.3 32-32V439.6c19.6-17.6 32-43.1 32-71.6V352H32z" />
-                            </svg>
+                          <div className="bathrooms-favorites">
+                            {svgs.baño}
                             {home.bathrooms + "baños"}
                           </div>
                         </div>
-                        <Card.Text style={{ padding: "5%", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>
+                        <Card.Text className="description-favorites">
                           {home.description}
                         </Card.Text>
-                        <div
-                          style={{
-                            borderTop: "1px solid #123AC8",
-                            height: "25%",
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          <div style={{ marginLeft: "30%" }}>
+                        <div className="conteiner-buttons-favorites">
+                          <div className="conteiner-button-favorite-favorites">
                             <Link>
                               <svg
                                 id="icon-grid"
@@ -241,7 +98,7 @@ const Favorites = () => {
                             </Link>
                           </div>
 
-                          <div style={{ marginLeft: "8%" }}>
+                          <div className="conteiner-button-appointment-favorites">
                             <Link>
                               <svg
                                 id="icon-grid"
@@ -256,7 +113,7 @@ const Favorites = () => {
                               </svg>
                             </Link>
                           </div>
-                          <button className="buton-grid">Ver más</button>
+                          <button className="buton-grid-ver-mas">Ver más</button>
                         </div>
                       </Card.Body>
                     </Col>

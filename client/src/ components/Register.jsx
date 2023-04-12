@@ -42,28 +42,8 @@ function FormRegister() {
     <div className="loginContainer">
       <Form
         onSubmit={handleSubmit}
-        style={{
-          width: "55%",
-          margin: "0 auto",
-          padding: "4%",
-          backgroundColor: "white",
-          marginTop: "2%",
-          boxShadow: "0px 0px 30px #000",
-        }}
-      >
-        <h1
-          style={{
-            textAlign: "center",
-            marginBottom: "8%",
-            color: "black",
-            fontSize: "38px",
-            fontWeight: "bold",
-            fontFamily: "sans-serif",
-            WebkitTextStroke: "2px black",
-          }}
-        >
-          Sign up
-        </h1>
+        className="conteiner-register">
+        <h1 className="text-register"> Sign up </h1>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="formGridEmail">
             <svg
@@ -150,8 +130,7 @@ function FormRegister() {
           </Form.Group>
         </Row>
         <svg
-          id="icons-register"
-          style={{ marginLeft: "10%" }}
+        className="phone-icon"
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
