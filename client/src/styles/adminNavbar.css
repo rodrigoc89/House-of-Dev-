@@ -1,12 +1,14 @@
 .navbarAdminContainer {
   background-color: #123ac8;
+  width: 100%;
 }
 
 .sizeTables {
   border: 1px solid #123ac8;
-  width: 90%;
+  width: 92%;
+  margin: 0 auto;
   margin-top: 2%;
-  margin-left: 13%;
+
   height: 42px;
   position: relative;
 }
@@ -35,8 +37,8 @@
   display: block;
 
   position: initial;
-
-  margin-left: 13%;
+  margin: 0 auto;
+  padding-left: 4%;
 
   margin-top: 1%;
 }
@@ -63,9 +65,10 @@
     font-size: 8px;
   }
   .sizeTables {
-    margin-left: 6%;
+    margin-left: 3%;
     font-size: 10px;
     height: 42px;
+
     position: relative;
     border: 1px solid #123ac8;
   }
@@ -73,15 +76,18 @@
     margin-left: 25%;
   }
   .add-property {
-    margin-left: 6%;
+    padding-left: 3%;
   }
   #titleTableUser {
     margin-top: 1rem;
-    width: 338px;
+    width: 92%;
+  }
+  .thFavorite {
+    display: none;
   }
 
   #titleTableProperty {
-    width: 338px;
+    width: 92%;
   }
   #titleAppointmentsSize {
     margin: 0 auto;
@@ -89,7 +95,7 @@
     width: 23rem;
   }
   .navbarAdminContainer {
-    width: 100vw;
+    width: 100%;
   }
   tbody {
     word-break: break-all;
@@ -97,7 +103,10 @@
 }
 @media (width: 540px) {
   .sizeTables {
-    margin-left: 20%;
+    margin-left: 3%;
+  }
+  .thFavorite {
+    display: none;
   }
   .cardZiseAppointments {
     width: 22rem;
@@ -107,13 +116,40 @@
     margin-left: 27%;
   }
   #titleTableUser {
-    width: 374px;
+    width: 496px;
   }
   #titleTableProperty {
-    width: 374px;
+    width: 496px;
   }
 
   .add-property {
-    margin-left: 20%;
+    margin: 0 auto;
+    margin-top: 1%;
+  }
+  .navbarAdminContainer {
+    width: 100%;
+  }
+}
+
+@media (width: 360px) {
+  #titleTableUser {
+    margin: 0 auto;
+    margin-top: 1%;
+    width: 347px;
+  }
+  .thFavorite {
+    display: none;
+  }
+  #titleTableProperty {
+    width: 347px;
+  }
+  .sizeTables {
+    margin: 0 auto;
+    margin-top: 2%;
+    width: 347px;
+  }
+  .add-property {
+    padding-left: 2%;
+    margin-top: 2%;
   }
 }

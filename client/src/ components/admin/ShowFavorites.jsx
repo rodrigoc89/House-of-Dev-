@@ -32,7 +32,7 @@ const ShowFavorites = ({ id }) => {
         viewBox="0 0 16 16"
         type="button"
         style={{
-          marginLeft: "30px",
+          marginLeft: "18px",
           color: "blue",
         }}
       >
