@@ -109,7 +109,7 @@ const deleteAProperty = async (req, res) => {
   const { id } = req.params;
   try {
     await Property.destroy({ where: { id: id } });
-    res.status(202);
+    res.status(202).send("listo")
   } catch (error) {
     res.status(400);
   }

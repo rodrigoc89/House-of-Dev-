@@ -115,7 +115,7 @@ const deleteUser = async (req, res) => {
   const { id } = req.params;
   try {
    const user= await User.destroy({ where: { id: id } });
-    res.status(202).send("polo");
+    res.status(202).send("listo");
   } catch (error) {
     res.status(400).send(error);
   }
