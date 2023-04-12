@@ -65,6 +65,7 @@ function ModalABM() {
       <Modal
         show={show}
         onHide={handleClose}
+        on
         backdrop="static"
         keyboard={false}
       >

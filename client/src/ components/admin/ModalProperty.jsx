@@ -5,7 +5,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
-import { updateInfo } from "../../state/debuggerProperty";
+import { setDebuggerProperty, updateInfo } from "../../state/debuggerProperty";
 
 function ModalProperty({ id }) {
   const dispatch = useDispatch();
@@ -23,6 +23,9 @@ function ModalProperty({ id }) {
 
   const [description, setDescription] = useState(property.description);
   const [available, setAvailable] = useState(property.available);
+
+  console.log(property, "spy la propiedad");
+  console.log(available);
 
   // CLOSE MODAL
   const handleClose = () => setShow(false);
@@ -63,6 +66,7 @@ function ModalProperty({ id }) {
   const handleClick = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
+      console.log("entree");
       event.preventDefault();
       event.stopPropagation();
     }
@@ -90,7 +94,6 @@ function ModalProperty({ id }) {
       </svg>
 
       <Modal
-        size="lg"
         show={show}
         onHide={handleClose}
         backdrop="static"
@@ -152,8 +155,6 @@ function ModalProperty({ id }) {
             <Form.Group className="mb-3" controlId="formBasicDescription">
               <Form.Label>Description</Form.Label>
               <Form.Control
-                as="textarea"
-                rows={6}
                 onChange={(e) => setDescription(e.target.value)}
                 type="text"
                 defaultValue={property.description}
