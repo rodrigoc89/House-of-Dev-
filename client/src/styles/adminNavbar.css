@@ -2,6 +2,10 @@
   background-color: #123ac8;
   width: 100%;
 }
+#titleAppointmentsSize {
+  margin-left: 8.7%;
+  width: 77.8%;
+}
 
 .sizeTables {
   border: 1px solid #123ac8;
@@ -59,7 +63,6 @@
   .cardZiseAppointments {
     width: 22rem;
     margin: 0 auto;
-    margin-right: 1rem;
   }
   .hourInAppointment {
     font-size: 8px;
@@ -68,7 +71,6 @@
     margin-left: 3%;
     font-size: 10px;
     height: 42px;
-
     position: relative;
     border: 1px solid #123ac8;
   }
@@ -92,7 +94,7 @@
   #titleAppointmentsSize {
     margin: 0 auto;
     margin-top: 1rem;
-    width: 23rem;
+    width: 358px;
   }
   .navbarAdminContainer {
     width: 100%;
@@ -130,6 +132,7 @@
     width: 100%;
   }
 }
+
 
 @media (width: 360px) {
   #titleTableUser {

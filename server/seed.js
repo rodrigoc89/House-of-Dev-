@@ -20,3 +20,5 @@ const seed = async () => {
 };
 
 seed();
+
+//citas y email

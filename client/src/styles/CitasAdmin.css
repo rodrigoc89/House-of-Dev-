@@ -1,46 +1,51 @@
-.conteiner-citas-admin{
-    width: 90%;
-    background-color: red;
+.conteiner-citas-admin {
+  width: 90%;
+  background-color: red;
 }
-.card-admin{
-    display: flex;
+.card-admin {
+  display: flex;
 }
-.h6-citas-admin{
-    margin-top: 10%;
-    margin-left: 9%;
-    font-size: 13px;
-    font-weight: bolder;
+.h6-citas-admin {
+  margin-top: 10%;
+  margin-left: 9%;
+  font-size: 13px;
+  font-weight: bolder;
 }
-.p-citas-admin{
-    margin-left: 5%;
-    position: absolute;
+.p-citas-admin {
+  margin-left: 5%;
+  position: absolute;
 }
-.container-text-admin{
-    width: 100%;
-    height:45px;
-    padding: 3%;
-    display: flex;
-    align-items: center;
-    font-size: 13px;
-    border-bottom: 1px solid #123AC8;
-    border-right: 1px solid #123AC8;
+.container-text-admin {
+  width: 100%;
+  height: 45px;
+  padding: 3%;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  border-bottom: 1px solid #123ac8;
+  border-right: 1px solid #123ac8;
 }
-.buton-citas-admin{
-    width: 80px;
-    height: 35px;
-    margin-top: 2%;
-    margin-left: 5.5%;
-    border: 1px solid #123AC8;
-    border-radius: 0px 25px 25px 0px;
-    color: #123AC8;
-    background-color: transparent;
-    font-size: 12px;
+.buton-citas-admin {
+  width: 80px;
+  height: 35px;
+  margin-top: 2%;
+  margin-left: 5.5%;
+  border: 1px solid #123ac8;
+  border-radius: 0px 25px 25px 0px;
+  color: #123ac8;
+  background-color: transparent;
+  font-size: 12px;
 }
-#icon-citas-admin{
-width: 25px;
-height: 25px;
-margin-left: 4%;
-border-radius: 20px;
-border: 1px solid #FE4236;
-padding: 7%;
+#icon-citas-admin {
+  width: 25px;
+  height: 25px;
+  margin-left: 4%;
+  border-radius: 20px;
+  border: 1px solid #fe4236;
+  padding: 7%;
+}
+@media (max-width: 912px) {
+  .p-citas-admin {
+    margin-top: -20px;
+  }
 }
