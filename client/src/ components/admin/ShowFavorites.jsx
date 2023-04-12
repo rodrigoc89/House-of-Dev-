@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
+import "../../styles/FavoritesAdmin.css";
 
 const ShowFavorites = ({ id }) => {
   const [show, setShow] = useState(false);
@@ -21,11 +22,26 @@ const ShowFavorites = ({ id }) => {
   };
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        ver
-      </Button>
+      <svg
+        onClick={handleShow}
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-eye-fill"
+        viewBox="0 0 16 16"
+        type="button"
+        style={{
+          marginLeft: "30px",
+          color: "blue",
+        }}
+      >
+        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+      </svg>
 
       <Modal
+        id="modal"
         size="lg"
         show={show}
         onHide={handleClose}
@@ -36,24 +52,20 @@ const ShowFavorites = ({ id }) => {
         <Modal.Header closeButton>
           <Modal.Title>Favoritos</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="modal-body">
           {favorites.map((house) => {
             return (
               <>
-                <Container key={house.id} style={{ marginBottom: "10px" }}>
+                <Container key={house.id} className="container">
                   <Row>
-                    <Col xs={12} md={6}>
-                      <Card.Img
-                        // variant="top"
-                        src={house.image}
-                        style={{ width: "300px" }}
-                      />
+                    <Col id="col" xs={12} md={6}>
+                      <Card.Img className="card-img" src={house.image} />
                     </Col>
-                    <Col xs={6} md={6} style={{ textAlign: "center" }}>
-                      <Card.Text style={{ fontWeight: "bolder" }}>
-                        Direccion
-                      </Card.Text>
-                      <Card.Text>{house.address}</Card.Text>
+                    <Col xs={6} md={6}>
+                      <div className="card-text-admin">
+                        <Card.Text>Direccion</Card.Text>
+                        <Card.Text>{house.address}</Card.Text>
+                      </div>
                     </Col>
                   </Row>
                 </Container>
