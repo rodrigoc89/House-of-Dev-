@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch } from "react-redux";
 import { addProperty, setDebuggerProperty } from "../../state/debuggerProperty";
 import "../../styles/adminNavbar.css";
+
 function ModalABM() {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
@@ -54,10 +55,7 @@ function ModalABM() {
   };
 
   return (
-    <div
-      className="modal show add-property"
-     
-    >
+    <div className="modal show add-property">
       <Button variant="primary" onClick={handleShow}>
         Add New Property
       </Button>

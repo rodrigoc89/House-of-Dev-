@@ -24,9 +24,6 @@ function ModalProperty({ id }) {
   const [description, setDescription] = useState(property.description);
   const [available, setAvailable] = useState(property.available);
 
-  console.log(property, "spy la propiedad");
-  console.log(available);
-
   // CLOSE MODAL
   const handleClose = () => setShow(false);
   // OPEN AND SHOW DATA OF PROPERTY

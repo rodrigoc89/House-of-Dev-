@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "../state/user";
-import svgs from "../commons/svgs";
 import "../styles/login.css";
 
 const Login = () => {

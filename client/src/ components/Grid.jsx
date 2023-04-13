@@ -106,7 +106,6 @@ function Grid() {
         .then((house) => setProperties(house.data));
     }
   }, [value]);
-  console.log(favorite);
   return (
     <>
       <div className="conteiner-grid-title">
@@ -195,7 +194,7 @@ function Grid() {
                 style={{ padding: "1.6%" }}
                 key={home.id}
               >
-                <Card
+                <Card key={home.id}
                   className="card-grid"
                   style={{
                     ...cardSize,
