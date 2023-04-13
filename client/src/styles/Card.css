@@ -1,0 +1,132 @@
+.conteiner-card {
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 2%;
+  margin-bottom: 5%;
+  box-shadow: 0px 0px 3px #000;
+  display: flex;
+   flex-direction: row;
+}
+@media(max-width:700px){
+    .conteiner-card{
+        margin-top: 10%;
+        width: 95%;
+        height: 350px;
+    }
+}
+.card-tex {
+  padding: 5%;
+  padding-left: 10%;
+  text-align: left;
+  width: 80%;
+}
+@media(max-width:700px){
+    .card-tex{
+        width: 100%;
+       padding-left: 2%;
+       font-size: 7px;
+    }
+}
+.buton-card {
+  background-color: transparent;
+  margin-top: 2%;
+  width: 130px;
+  height: 40px;
+  border-radius: 30px;
+  color: black;
+  border: 1px solid black;
+  font-size: 75%;
+}
+@media(max-width:700px){
+    .buton-card{
+        width: 60px;
+        height: 20px;
+    }
+}
+#icon-card {
+  margin-right: 4%;
+}
+@media(max-width:700px){
+    #icon-card{
+        width: 9px;
+        height: 9px;
+    }
+}
+
+.conteiner-title-decoration-card {
+  border: 1px solid #123ac8;
+  width: 75%;
+  margin-top: 2%;
+  margin-left: 12.4%;
+  height: 42px;
+  position: relative;
+}
+@media(max-width:700px){
+    .conteiner-title-decoration-card{
+        width: 95%;
+        margin: 0 auto;
+        margin-top: 4%;
+    }
+}
+.decoration-card {
+  width: 75%;
+  height: 1px;
+  background-color: #123ac8;
+  position: absolute;
+  bottom: 20%;
+  left: 0%;
+  margin-left: 25%;
+}
+.title-card{
+    padding-top: 1.9%;
+    padding-left: 1%;
+    color: #123AC8;
+    font-weight: bolder;
+}
+@media(max-width:700px){
+    .title-card{
+    font-size: 12px;
+    width: 22%;
+    }
+}
+.conteiner-card-img{
+    flex: 1
+}
+.img-card{
+    padding: 5%;
+     height: 100%;
+      width: 100%;
+}
+@media(max-width:700px){
+    .img-card{
+        width: 50%;
+
+}
+}
+
+.conteiner-card-tex{
+   flex: 2;
+
+}
+@media(max-width:700px){
+    .conteiner-card-tex{
+        position: absolute;
+        width: 45%;
+        margin-left: 170px;
+
+}
+}
+.conteiner-buttons{
+    display: flex;
+    margin-top: 5%;
+}
+.button-pedir-cita{
+    margin-left: 35%;
+}
+
+@media(max-width:700px){
+    .button-volver-atras{
+        margin-left: 10%;
+    }
+
+}

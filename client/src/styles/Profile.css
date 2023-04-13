@@ -1,0 +1,168 @@
+.conteiner-profile {
+  width: 70%;
+  margin: auto;
+  height: 550px;
+  margin-top: 2%;
+  padding-top: 39px;
+  box-shadow: 0px 4px 5px #000;
+}
+@media (max-width: 700px) {
+  .conteiner-profile {
+    width: 100%;
+    box-shadow: none;
+    margin-top: 0%;
+    padding-top: 4%;
+  }
+}
+.buton-profile {
+  height: 45px;
+  width: 23%;
+  border-radius: 0px 30px 30px 0px;
+  border: 1px solid #123ac8;
+  color: #123ac8;
+  font-size: 13px;
+  background-color: transparent;
+}
+@media (max-width: 700px) {
+  .buton-profile {
+    width: 33.5%;
+    height: 50px;
+  }
+}
+.hr-perfil {
+  height: 3px;
+  width: 100%;
+  background-color: blue;
+  margin-bottom: 0.1%;
+  margin-top: 0.5%;
+}
+.conteiner-title-decoration-profile {
+  border: 1px solid #123ac8;
+  width: 69.5%;
+  margin-left: 14%;
+  height: 45px;
+  position: relative;
+}
+@media (max-width: 700px) {
+  .conteiner-title-decoration-profile {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+.decoration-profile {
+  width: 83%;
+  height: 1px;
+  background-color: #123ac8;
+  position: absolute;
+  bottom: 20%;
+  left: 0%;
+  margin-left: 17%;
+}
+.title-profile {
+  padding-top: 3%;
+  padding-left: 2%;
+  color: #123ac8;
+  font-weight: bolder;
+}
+.icon-profile-pencil {
+  margin-left: 5%;
+  width: 35px;
+  height: 35px;
+  padding: 6%;
+  border-radius: 20px;
+  border: 1px solid #fe4236;
+}
+.conteiner-button-picture-name {
+  display: flex;
+  width: 69.6%;
+  margin-left: 13.9%;
+  margin-top: 1%;
+}
+@media (max-width: 700px) {
+  .conteiner-button-picture-name {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 3%;
+   
+  }
+}
+.input-name-profile {
+  margin-top: 8%;
+  position: absolute;
+  font-size: 17px;
+  font-weight: bold;
+}
+@media (max-width: 700px) {
+  .input-name-profile {
+    margin-top: 29%;
+    width: 35%;
+  }
+}
+.name-profile {
+  margin-top: 6%;
+  position: absolute;
+  color: #123ac8;
+  font-size: 15px;
+  font-weight: 300;
+}
+@media (max-width: 700px) {
+  .name-profile {
+    margin-top: 23%;
+  }
+}
+.h5-name-profile {
+  margin-top: 8%;
+  position: absolute;
+  color: #123ac8;
+  font-size: 17px;
+  font-weight: bold;
+}
+@media (max-width: 700px) {
+  .h5-name-profile {
+    margin-top: 30%;
+  }
+}
+.hr-name-profile {
+  width: 35%;
+  height: 3px;
+  position: absolute;
+  margin-top: 10.5%;
+  background-color: blue;
+}
+@media (max-width: 700px) {
+  .hr-name-profile {
+    margin-top: 39%;
+  }
+}
+.img-profile {
+  margin-left: 60%;
+}
+@media (max-width: 700px) {
+  .img-profile {
+    margin-left: 22%;
+  }
+}
+.conteiner-apellido-email-celular-contarseña {
+  width: 69.6%;
+  margin-left: 13.9%;
+}
+@media (max-width: 700px) {
+  .conteiner-apellido-email-celular-contarseña {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+.h6-apellido-email-celular-contraseña {
+  margin-top: 2%;
+  color: #123ac8;
+  font-size: 15px;
+  font-weight: 300;
+  padding-bottom: 0px;
+}
+.input-h5-apellido-email-celular-contraseña{
+    color: #123AC8;
+    font-size: 17px;
+    margin-bottom: 0%;
+    font-weight: bold;
+}

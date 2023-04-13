@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "app.js",
-    "serv": "nodemon app.js"
+    "serv": "nodemon app.js",
+    "seed": "node seed.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,8 @@
     "nodemon": "^2.0.21",
     "pg": "^8.10.0",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.29.3"
+    "prettier": "^2.8.6",
+    "sequelize": "^6.29.3",
+    "validator": "^13.9.0"
   }
 }
