@@ -29,11 +29,9 @@ function Grid() {
 
   const [cont, setCont] = useState(null);
 
-
   const cardSize = {
     width: "97%",
   };
-
 
   useEffect(() => {
     const num = favorite.length;
@@ -46,7 +44,6 @@ function Grid() {
       (favorite) => favorite.id === home.id
     );
     if (isAlreadyFavorited) {
-
       const data = {
         id: home.id,
         type: "remove",
@@ -66,8 +63,6 @@ function Grid() {
             timer: "2000",
           });
         });
-
-
     } else {
       const data = {
         id: home.id,
@@ -78,12 +73,9 @@ function Grid() {
           withCredentials: true,
         })
         .then((fa) => {
-
           dispatch(addOrRemoveToFavorite(fa.data));
         })
         .then(() => {
-
-     
           Swal.fire({
             title: "agregado a favoritos",
             icon: "success",
@@ -109,12 +101,8 @@ function Grid() {
   return (
     <>
       <div className="conteiner-grid-title">
-        <div
-        className="title-decoration" ></div>
-        <h6
-        className="grid-title">
-          PROPIEDADES EN ALQUILER
-        </h6>
+        <div className="title-decoration"></div>
+        <h6 className="grid-title">PROPIEDADES EN ALQUILER</h6>
       </div>
       <div
         style={{
@@ -127,7 +115,7 @@ function Grid() {
       >
         <button className="button-notifications">
           NOTIFICACIONES
-          <span id="icon-notifications" >{svgs.notifications}</span>
+          <span id="icon-notifications">{svgs.notifications}</span>
         </button>
 
         <Badge id="badge-grid" bg="danger">
@@ -143,10 +131,9 @@ function Grid() {
             ) : (
               ""
             )}
-
             FAVORITOS
             <svg
-            id="icon-favorite"
+              id="icon-favorite"
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
@@ -165,7 +152,7 @@ function Grid() {
           <h1 className="h1-grid">amet, consectetur adipisicing elit.</h1>
           <button className="buton-baner">
             INMOBILIARIA
-          {svgs.flecha_ir}
+            {svgs.flecha_ir}
           </button>
         </div>
       </div>
@@ -182,19 +169,20 @@ function Grid() {
         <option value="minor">Mostrar de menor a mayor precio</option>
         <option value="major">Mostrar de mayor a mejor precio</option>
       </Form.Select>
-      <Container className="conteiner-cards-grid" >
+      <Container className="conteiner-cards-grid">
         <Row>
           {properties.map((home) => {
             return (
               <Col
-              className="columnas-grid"
+                className="columnas-grid"
                 xs={12}
                 md={6}
                 lg={5}
                 style={{ padding: "1.6%" }}
                 key={home.id}
               >
-                <Card key={home.id}
+                <Card
+                  key={home.id}
                   className="card-grid"
                   style={{
                     ...cardSize,
@@ -206,10 +194,7 @@ function Grid() {
                 >
                   <Row>
                     <Col xs={5}>
-                      <Card.Img
-                      className="card-img-grid"
-                        src={home.image}
-                      />
+                      <Card.Img className="card-img-grid" src={home.image} />
                     </Col>
                     <Col xs={7}>
                       <Card.Body
@@ -220,29 +205,27 @@ function Grid() {
                           height: "110%",
                         }}
                       >
-                        <div className="location-and-price-grid" >
-                          <div className="price-grid" >
+                        <div className="location-and-price-grid">
+                          <div className="price-grid">
                             {svgs.dolar}
                             {home.price}
                           </div>
-                          <div className="location-grid" >
+                          <div className="location-grid">
                             {svgs.ubicacion}
                             {shortUbication(home.address)}
                           </div>
                         </div>
                         <div className="bathrooms-bedrooms-meters-grid">
-                          <div
-                          className="meters-grid">
+                          <div className="meters-grid">
                             {svgs.regla}
                             {home.m2 + "m²"}
                           </div>
-                          <div
-                          className="bedrooms-grid" >
+                          <div className="bedrooms-grid">
                             {svgs.cama}
                             {home.bedrooms + " dorm."}
                           </div>
 
-                          <div className="bathrooms-grid" >
+                          <div className="bathrooms-grid">
                             {svgs.baño}
                             {home.bathrooms + "baños"}
                           </div>
@@ -256,6 +239,7 @@ function Grid() {
                               (favorite) => favorite.id === home.id
                             ) ? (
                               <svg
+                                type="button"
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
                                 height="16"
@@ -275,6 +259,7 @@ function Grid() {
                               </svg>
                             ) : (
                               <svg
+                                type="button"
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
                                 height="16"

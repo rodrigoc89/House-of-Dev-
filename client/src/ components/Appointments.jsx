@@ -39,15 +39,16 @@ const Appointments = () => {
                   <div className="conteiner-dirrecion-hora-fecha">
                     <p className="text-citas">
                     <span className="icon-citas">{svgs.ubicacion}</span>
-                    <strong style={{marginRight: "0.5rem"}}>Dirrecion: </strong>{appointment.address}
+                    <strong style={{marginRight: "0.5rem"}}>Direcion: </strong>{appointment.address}
                     </p>
                     <p className="text-citas">
                      <span className="icon-citas">{svgs.time}</span>
-                    <strong style={{marginRight: "0.5rem"}}>Hora:</strong>{appointment.date.slice(11, 16)}
+                     {console.log(appointment.date)}
+                    <strong style={{marginRight: "0.5rem"}}>Hora:</strong>{appointment.date.slice(16, 21)}
                     </p>
                     <p className="text-citas" style={{paddingBottom:"5%"}}>
                       <span className="icon-citas"> {svgs.calendar}</span>
-                    <strong style={{marginRight: "0.5rem"}}>Fecha: </strong> {`${appointment.date.slice(8, 10)}-${appointment.date.slice(5, 7)}-${appointment.date.slice(0, 4)}`}
+                    <strong style={{marginRight: "0.5rem"}}>Fecha: </strong> {`${appointment.date.slice(0, 3)}-${appointment.date.slice(8, 10)}-${appointment.date.slice(4, 7)}-${appointment.date.slice(10,15)}`}
                     </p>
                   </div>
                 </div>
