@@ -18,7 +18,6 @@ function FormRegister() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(phone);
     axios
       .post(
         "http://localhost:3001/api/user/register",
