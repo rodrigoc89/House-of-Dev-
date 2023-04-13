@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import { useSelector } from "react-redux";
 import svgs from "../../commons/svgs";
 import axios from "axios";
+import Badge from "react-bootstrap/esm/Badge";
 
 const Chat = ({ receiverId, userName }) => {
   const [messages, setMessages] = useState([]);
@@ -34,18 +35,32 @@ const Chat = ({ receiverId, userName }) => {
       )
       .then((message) => setMessages([...messages, message.data]));
   };
-  console.log(receiverId, user.id);
-  console.log(messages);
-  console.log(message);
-
   return (
     <>
-      <button className="buton-citas-admin" onClick={handleShow}>
-        CHAT {svgs.message}
-      </button>
+      {user.admin ? (
+        <button className="buton-citas-admin" onClick={handleShow}>
+          CHAT {svgs.message}
+        </button>
+      ) : (
+        <>
+          <button className="button-notifications" onClick={handleShow}>
+            NOTIFICACIONES
+            <span id="icon-notifications">{svgs.notifications}</span>
+          </button>
+
+          <Badge id="badge-grid" bg="danger">
+            {messages.length}
+          </Badge>
+        </>
+      )}
+
       <Modal show={show} onHide={handleClose} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>{userName}</Modal.Title>
+          {user.admin ? (
+            <Modal.Title>{userName}</Modal.Title>
+          ) : (
+            <Modal.Title>{`Mensaje de: Administrador`}</Modal.Title>
+          )}
         </Modal.Header>
         <Modal.Body>
           <div>
@@ -81,19 +96,27 @@ const Chat = ({ receiverId, userName }) => {
               ))}
             </div>
           </div>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="text">
-              <Form.Control
-                type="text"
-                placeholder="Escribe un mensaje"
-                onChange={(e) => setMessage(e.target.value)}
+          {user.admin ? (
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="text">
+                <Form.Control
+                  type="text"
+                  placeholder="Escribe un mensaje"
+                  onChange={(e) => setMessage(e.target.value)}
+                  style={{ display: "flex" }}
+                />
+              </Form.Group>
+              <Button
+                variant="primary"
+                type="submit"
                 style={{ display: "flex" }}
-              />
-            </Form.Group>
-            <Button variant="primary" type="submit" style={{ display: "flex" }}>
-              Enviar
-            </Button>
-          </Form>
+              >
+                Enviar
+              </Button>
+            </Form>
+          ) : (
+            ""
+          )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

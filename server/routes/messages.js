@@ -5,7 +5,7 @@ const { validateAuth, validateAdmin } = require("../middleware/auth");
 
 const router = Router();
 
-router.get("/:receiverId", validateAuth, validateAdmin, async (req, res) => {
+router.get("/:receiverId", validateAuth, async (req, res) => {
   const { receiverId } = req.params;
   try {
     const messages = await Messages.findAll({

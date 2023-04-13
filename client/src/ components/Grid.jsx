@@ -17,6 +17,7 @@ import { setValue } from "../state/value";
 import { setType } from "../state/type";
 import "../styles/Grid.css";
 import Badge from "react-bootstrap/Badge";
+import Chat from "./admin/Chat";
 
 function Grid() {
   const [properties, setProperties] = useState([]);
@@ -53,7 +54,6 @@ function Grid() {
           withCredentials: true,
         })
         .then((fa) => {
-          console.log(fa.data, "soy el que intentas eliminar. owo");
           dispatch(addOrRemoveToFavorite(fa.data));
         })
         .then(() => {
@@ -84,7 +84,6 @@ function Grid() {
         });
     }
   };
-
   useEffect(() => {
     if (type && value) {
       axios
@@ -98,7 +97,6 @@ function Grid() {
         .then((house) => setProperties(house.data));
     }
   }, [value]);
-  console.log(favorite);
   return (
     <>
       <div className="conteiner-grid-title">
@@ -114,16 +112,17 @@ function Grid() {
           padding: "0.6% 0% 0.6% 0%",
         }}
       >
-        <Link>
-          <button className="button-notifications">
-            NOTIFICACIONES
-            <span id="icon-notifications">{svgs.notifications}</span>
-          </button>
-
-          <Badge id="badge-grid" bg="danger">
-            3
-          </Badge>
-        </Link>
+        <Chat
+          receiverId={user.id}
+          userName={
+            user.name ? (
+              `${user.name.charAt(0).toUpperCase() + user.name.slice(1)} 
+          ${user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}`
+            ) : (
+              <></>
+            )
+          }
+        />
 
         <Link to={"/favorites"}>
           <button className="button-favorite">
