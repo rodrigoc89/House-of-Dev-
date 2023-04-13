@@ -6,7 +6,6 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import svgs from "../../commons/svgs";
 import "../../styles/CitasAdmin.css";
-import { useSelector } from "react-redux";
 
 export default function AdminCitas() {
   const [quotes, setQuotes] = useState([]);
@@ -18,7 +17,6 @@ export default function AdminCitas() {
         setQuotes(citas.data);
       });
   }, []);
-  console.log(quotes);
   return (
     <>
       <div className="sizeTables" id="titleAppointmentsSize">

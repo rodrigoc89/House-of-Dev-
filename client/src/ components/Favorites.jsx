@@ -55,7 +55,7 @@ const Favorites = () => {
           {favorites.map((home) => {
             return (
               <Col className="columnas-favorites" xs={12} md={6} lg={5}>
-                <Card
+                <Card key={home.id}
                 className="card-favorite"
                   style={{
                     ...cardSize,
