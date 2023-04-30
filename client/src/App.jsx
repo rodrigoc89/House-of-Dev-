@@ -25,11 +25,10 @@ function App() {
 
   useEffect(() => {
     if (!userLogged.id) {
-      console.log(userLogged, "no exito, asi que hare el axios");
       axios
         .get("http://localhost:3001/api/user/me", { withCredentials: true })
         .then((usera) => {
-          console.log(usera, "entreee"), dispatch(setUser(usera.data.user));
+          dispatch(setUser(usera.data.user));
         });
     }
     if (userLogged.id) {
@@ -38,7 +37,6 @@ function App() {
           withCredentials: true,
         })
         .then((favorito) => {
-          console.log(favorito);
           dispatch(setFavorite(favorito.data));
         });
       axios
@@ -68,7 +66,7 @@ function App() {
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/card/:id" element={<CardIndividual />} />
-          <Route path="appointments" element={<Appointments />} />
+          <Route path="/appointments" element={<Appointments />} />
         </Routes>
       )}
     </div>

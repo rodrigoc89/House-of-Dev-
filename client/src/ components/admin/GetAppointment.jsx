@@ -27,12 +27,9 @@ function GetAppointment({
     setShow(true);
   };
   const handleSubmit = () => {
-    console.log(setStartDate,"SOY STARTDATE");
     const verify = appointments.some((x) => x.address === address);
 
     if (!verify) {
-      console.log(email, name, userId, phone);
-      console.log(typeof startDate, "en el if");
       axios
         .post(
           `http://localhost:3001/api/appointment/${userId}`,
@@ -48,7 +45,6 @@ function GetAppointment({
           { withCredentials: true }
         )
         .then((date) => {
-          console.log(date.data);
           dispatch(addAppointment(date.data));
         });
     } else {
@@ -89,7 +85,6 @@ function GetAppointment({
             readOnly={true}
             icon={true}
             onSave={(date) => {
-              console.log(date._d,"holaaaaaaaaaaaaaaaaaaaaaa");
               setStartDate(date._d);
             }}
           />

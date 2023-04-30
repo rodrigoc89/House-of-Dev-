@@ -9,6 +9,7 @@ import "../../styles/CitasAdmin.css";
 import { useSelector } from "react-redux";
 import Chat from "./Chat";
 
+
 export default function AdminCitas() {
   const [quotes, setQuotes] = useState([]);
 
@@ -19,8 +20,6 @@ export default function AdminCitas() {
         setQuotes(citas.data);
       });
   }, []);
-
-  console.log(quotes);
   return (
     <>
       <div className="sizeTables" id="titleAppointmentsSize">

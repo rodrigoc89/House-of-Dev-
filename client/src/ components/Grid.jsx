@@ -123,7 +123,6 @@ function Grid() {
             )
           }
         />
-
         <Link to={"/favorites"}>
           <button className="button-favorite">
             {cont >= 1 ? (
@@ -184,6 +183,7 @@ function Grid() {
                 key={home.id}
               >
                 <Card
+                  key={home.id}
                   className="card-grid"
                   style={{
                     ...cardSize,
@@ -240,6 +240,7 @@ function Grid() {
                               (favorite) => favorite.id === home.id
                             ) ? (
                               <svg
+                                type="button"
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
                                 height="16"
@@ -260,6 +261,7 @@ function Grid() {
                               </svg>
                             ) : (
                               <svg
+                                type="button"
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
                                 height="16"

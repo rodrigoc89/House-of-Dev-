@@ -18,7 +18,7 @@
   background-color: #fe4236;
   width: 25%;
   margin: 0 auto;
-  margin-left: 30%;
+  margin-left: 400px;
   margin-top: 3%;
   padding: 2%;
   box-shadow: 0px 0px 3px #000;
@@ -34,7 +34,7 @@
 .parte-de-abajo {
   background-color: white;
   margin: 0 auto;
-  margin-left: 30%;
+  margin-left: 400px;
   width: 25%;
   padding: 3%;
   box-shadow: 0px 0px 3px #000;
@@ -68,21 +68,21 @@
 }
 #icons {
   position: absolute;
-  width: 1.9%;
-  height: 3.4%;
+  width: 25px;
+  height: 25px;
   padding: 0.3%;
   border-radius: 13px;
   border: 1px solid #fe4236;
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 9px;
+  margin-top: 8px;
   color: #123ac8;
 }
 @media (max-width: 700px) {
   #icons {
-    width: 6.5%;
-    height: 8%;
+    width: 27px;
+    height: 27px;
     padding: 1%;
-    margin-top: 6%;
+    margin-top: 23px;
     margin-left: 6%;
   }
   .p-login {
