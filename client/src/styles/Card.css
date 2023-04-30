@@ -120,9 +120,6 @@
     display: flex;
     margin-top: 5%;
 }
-.button-pedir-cita{
-    margin-left: 35%;
-}
 
 @media(max-width:700px){
     .button-volver-atras{

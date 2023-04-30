@@ -47,10 +47,10 @@ const Chat = ({ receiverId, userName }) => {
             NOTIFICACIONES
             <span id="icon-notifications">{svgs.notifications}</span>
           </button>
-
-          <Badge id="badge-grid" bg="danger">
+          {messages.length==0? "": <Badge id="badge-grid" bg="danger">
             {messages.length}
-          </Badge>
+          </Badge>}
+          
         </>
       )}
 
