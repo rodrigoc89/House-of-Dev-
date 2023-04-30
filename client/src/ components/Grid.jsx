@@ -17,6 +17,7 @@ import { setValue } from "../state/value";
 import { setType } from "../state/type";
 import "../styles/Grid.css";
 import Badge from "react-bootstrap/Badge";
+import Chat from "./admin/Chat";
 
 function Grid() {
   const [properties, setProperties] = useState([]);
@@ -53,7 +54,6 @@ function Grid() {
           withCredentials: true,
         })
         .then((fa) => {
-          console.log(fa.data, "soy el que intentas eliminar. owo");
           dispatch(addOrRemoveToFavorite(fa.data));
         })
         .then(() => {
@@ -84,7 +84,6 @@ function Grid() {
         });
     }
   };
-
   useEffect(() => {
     if (type && value) {
       axios
@@ -113,15 +112,17 @@ function Grid() {
           padding: "0.6% 0% 0.6% 0%",
         }}
       >
-        <button className="button-notifications">
-          NOTIFICACIONES
-          <span id="icon-notifications">{svgs.notifications}</span>
-        </button>
-
-        <Badge id="badge-grid" bg="danger">
-          3
-        </Badge>
-
+        <Chat
+          receiverId={user.id}
+          userName={
+            user.name ? (
+              `${user.name.charAt(0).toUpperCase() + user.name.slice(1)} 
+          ${user.lastName.charAt(0).toUpperCase() + user.lastName.slice(1)}`
+            ) : (
+              <></>
+            )
+          }
+        />
         <Link to={"/favorites"}>
           <button className="button-favorite">
             {cont >= 1 ? (
@@ -251,6 +252,7 @@ function Grid() {
                                 onClick={() => {
                                   addToFavoriteHandler(home);
                                 }}
+                                type="button"
                               >
                                 <path
                                   fill-rule="evenodd"
@@ -271,6 +273,7 @@ function Grid() {
                                 onClick={() => {
                                   addToFavoriteHandler(home);
                                 }}
+                                type="button"
                               >
                                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                               </svg>

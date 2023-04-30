@@ -6,6 +6,9 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import svgs from "../../commons/svgs";
 import "../../styles/CitasAdmin.css";
+import { useSelector } from "react-redux";
+import Chat from "./Chat";
+
 
 export default function AdminCitas() {
   const [quotes, setQuotes] = useState([]);
@@ -57,10 +60,19 @@ export default function AdminCitas() {
                           src={cita.image}
                         />
                       </div>
-
-                      <button className="buton-citas-admin">
-                        CHAT {svgs.message}
-                      </button>
+                      <Chat
+                        receiverId={cita.UserId}
+                        userName={`${
+                          cita.userName.charAt(0).toUpperCase() +
+                          cita.userName.slice(1)
+                        } 
+                          ${
+                            cita.userLastName.charAt(0).toUpperCase() +
+                            cita.userLastName.slice(1)
+                          }`}
+                        // {cita.userLastName.charAt(0).toUpperCase() +
+                        //   cita.userLastName.slice(1)}
+                      />
                     </Col>
                     <Col xs={7}>
                       <Card.Body
