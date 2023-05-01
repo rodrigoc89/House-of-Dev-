@@ -2,7 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 const cors = require("cors");
-const { User, Property, Favorites, Appointment } = require("./models");
+const { User, Property, Favorites, Appointment, Message } = require("./models");
 
 const app = express();
 const db = require("./db/db.js");

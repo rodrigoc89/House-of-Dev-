@@ -64,14 +64,6 @@ function CardIndividual() {
                       Volver atras
                     </button>
                   </a>
-
-                  <a href="">
-                    <button
-                      className="buton-card button-pedir-cita">
-                      {svgs.telefono}
-                      Pedir cita
-                    </button>
-                  </a>
                 </div>
               </ListGroup>
             </Card.Body>
